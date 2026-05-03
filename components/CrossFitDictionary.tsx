@@ -68,7 +68,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
   const sections: ActiveSection[] = ["種目辞典", "WOD"];
 
   return (
-    <div className=" mx-auto px-4 py-6">
+    <div className="w-[1000px] mx-auto px-4 py-6">
       {/* ヘッダー */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-text-primary">CrossFit 種目辞典</h1>
