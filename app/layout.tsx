@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Space_Mono } from "next/font/google";
+import { Noto_Sans_JP, Space_Mono, Geist } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+import AutoAnonymousLogin from "@/components/AutoAnonymousLogin";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
@@ -35,9 +39,10 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${notoSansJP.variable} ${spaceMono.variable} h-full antialiased`}
+      className={cn("h-full", "antialiased", notoSansJP.variable, spaceMono.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col bg-background text-text-primary">
+        <AutoAnonymousLogin />
         {children}
       </body>
     </html>

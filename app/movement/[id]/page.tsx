@@ -3,6 +3,8 @@ import { CATEGORY_LABELS, CATEGORY_COLORS } from "@/types/movement";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
+import { getPracticeLog, togglePractice } from "./action";
+import PracticeButton from "../PracticeButton";
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -21,13 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 export default async function MovementPage({ params }: Props) {
   const { id } = await params;
+  console.log(id);
   const movement = movements.find((m) => m.id === id);
   if (!movement) {
     notFound();
   }
-
+  const practiceLog = await getPracticeLog();
+  const isPracticed = practiceLog.includes(id);
   const categoryColor = CATEGORY_COLORS[movement.category];
-
   return (
     <main className="min-h-screen px-4 py-8 max-w-2xl mx-auto">
       {/* 戻るリンク */}
@@ -37,7 +40,7 @@ export default async function MovementPage({ params }: Props) {
       >
         ← 一覧に戻る
       </Link>
-
+      <PracticeButton movementId={id} initialIsPracticed={isPracticed} />
       {/* ヘッダー */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-2">
