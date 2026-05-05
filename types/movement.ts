@@ -15,6 +15,30 @@ export type PrimaryEffect =
 
 export type BodyPart = "上半身" | "下半身" | "コア" | "全身";
 
+export type Equipment =
+  | "バーベル"
+  | "ケトルベル"
+  | "鉄棒"
+  | "ローイングマシン"
+  | "トレッドミル"
+  | "縄跳び"
+  | "バイク"
+  | "ボックス"
+  | "ウォールボール"
+  | "なし";
+
+export const ALL_EQUIPMENT: Equipment[] = [
+  "バーベル",
+  "ケトルベル",
+  "鉄棒",
+  "ローイングマシン",
+  "トレッドミル",
+  "縄跳び",
+  "バイク",
+  "ボックス",
+  "ウォールボール",
+];
+
 export interface Prerequisite {
   name: string;
   description: string;
@@ -40,6 +64,7 @@ export interface Movement {
   name: string;
   nameEn: string;
   category: Category;
+  equipment: Equipment[];
   oneLiner: string;
   purpose: string;
   primaryEffect: PrimaryEffect[];

@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useMemo, useRef, useCallback } from "react";
-import { Movement, Category, PrimaryEffect, BodyPart } from "@/types/movement";
+import { Movement, Category, PrimaryEffect, BodyPart, Equipment } from "@/types/movement";
 import { Wod } from "@/types/wod";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import SearchBar from "./SearchBar";
 import CategoryFilter from "./CategoryFilter";
 import MovementCard from "./MovementCard";
 import WodCardScatter from "./WodCardScatter";
+import OnboardingEquipment from "./OnboardingEquipment";
 
 type ActiveSection = "種目辞典" | "WOD";
 
@@ -24,11 +25,20 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
   const [selectedEffects, setSelectedEffects] = useState<PrimaryEffect[]>([]);
   const [openCardId, setOpenCardId] = useState<string | null>(null);
   const [videoOverrides, setVideoOverrides] = useLocalStorage<Record<string, string>>("crossfit-video-overrides", {});
+  const [userEquipment, setUserEquipment] = useLocalStorage<Equipment[] | null>("crossfit-user-equipment", null);
 
   const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const filteredMovements = useMemo(() => {
     return movements.filter((m) => {
+      // 設備フィルター: 「なし」（自重）は常に表示、それ以外はユーザーの設備と一致する場合のみ
+      if (userEquipment && userEquipment.length > 0) {
+        const needsEquipment = m.equipment.filter((e) => e !== "なし");
+        if (needsEquipment.length > 0 && !needsEquipment.some((e) => userEquipment.includes(e))) {
+          return false;
+        }
+      }
+
       if (selectedCategory && m.category !== selectedCategory) return false;
 
       if (selectedBodyParts.length > 0 && !selectedBodyParts.some((bp) => m.bodyPart.includes(bp))) return false;
@@ -45,7 +55,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
 
       return true;
     });
-  }, [movements, selectedCategory, selectedBodyParts, selectedEffects, searchText]);
+  }, [movements, userEquipment, selectedCategory, selectedBodyParts, selectedEffects, searchText]);
 
   const handleVideoChange = (movementId: string, videoId: string) => {
     setVideoOverrides((prev) => ({
@@ -65,14 +75,40 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
     }, 100);
   }, []);
 
+  const handleOnboardingComplete = (selected: Equipment[]) => {
+    setUserEquipment(selected);
+  };
+
+  const [showEquipmentSettings, setShowEquipmentSettings] = useState(false);
+
+  // オンボーディング未完了の場合
+  if (userEquipment === null || showEquipmentSettings) {
+    return (
+      <OnboardingEquipment
+        onComplete={(selected) => {
+          handleOnboardingComplete(selected);
+          setShowEquipmentSettings(false);
+        }}
+      />
+    );
+  }
+
   const sections: ActiveSection[] = ["種目辞典", "WOD"];
 
   return (
-    <div className="w-[1000px] mx-auto px-4 py-6">
+    <div className="mx-auto px-4 py-6">
       {/* ヘッダー */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-text-primary">CrossFit 種目辞典</h1>
-        <p className="text-sm text-text-secondary mt-1">種目名をタップして詳細を確認しよう</p>
+      <div className="mb-6 flex items-start justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-text-primary font-gothic">種目辞典</h1>
+          <p className="text-sm mt-1">種目名をタップして詳細を確認しよう</p>
+        </div>
+        <button
+          onClick={() => setShowEquipmentSettings(true)}
+          className="text-xs text-text-secondary border border-border rounded-lg px-3 py-1.5 hover:text-text-primary hover:border-text-secondary transition-colors cursor-pointer"
+        >
+          設備変更
+        </button>
       </div>
 
       {/* セクション切り替え */}
