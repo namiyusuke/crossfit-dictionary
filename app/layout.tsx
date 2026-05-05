@@ -14,7 +14,7 @@ const notoSansJP = Noto_Sans_JP({
 
 const delaGothicOne = Dela_Gothic_One({
   variable: "--font-dela-gothic",
-  subsets: ["latin", "japanese"],
+  subsets: ["latin"],
   weight: "400",
   display: "swap",
 });
