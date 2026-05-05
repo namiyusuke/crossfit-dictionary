@@ -21,10 +21,7 @@ const FORMAT_DESCRIPTIONS: Record<WodFormat, string> = {
   ForTime: "タイムアタック",
 };
 
-export default function WodTemplate({
-  wods,
-  onMovementClick,
-}: WodTemplateProps) {
+export default function WodTemplate({ wods, onMovementClick }: WodTemplateProps) {
   const [selectedFormat, setSelectedFormat] = useState<WodFormat | null>(null);
   const [openWodId, setOpenWodId] = useState<string | null>(null);
 
@@ -45,9 +42,7 @@ export default function WodTemplate({
           return (
             <button
               key={format}
-              onClick={() =>
-                setSelectedFormat(isActive ? null : format)
-              }
+              onClick={() => setSelectedFormat(isActive ? null : format)}
               className="shrink-0 px-3 py-1.5 rounded-full text-sm font-medium transition-all border cursor-pointer"
               style={{
                 backgroundColor: isActive ? color : "transparent",
@@ -62,7 +57,7 @@ export default function WodTemplate({
       </div>
 
       {/* WODカード一覧 */}
-      <div className="space-y-3">
+      <div className="space-y-6">
         {filteredWods.map((wod) => {
           const isOpen = openWodId === wod.id;
           const formatColor = FORMAT_COLORS[wod.format];
@@ -78,17 +73,13 @@ export default function WodTemplate({
             >
               {/* WODヘッダー */}
               <button
-                onClick={() =>
-                  setOpenWodId(isOpen ? null : wod.id)
-                }
+                onClick={() => setOpenWodId(isOpen ? null : wod.id)}
                 className="w-full text-left px-4 py-3 cursor-pointer"
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className="text-base font-bold text-text-primary">
-                        {wod.name}
-                      </h3>
+                      <h3 className="text-base font-bold text-text-primary">{wod.name}</h3>
                       <span
                         className="text-[10px] px-1.5 py-0.5 rounded-full font-bold text-white"
                         style={{ backgroundColor: formatColor }}
@@ -99,9 +90,7 @@ export default function WodTemplate({
                         {wod.level}
                       </span>
                     </div>
-                    <p className="text-sm text-text-secondary mt-1">
-                      {wod.goal}
-                    </p>
+                    <p className="text-sm text-text-secondary mt-1">{wod.goal}</p>
                     <p className="text-xs text-text-secondary mt-1">
                       {wod.duration}
                       {wod.rounds && ` / ${wod.rounds}ラウンド`}
@@ -116,12 +105,7 @@ export default function WodTemplate({
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </div>
               </button>
@@ -148,19 +132,13 @@ export default function WodTemplate({
                               }}
                               className="w-full flex items-center justify-between px-3 py-2 rounded-lg bg-background hover:bg-border/30 transition-colors text-left cursor-pointer"
                             >
-                              <span className="text-sm text-text-primary font-medium">
-                                {mov.name}
-                              </span>
-                              <span className="text-sm text-text-secondary shrink-0 ml-2">
-                                {mov.reps}
-                              </span>
+                              <span className="text-sm text-text-primary font-medium">{mov.name}</span>
+                              <span className="text-sm text-text-secondary shrink-0 ml-2">{mov.reps}</span>
                             </button>
                           ))}
                         </div>
                       ) : (
-                        <p className="text-sm text-text-secondary italic px-3 py-2">
-                          休憩
-                        </p>
+                        <p className="text-sm text-text-secondary italic px-3 py-2">休憩</p>
                       )}
                     </div>
                   ))}
@@ -188,9 +166,7 @@ export default function WodTemplate({
                   {/* ノート */}
                   {wod.notes && (
                     <div className="bg-background rounded-lg p-3">
-                      <p className="text-xs text-text-secondary">
-                        📋 {wod.notes}
-                      </p>
+                      <p className="text-xs text-text-secondary">📋 {wod.notes}</p>
                     </div>
                   )}
                 </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useRef, useCallback } from "react";
+import { useState, useMemo } from "react";
 import { Movement, Category, PrimaryEffect, BodyPart, Equipment } from "@/types/movement";
 import { Wod } from "@/types/wod";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
@@ -23,11 +23,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const [selectedBodyParts, setSelectedBodyParts] = useState<BodyPart[]>([]);
   const [selectedEffects, setSelectedEffects] = useState<PrimaryEffect[]>([]);
-  const [openCardId, setOpenCardId] = useState<string | null>(null);
-  const [videoOverrides, setVideoOverrides] = useLocalStorage<Record<string, string>>("crossfit-video-overrides", {});
   const [userEquipment, setUserEquipment] = useLocalStorage<Equipment[] | null>("crossfit-user-equipment", null);
-
-  const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const filteredMovements = useMemo(() => {
     return movements.filter((m) => {
@@ -56,24 +52,6 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
       return true;
     });
   }, [movements, userEquipment, selectedCategory, selectedBodyParts, selectedEffects, searchText]);
-
-  const handleVideoChange = (movementId: string, videoId: string) => {
-    setVideoOverrides((prev) => ({
-      ...prev,
-      [movementId]: videoId,
-    }));
-  };
-
-  const handleMovementClick = useCallback((movementId: string) => {
-    setActiveSection("種目辞典");
-    setOpenCardId(movementId);
-    setTimeout(() => {
-      const el = cardRefs.current[movementId];
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    }, 100);
-  }, []);
 
   const handleOnboardingComplete = (selected: Equipment[]) => {
     setUserEquipment(selected);
@@ -150,22 +128,11 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
           </div>
 
           {/* 種目カード一覧 */}
-          <div className="space-y-3">
+          <div className="space-y-9">
             {filteredMovements.length > 0 ? (
               filteredMovements.map((movement) => (
-                <div
-                  key={movement.id}
-                  ref={(el) => {
-                    cardRefs.current[movement.id] = el;
-                  }}
-                >
-                  <MovementCard
-                    movement={movement}
-                    isOpen={openCardId === movement.id}
-                    onToggle={() => setOpenCardId(openCardId === movement.id ? null : movement.id)}
-                    videoOverride={videoOverrides[movement.id]}
-                    onVideoChange={(videoId) => handleVideoChange(movement.id, videoId)}
-                  />
+                <div key={movement.id}>
+                  <MovementCard movement={movement} />
                 </div>
               ))
             ) : (
