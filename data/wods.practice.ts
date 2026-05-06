@@ -27,6 +27,8 @@ export const wods: Wod[] = [
       },
     ],
     // rounds, repScheme は省略（オプショナル）
+    estimate: { beginner: "3〜4ラウンド", rx: "6〜7ラウンド" },
+    tip: "スクワットは深さを妥協しないこと。フルレンジで動く方が成長につながる。",
     notes: "初めてのAMRAPに最適。スケーリングとして膝つきプッシュアップに変更可。",
   },
 
@@ -56,6 +58,8 @@ export const wods: Wod[] = [
       },
     ],
     rounds: 5, // ← オプショナルプロパティを使っている例
+    estimate: { beginner: "各セット40〜50秒", rx: "各セット25〜35秒" },
+    tip: "EMOMの本質は「決まった時間内にやりきる→残りで回復」のサイクル。レストが短すぎるならレップ数を下げて質を保つ。",
     notes: null, // ← string | null で null を使っている例
   },
 ];
