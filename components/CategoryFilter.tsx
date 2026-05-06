@@ -5,6 +5,7 @@ import {
   Category,
   CATEGORY_LABELS,
   CATEGORY_COLORS,
+  CATEGORY_SHADOW,
   PrimaryEffect,
   BodyPart,
   ALL_EFFECTS,

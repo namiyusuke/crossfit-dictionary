@@ -1,9 +1,9 @@
 import { movements } from "@/data/movements";
-import { CATEGORY_LABELS, CATEGORY_COLORS } from "@/types/movement";
+import { CATEGORY_LABELS, CATEGORY_COLORS, CATEGORY_SHADOW } from "@/types/movement";
 import { notFound } from "next/navigation";
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { getPracticeLog, togglePractice } from "./action";
+import { getPracticeLog } from "./action";
 import PracticeButton from "../PracticeButton";
 type Props = {
   params: Promise<{ id: string }>;
@@ -23,7 +23,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 export default async function MovementPage({ params }: Props) {
   const { id } = await params;
-  console.log(id);
   const movement = movements.find((m) => m.id === id);
   if (!movement) {
     notFound();
@@ -31,6 +30,7 @@ export default async function MovementPage({ params }: Props) {
   const practiceLog = await getPracticeLog();
   const isPracticed = practiceLog.includes(id);
   const categoryColor = CATEGORY_COLORS[movement.category];
+  const categoryShadow = CATEGORY_SHADOW[movement.category];
   return (
     <main className="min-h-screen px-4 py-8 max-w-2xl mx-auto">
       {/* 戻るリンク */}

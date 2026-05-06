@@ -4,13 +4,16 @@ import { useState, useMemo } from "react";
 import { Movement, Category, PrimaryEffect, BodyPart, Equipment } from "@/types/movement";
 import { Wod } from "@/types/wod";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useQueryState, parseAsStringLiteral } from "nuqs";
+import { useRouter } from "next/navigation";
 import SearchBar from "./SearchBar";
 import CategoryFilter from "./CategoryFilter";
 import MovementCard from "./MovementCard";
 import WodCardScatter from "./WodCardScatter";
 import OnboardingEquipment from "./OnboardingEquipment";
 
-type ActiveSection = "種目辞典" | "WOD";
+const sections = ["種目辞典", "WOD"] as const;
+type ActiveSection = (typeof sections)[number];
 
 interface CrossFitDictionaryProps {
   movements: Movement[];
@@ -18,7 +21,25 @@ interface CrossFitDictionaryProps {
 }
 
 export default function CrossFitDictionary({ movements, wods }: CrossFitDictionaryProps) {
-  const [activeSection, setActiveSection] = useState<ActiveSection>("種目辞典");
+  const router = useRouter();
+  const [activeSection, setActiveSection] = useQueryState(
+    "section",
+    parseAsStringLiteral(sections).withDefault("種目辞典").withOptions({ history: "push" }),
+  );
+
+  const handleSectionChange = (section: ActiveSection) => {
+    if (section === "WOD") {
+      const lastWodPage = localStorage.getItem("lastWodPage");
+      if (lastWodPage) {
+        router.push(lastWodPage);
+        return;
+      }
+    }
+    if (section === "種目辞典") {
+      localStorage.removeItem("lastWodPage");
+    }
+    setActiveSection(section);
+  };
   const [searchText, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const [selectedBodyParts, setSelectedBodyParts] = useState<BodyPart[]>([]);
@@ -71,8 +92,6 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
     );
   }
 
-  const sections: ActiveSection[] = ["種目辞典", "WOD"];
-
   return (
     <div className="mx-auto px-4 py-6">
       {/* ヘッダー */}
@@ -90,16 +109,16 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
       </div>
 
       {/* セクション切り替え */}
-      <div className="max-w-72 mx-auto">
-        <div className="flex gap-1 mb-4 bg-card-bg rounded-xl p-1 border border-border">
+      <div className="">
+        <div className="flex gap-1 mb-4">
           {sections.map((section) => (
             <button
               key={section}
-              onClick={() => setActiveSection(section)}
-              className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer ${
+              onClick={() => handleSectionChange(section)}
+              className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer  ${
                 activeSection === section
-                  ? "bg-text-primary text-background"
-                  : "text-text-secondary hover:text-text-primary"
+                  ? "bg-button text-background"
+                  : "bg-gray text-text-secondary hover:text-text-primary"
               }`}
             >
               {section}

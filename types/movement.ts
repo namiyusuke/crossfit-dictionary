@@ -1,17 +1,6 @@
-export type Category =
-  | "weightlifting"
-  | "gymnastics"
-  | "cardio"
-  | "kettlebell"
-  | "bodyweight";
+export type Category = "weightlifting" | "gymnastics" | "cardio" | "kettlebell" | "bodyweight";
 
-export type PrimaryEffect =
-  | "筋力"
-  | "筋持久力"
-  | "心肺"
-  | "爆発力"
-  | "可動域"
-  | "体幹";
+export type PrimaryEffect = "筋力" | "筋持久力" | "心肺" | "爆発力" | "可動域" | "体幹";
 
 export type BodyPart = "上半身" | "下半身" | "コア" | "全身";
 
@@ -88,20 +77,20 @@ export const CATEGORY_LABELS: Record<Category, string> = {
 };
 
 export const CATEGORY_COLORS: Record<Category, string> = {
-  weightlifting: "#E85D3A",
-  gymnastics: "#3A8FE8",
-  cardio: "#2ECC71",
+  weightlifting: "#FFD700",
+  gymnastics: "#9B4DFF",
+  cardio: "#FF6B00",
   kettlebell: "#F39C12",
-  bodyweight: "#9B59B6",
+  bodyweight: "#00FF88",
+};
+export const CATEGORY_SHADOW: Record<Category, string> = {
+  weightlifting: "#A38900",
+  gymnastics: "#5A1E99",
+  cardio: "#994000",
+  kettlebell: "#F39C12",
+  bodyweight: "#007A40",
 };
 
-export const ALL_EFFECTS: PrimaryEffect[] = [
-  "筋力",
-  "筋持久力",
-  "心肺",
-  "爆発力",
-  "可動域",
-  "体幹",
-];
+export const ALL_EFFECTS: PrimaryEffect[] = ["筋力", "筋持久力", "心肺", "爆発力", "可動域", "体幹"];
 
 export const ALL_BODY_PARTS: BodyPart[] = ["上半身", "下半身", "コア", "全身"];

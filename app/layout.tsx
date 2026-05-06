@@ -3,6 +3,7 @@ import { Noto_Sans_JP, Space_Mono, Geist, Dela_Gothic_One } from "next/font/goog
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import AutoAnonymousLogin from "@/components/AutoAnonymousLogin";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -56,7 +57,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-text-primary">
         <AutoAnonymousLogin />
-        {children}
+        <NuqsAdapter>{children}</NuqsAdapter>
       </body>
     </html>
   );

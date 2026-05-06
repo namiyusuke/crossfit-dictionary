@@ -7,11 +7,17 @@ export interface WodMovement {
   movementId: string;
   name: string;
   reps: string;
+  rx?: string;
 }
 
 export interface WodSet {
   label?: string;
   movements: WodMovement[];
+}
+
+export interface WodEstimate {
+  beginner: string;
+  rx: string;
 }
 
 export interface Wod {
@@ -26,5 +32,7 @@ export interface Wod {
   sets: WodSet[];
   rounds?: number;
   repScheme?: string;
+  estimate: WodEstimate;
+  tip: string;
   notes: string | null;
 }
