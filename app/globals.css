@@ -16,6 +16,7 @@
   --color-bodyweight: #9b59b6;
   --color-green: #d4ff00;
   --color-gray: #262626;
+  --color-black: #0a0a0a;
   --background: #0a0a0a;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -64,6 +65,7 @@
   --color-background: var(--background);
   --color-gray: var(--color-gray);
   --color-green: var(--color-green);
+  --color-black: var(--color-black);
   --color-card-bg: var(--card-bg);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);

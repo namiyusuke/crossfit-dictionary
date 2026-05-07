@@ -1,12 +1,13 @@
 import { wods } from "@/data/wods";
-import { CATEGORY_LABELS, CATEGORY_COLORS, CATEGORY_SHADOW } from "@/types/movement";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { MOODS } from "@/data/wods";
 import Link from "next/link";
+import WodTimerLauncher from "@/components/timer/WodTimerLauncher";
 
 type Props = {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ mood?: string }>;
 };
 export async function generateStaticParams() {
   return wods.map((wod) => ({
@@ -20,8 +21,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: wod?.name,
   };
 }
-export default async function WodPage({ params }: Props) {
+export default async function WodPage({ params, searchParams }: Props) {
   const { id } = await params;
+  const { mood } = await searchParams;
 
   const wod = wods.find((m) => m.id === id);
 
@@ -128,6 +130,14 @@ export default async function WodPage({ params }: Props) {
       <div className="mt-4 rounded-lg p-4 bg-gray">
         <p className="">{wod.tip}</p>
       </div>
+      {/* きょうはこれをやる！ */}
+      <div className="text-center mt-16">
+        <WodTimerLauncher wod={wod} />
+      </div>
+      {/* 一覧に戻る */}
+      <Link href={`/?section=WOD${mood ? `&mood=${mood}` : ""}`} className="text-green">
+        一覧に戻る
+      </Link>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getPracticeLog } from "./action";
 import PracticeButton from "../PracticeButton";
+import SpriteAnimation from "./SpriteAnimation";
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -160,6 +161,7 @@ export default async function MovementPage({ params }: Props) {
         <h2 className="text-sm font-semibold text-text-primary mb-2">スケーリング</h2>
         <p className="text-sm text-text-secondary">{movement.scaling}</p>
       </section>
+      <SpriteAnimation />
     </main>
   );
 }
