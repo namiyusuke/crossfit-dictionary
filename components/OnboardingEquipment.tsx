@@ -194,7 +194,7 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
           {Array.from({ length: totalSteps }).map((_, i) => (
             <div
               key={i}
-              className={`w-3 h-3 rounded-full transition-colors ${i === step ? "bg-button w-5" : "border border-[#D4FF00]"}`}
+              className={`w-3 h-3 rounded-full transition-colors ${i === step ? "bg-button w-5" : "border border-[#F1FE7D]"}`}
             />
           ))}
         </div>

@@ -3,7 +3,10 @@ import { Wod } from "@/types/wod";
 import { MOODS } from "@/data/wods";
 import type { WodFormat } from "@/types/wod";
 import Link from "next/link";
+import Image from "next/image";
 import { useQueryState } from "nuqs";
+import { movements } from "@/data/movements";
+import { CATEGORY_COLORS } from "@/types/movement";
 
 const FORMAT_COLORS: Record<WodFormat, string> = {
   AMRAP: "#2ECC71",
@@ -61,61 +64,62 @@ export default function WodCardScatter({ wods }: WodCardScatterProps) {
         /* WODカード縦積み */
         <div>
           <div className="flex justify-end mb-3">
-            <button
-              onClick={handleReset}
-              className="px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-card-bg text-text-secondary hover:text-text-primary transition-all cursor-pointer"
-            >
-              もう一度選ぶ
+            <button onClick={handleReset} className=" cursor-pointer text-green">
+              気分を変える
             </button>
           </div>
 
           {filteredWods.length === 0 ? (
             <p className="text-center text-sm text-text-secondary py-8">該当するWODがありません</p>
           ) : (
-            <div className="flex flex-col gap-4">
-              {filteredWods.map((wod) => {
+            <div className="flex flex-col gap-8">
+              {filteredWods.map((wod, index) => {
                 const color = FORMAT_COLORS[wod.format];
                 return (
-                  <div
-                    key={wod.id}
-                    className="rounded-2xl border border-border shadow-md p-4"
-                    style={{ borderTopWidth: "4px", borderTopColor: color }}
-                  >
+                  <div key={wod.id} className="rounded-2xl border border-[3px] border-green shadow-md ">
                     <Link
+                      className="w-full h-full block p-4 relative"
                       href={`/wod/${wod.id}?mood=${selectedMood}`}
                       onClick={() => localStorage.setItem("lastWodPage", `/wod/${wod.id}?mood=${selectedMood}`)}
                     >
-                      <div className="flex items-center gap-2 mb-2">
-                        <span
-                          className="text-[10px] px-2 py-0.5 rounded-full font-bold text-white shrink-0"
-                          style={{ backgroundColor: color }}
-                        >
+                      <span className="absolute bg-gray inset-0 top-[10px] right-[-10px] -z-10 rounded-2xl"></span>
+                      <p className="text-6xl font-gothic text-green mb-4">0{index + 1}</p>
+                      <div className="flex gap-2 mb-2">
+                        <span className="text-[14px] px-2 py-0.5 rounded-full font-regular text-white border border-white">
                           {wod.format}
                         </span>
-                        <h2 className="text-sm font-bold text-text-primary truncate">{wod.name}</h2>
-                        <span className="text-[10px] ml-auto px-2 py-0.5 rounded-full border border-border text-text-secondary shrink-0">
-                          {wod.level}
-                        </span>
+                        <span className="text-[14px] px-2 py-0.5 font-black">{wod.level}</span>
                       </div>
-                      <p className="text-xs text-text-secondary mb-3">
-                        {wod.duration}
+                      <h2 className="font-gothic text-2xl">{wod.name}</h2>
+                      {wod.notes && <p className="text-[14px] font-black mt-6 leading-tight">{wod.notes}</p>}
+                      <p className="text-[14px] mt-10 border-b-2 pb-6 mb-6 border-[#fff]">
+                        時間:{wod.duration}
                         {wod.rounds && ` / ${wod.rounds}R`}
                         {wod.repScheme && ` / ${wod.repScheme}`}
                       </p>
                       {wod.sets.map((set, i) => (
-                        <div key={i} className="mb-1.5">
+                        <div key={i} className="mb-1.5 flex flex-wrap gap-3.5">
                           {set.label && (
                             <p className="text-[10px] font-bold text-text-secondary uppercase mb-0.5">{set.label}</p>
                           )}
-                          {set.movements.map((mov, j) => (
-                            <div key={j} className="flex justify-between text-[11px] py-0.5 border-b border-border/50">
-                              <span className="text-text-primary">{mov.name}</span>
-                              <span className="text-text-secondary shrink-0 ml-1">{mov.reps}</span>
-                            </div>
-                          ))}
+                          {set.movements.map((mov, j) => {
+                            const movement = movements.find((m) => m.id === mov.movementId);
+                            const movColor = movement ? CATEGORY_COLORS[movement.category] : undefined;
+                            const bodyweightColor =
+                              CATEGORY_COLORS[movement.category] === "#EDE0C8" ? "#0A0A0A" : "#fff";
+                            return (
+                              <div key={j} className="flex justify-between text-[14px] ">
+                                <span
+                                  className="py-2 px-3 rounded-xl font-black"
+                                  style={movColor ? { background: movColor, color: bodyweightColor } : undefined}
+                                >
+                                  {mov.name}
+                                </span>
+                              </div>
+                            );
+                          })}
                         </div>
                       ))}
-                      {wod.notes && <p className="text-[9px] text-text-secondary mt-1.5 leading-tight">{wod.notes}</p>}
                     </Link>
                   </div>
                 );
@@ -124,6 +128,13 @@ export default function WodCardScatter({ wods }: WodCardScatterProps) {
           )}
         </div>
       )}
+      <div className="mt-20">
+        <p className="font-gothic text-green rotate-[-5deg] mb-11  w-max mx-auto">
+          <span className="block text-6xl mb-2">追い込んで</span>
+          <span className="block text-2xl text-right mr-10">いこうぜ！？</span>
+        </p>
+        <Image src="/WOD-char01.png" alt="" width={652} height={460} />
+      </div>
     </div>
   );
 }

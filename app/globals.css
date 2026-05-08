@@ -8,13 +8,13 @@
   --card-bg: #ffffff;
   --text-primary: #ffffff;
   --text-secondary: #ffffff;
-  --border: #d4ff00;
+  --border: #f1fe7d;
   --color-weightlifting: #e85d3a;
   --color-gymnastics: #3a8fe8;
   --color-cardio: #2ecc71;
   --color-kettlebell: #f39c12;
   --color-bodyweight: #9b59b6;
-  --color-green: #d4ff00;
+  --color-green: #f1fe7d;
   --color-gray: #262626;
   --color-black: #0a0a0a;
   --background: #0a0a0a;
@@ -39,7 +39,7 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --button: #d4ff00;
+  --button: #f1fe7d;
   --button-foreground: #0a0a0a;
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);

@@ -77,18 +77,18 @@ export const CATEGORY_LABELS: Record<Category, string> = {
 };
 
 export const CATEGORY_COLORS: Record<Category, string> = {
-  weightlifting: "#FFD700",
-  gymnastics: "#9B4DFF",
-  cardio: "#FF6B00",
+  weightlifting: "#DB6C66",
+  gymnastics: "#553EEC",
+  cardio: "#6BAF7A",
   kettlebell: "#F39C12",
-  bodyweight: "#00FF88",
+  bodyweight: "#EDE0C8",
 };
 export const CATEGORY_SHADOW: Record<Category, string> = {
-  weightlifting: "#A38900",
-  gymnastics: "#5A1E99",
-  cardio: "#994000",
-  kettlebell: "#F39C12",
-  bodyweight: "#007A40",
+  weightlifting: "#5D4230",
+  gymnastics: "#5D4230",
+  cardio: "#5D4230",
+  kettlebell: "#5D4230",
+  bodyweight: "#5D4230",
 };
 
 export const ALL_EFFECTS: PrimaryEffect[] = ["筋力", "筋持久力", "心肺", "爆発力", "可動域", "体幹"];

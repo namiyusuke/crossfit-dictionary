@@ -79,7 +79,23 @@ export default async function WodPage({ params, searchParams }: Props) {
         </div>
       </div>
 
-      <div className="mt-4">
+      <div className="mt-20">
+        {/* RX（規定） */}
+        <p className="text-2xl font-bold mb-2 font-gothic">RX（規定）</p>
+        <div className="mt-4 rounded-lg py-4 px-10 space-y-1 bg-gray">
+          <p className="text-green mb-8">RX CONDITIONS</p>
+          {wod.sets
+            .flatMap((set) => set.movements)
+            .filter((mov) => mov.rx)
+            .map((mov, i) => (
+              <div key={i} className="flex text-sm">
+                <span>{mov.name}</span>：<span className="">{mov.rx}</span>
+              </div>
+            ))}
+        </div>
+      </div>
+      <div className="mt-16">
+        <p className="text-2xl font-bold mb-2 font-gothic">種目リスト</p>
         {wod.sets.map((set, i) => (
           <div key={i}>
             {set.label && <p className="text-sm font-bold mb-1">{set.label}</p>}
@@ -98,30 +114,19 @@ export default async function WodPage({ params, searchParams }: Props) {
           </div>
         ))}
       </div>
-      {/* RX（規定） */}
-      <p className="text-2xl font-bold mb-2 font-gothic">RX（規定）</p>
-      <div className="mt-4 rounded-lg py-4 px-10 space-y-1 bg-gray">
-        <p className="text-green mb-8">RX CONDITIONS</p>
-        {wod.sets
-          .flatMap((set) => set.movements)
-          .filter((mov) => mov.rx)
-          .map((mov, i) => (
-            <div key={i} className="flex text-sm">
-              <span>{mov.name}</span>：<span className="">{mov.rx}</span>
+      <div className="mt-16">
+        {/* 目安 */}
+        <p className="text-2xl font-bold mb-2 font-gothic">{wod.format === "AMRAP" ? "ラウンド目安" : "タイム目安"}</p>
+        <div className="mt-4  rounded-lg p-4 space-y-2 bg-gray">
+          <div className="">
+            <div className="flex">
+              <p className="">初心者：</p>
+              <p>{wod.estimate.beginner}</p>
             </div>
-          ))}
-      </div>
-      {/* 目安 */}
-      <p className="text-2xl font-bold mb-2 font-gothic">{wod.format === "AMRAP" ? "ラウンド目安" : "タイム目安"}</p>
-      <div className="mt-4  rounded-lg p-4 space-y-2 bg-gray">
-        <div className="">
-          <div className="flex">
-            <p className="">初心者：</p>
-            <p>{wod.estimate.beginner}</p>
-          </div>
-          <div className="flex">
-            <p className="">RX：</p>
-            <p>{wod.estimate.rx}</p>
+            <div className="flex">
+              <p className="">RX：</p>
+              <p>{wod.estimate.rx}</p>
+            </div>
           </div>
         </div>
       </div>
