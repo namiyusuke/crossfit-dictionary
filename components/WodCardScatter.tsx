@@ -106,7 +106,7 @@ export default function WodCardScatter({ wods }: WodCardScatterProps) {
                             const movement = movements.find((m) => m.id === mov.movementId);
                             const movColor = movement ? CATEGORY_COLORS[movement.category] : undefined;
                             const bodyweightColor =
-                              CATEGORY_COLORS[movement.category] === "#EDE0C8" ? "#0A0A0A" : "#fff";
+                              movement && CATEGORY_COLORS[movement.category] === "#EDE0C8" ? "#0A0A0A" : "#fff";
                             return (
                               <div key={j} className="flex justify-between text-[14px] ">
                                 <span
