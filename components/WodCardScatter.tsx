@@ -70,71 +70,70 @@ export default function WodCardScatter({ wods }: WodCardScatterProps) {
           </div>
 
           {filteredWods.length === 0 ? (
-            <p className="text-center text-sm text-text-secondary py-8">該当するWODがありません</p>
+            <p className="text-center text-sm  py-8">該当するWODがありません</p>
           ) : (
-            <div className="flex flex-col gap-8">
-              {filteredWods.map((wod, index) => {
-                const color = FORMAT_COLORS[wod.format];
-                return (
-                  <div key={wod.id} className="rounded-2xl border border-[3px] border-green shadow-md ">
-                    <Link
-                      className="w-full h-full block p-4 relative"
-                      href={`/wod/${wod.id}?mood=${selectedMood}`}
-                      onClick={() => localStorage.setItem("lastWodPage", `/wod/${wod.id}?mood=${selectedMood}`)}
-                    >
-                      <span className="absolute bg-gray inset-0 top-[10px] right-[-10px] -z-10 rounded-2xl"></span>
-                      <p className="text-6xl font-gothic text-green mb-4">0{index + 1}</p>
-                      <div className="flex gap-2 mb-2">
-                        <span className="text-[14px] px-2 py-0.5 rounded-full font-regular text-white border border-white">
-                          {wod.format}
-                        </span>
-                        <span className="text-[14px] px-2 py-0.5 font-black">{wod.level}</span>
-                      </div>
-                      <h2 className="font-gothic text-2xl">{wod.name}</h2>
-                      {wod.notes && <p className="text-[14px] font-black mt-6 leading-tight">{wod.notes}</p>}
-                      <p className="text-[14px] mt-10 border-b-2 pb-6 mb-6 border-[#fff]">
-                        時間:{wod.duration}
-                        {wod.rounds && ` / ${wod.rounds}R`}
-                        {wod.repScheme && ` / ${wod.repScheme}`}
-                      </p>
-                      {wod.sets.map((set, i) => (
-                        <div key={i} className="mb-1.5 flex flex-wrap gap-3.5">
-                          {set.label && (
-                            <p className="text-[10px] font-bold text-text-secondary uppercase mb-0.5">{set.label}</p>
-                          )}
-                          {set.movements.map((mov, j) => {
-                            const movement = movements.find((m) => m.id === mov.movementId);
-                            const movColor = movement ? CATEGORY_COLORS[movement.category] : undefined;
-                            const bodyweightColor =
-                              movement && CATEGORY_COLORS[movement.category] === "#EDE0C8" ? "#0A0A0A" : "#fff";
-                            return (
-                              <div key={j} className="flex justify-between text-[14px] ">
-                                <span
-                                  className="py-2 px-3 rounded-xl font-black"
-                                  style={movColor ? { background: movColor, color: bodyweightColor } : undefined}
-                                >
-                                  {mov.name}
-                                </span>
-                              </div>
-                            );
-                          })}
+            <div>
+              <div className="flex flex-col gap-8">
+                {filteredWods.map((wod, index) => {
+                  const color = FORMAT_COLORS[wod.format];
+                  return (
+                    <div key={wod.id} className="rounded-2xl border border-[3px] border-green shadow-md ">
+                      <Link
+                        className="w-full h-full block p-4 relative"
+                        href={`/wod/${wod.id}?mood=${selectedMood}`}
+                        onClick={() => localStorage.setItem("lastWodPage", `/wod/${wod.id}?mood=${selectedMood}`)}
+                      >
+                        <span className="absolute bg-gray inset-0 top-[10px] right-[-10px] -z-10 rounded-2xl"></span>
+                        <p className="text-6xl font-gothic text-green mb-4">0{index + 1}</p>
+                        <div className="flex gap-2 mb-2">
+                          <span className="text-[14px] px-2 py-0.5 rounded-full font-regular text-white border border-white">
+                            {wod.format}
+                          </span>
+                          <span className="text-[14px] px-2 py-0.5 font-black">{wod.level}</span>
                         </div>
-                      ))}
-                    </Link>
-                  </div>
-                );
-              })}
+                        <h2 className="font-gothic text-2xl">{wod.name}</h2>
+                        {wod.notes && <p className="text-[14px] font-black mt-6 leading-tight">{wod.notes}</p>}
+                        <p className="text-[14px] mt-10 border-b-2 pb-6 mb-6 border-[#fff]">
+                          時間:{wod.duration}
+                          {wod.rounds && ` / ${wod.rounds}R`}
+                          {wod.repScheme && ` / ${wod.repScheme}`}
+                        </p>
+                        {wod.sets.map((set, i) => (
+                          <div key={i} className="mb-1.5 flex flex-wrap gap-3.5">
+                            {set.movements.map((mov, j) => {
+                              const movement = movements.find((m) => m.id === mov.movementId);
+                              const movColor = movement ? CATEGORY_COLORS[movement.category] : undefined;
+                              const bodyweightColor =
+                                movement && CATEGORY_COLORS[movement.category] === "#EDE0C8" ? "#0A0A0A" : "#fff";
+                              return (
+                                <div key={j} className="flex justify-between text-[14px] ">
+                                  <span
+                                    className="py-2 px-3 rounded-xl font-black"
+                                    style={movColor ? { background: movColor, color: bodyweightColor } : undefined}
+                                  >
+                                    {mov.name}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        ))}
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="mt-20">
+                <p className="font-gothic text-green rotate-[-5deg] mb-11  w-max mx-auto">
+                  <span className="block text-6xl mb-2">追い込んで</span>
+                  <span className="block text-2xl text-right mr-10">いこうぜ！？</span>
+                </p>
+                <Image src="/WOD-char01.png" alt="バーベルを持ち上げるキャラクター" width={652} height={460} />
+              </div>
             </div>
           )}
         </div>
       )}
-      <div className="mt-20">
-        <p className="font-gothic text-green rotate-[-5deg] mb-11  w-max mx-auto">
-          <span className="block text-6xl mb-2">追い込んで</span>
-          <span className="block text-2xl text-right mr-10">いこうぜ！？</span>
-        </p>
-        <Image src="/WOD-char01.png" alt="" width={652} height={460} />
-      </div>
     </div>
   );
 }

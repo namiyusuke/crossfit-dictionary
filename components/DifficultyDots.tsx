@@ -19,7 +19,7 @@ export default function DifficultyDots({ difficulty, color }: DifficultyDotsProp
           </svg>
         ))}
       </div>
-      <span className="text-xs text-text-secondary">{LABELS[difficulty]}</span>
+      <span className="text-xs ">{LABELS[difficulty]}</span>
     </div>
   );
 }

@@ -86,21 +86,19 @@ export default function WodTemplate({ wods, onMovementClick }: WodTemplateProps)
                       >
                         {wod.format}
                       </span>
-                      <span className="text-[10px] px-1.5 py-0.5 rounded-full font-medium border border-border text-text-secondary">
+                      <span className="text-[10px] px-1.5 py-0.5 rounded-full font-medium border border-border ">
                         {wod.level}
                       </span>
                     </div>
-                    <p className="text-sm text-text-secondary mt-1">{wod.goal}</p>
-                    <p className="text-xs text-text-secondary mt-1">
+                    <p className="text-sm  mt-1">{wod.goal}</p>
+                    <p className="text-xs  mt-1">
                       {wod.duration}
                       {wod.rounds && ` / ${wod.rounds}ラウンド`}
                       {wod.repScheme && ` / ${wod.repScheme}`}
                     </p>
                   </div>
                   <svg
-                    className={`w-5 h-5 text-text-secondary transition-transform shrink-0 mt-1 ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
+                    className={`w-5 h-5  transition-transform shrink-0 mt-1 ${isOpen ? "rotate-180" : ""}`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -116,11 +114,7 @@ export default function WodTemplate({ wods, onMovementClick }: WodTemplateProps)
                   {/* 種目リスト */}
                   {wod.sets.map((set, si) => (
                     <div key={si} className="mb-3">
-                      {set.label && (
-                        <p className="text-xs font-bold text-text-secondary uppercase tracking-wide mb-1.5">
-                          {set.label}
-                        </p>
-                      )}
+                      {set.label && <p className="text-xs font-bold  uppercase tracking-wide mb-1.5">{set.label}</p>}
                       {set.movements.length > 0 ? (
                         <div className="space-y-1.5">
                           {set.movements.map((mov, mi) => (
@@ -133,12 +127,12 @@ export default function WodTemplate({ wods, onMovementClick }: WodTemplateProps)
                               className="w-full flex items-center justify-between px-3 py-2 rounded-lg bg-background hover:bg-border/30 transition-colors text-left cursor-pointer"
                             >
                               <span className="text-sm text-text-primary font-medium">{mov.name}</span>
-                              <span className="text-sm text-text-secondary shrink-0 ml-2">{mov.reps}</span>
+                              <span className="text-sm  shrink-0 ml-2">{mov.reps}</span>
                             </button>
                           ))}
                         </div>
                       ) : (
-                        <p className="text-sm text-text-secondary italic px-3 py-2">休憩</p>
+                        <p className="text-sm  italic px-3 py-2">休憩</p>
                       )}
                     </div>
                   ))}
@@ -146,10 +140,7 @@ export default function WodTemplate({ wods, onMovementClick }: WodTemplateProps)
                   {/* タグ */}
                   <div className="flex flex-wrap gap-1.5 mb-3">
                     {wod.targetBodyPart.map((part) => (
-                      <span
-                        key={part}
-                        className="text-[11px] px-2 py-0.5 rounded-full border border-border text-text-secondary"
-                      >
+                      <span key={part} className="text-[11px] px-2 py-0.5 rounded-full border border-border ">
                         {part}
                       </span>
                     ))}
@@ -166,7 +157,7 @@ export default function WodTemplate({ wods, onMovementClick }: WodTemplateProps)
                   {/* ノート */}
                   {wod.notes && (
                     <div className="bg-background rounded-lg p-3">
-                      <p className="text-xs text-text-secondary">📋 {wod.notes}</p>
+                      <p className="text-xs ">📋 {wod.notes}</p>
                     </div>
                   )}
                 </div>

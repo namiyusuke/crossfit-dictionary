@@ -45,16 +45,13 @@ export default function ForTimeTimer({ wod, onComplete, onQuit }: ForTimeTimerPr
       {/* ヘッダー */}
       <div className="px-6 pt-6 pb-4">
         <div className="flex items-center gap-3">
-          <span
-            className="text-xs px-2 py-0.5 rounded-full font-bold text-white"
-            style={{ backgroundColor: color }}
-          >
+          <span className="text-xs px-2 py-0.5 rounded-full font-bold text-white" style={{ backgroundColor: color }}>
             ForTime
           </span>
           <h2 className="font-gothic text-lg">{wod.name}</h2>
         </div>
         {totalRounds > 1 && (
-          <p className="text-text-secondary text-sm mt-1">
+          <p className=" text-sm mt-1">
             ラウンド {currentRound} / {totalRounds}
           </p>
         )}
@@ -63,7 +60,7 @@ export default function ForTimeTimer({ wod, onComplete, onQuit }: ForTimeTimerPr
       {/* タイマー */}
       <div className="flex-1 flex flex-col items-center justify-center px-6">
         <TimerDisplay seconds={seconds} className="text-7xl font-bold" />
-        <p className="text-text-secondary mt-2 text-sm">経過時間</p>
+        <p className=" mt-2 text-sm">経過時間</p>
       </div>
 
       {/* ムーブメントリスト */}
@@ -71,20 +68,16 @@ export default function ForTimeTimer({ wod, onComplete, onQuit }: ForTimeTimerPr
         <div className="rounded-xl bg-card-bg border border-border p-4 space-y-2 max-h-48 overflow-y-auto">
           {wod.sets.map((set, i) => (
             <div key={i}>
-              {set.label && (
-                <p className="text-xs font-bold text-text-secondary mb-1">{set.label}</p>
-              )}
+              {set.label && <p className="text-xs font-bold  mb-1">{set.label}</p>}
               {set.movements.map((mov, j) => (
                 <div key={j} className="flex justify-between text-sm py-1">
                   <span>{mov.name}</span>
-                  <span className="text-text-secondary">{mov.reps}</span>
+                  <span className="">{mov.reps}</span>
                 </div>
               ))}
             </div>
           ))}
-          {wod.repScheme && (
-            <p className="text-xs text-text-secondary">Rep Scheme: {wod.repScheme}</p>
-          )}
+          {wod.repScheme && <p className="text-xs ">Rep Scheme: {wod.repScheme}</p>}
         </div>
       </div>
 
@@ -125,12 +118,7 @@ export default function ForTimeTimer({ wod, onComplete, onQuit }: ForTimeTimerPr
 
       {/* コントロール */}
       <div className="px-6 pb-8">
-        <TimerControls
-          isPaused={isPaused}
-          onToggle={toggle}
-          onQuit={onQuit}
-          formatColor={color}
-        />
+        <TimerControls isPaused={isPaused} onToggle={toggle} onQuit={onQuit} formatColor={color} />
       </div>
     </div>
   );

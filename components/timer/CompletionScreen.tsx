@@ -19,11 +19,7 @@ interface CompletionScreenProps {
   onClose: () => void;
 }
 
-export default function CompletionScreen({
-  result,
-  formatColor,
-  onClose,
-}: CompletionScreenProps) {
+export default function CompletionScreen({ result, formatColor, onClose }: CompletionScreenProps) {
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background px-6">
       <motion.div
@@ -32,13 +28,10 @@ export default function CompletionScreen({
         transition={{ duration: 0.4, ease: "easeOut" }}
         className="text-center"
       >
-        <p
-          className="font-gothic text-5xl mb-4"
-          style={{ color: formatColor }}
-        >
+        <p className="font-gothic text-5xl mb-4" style={{ color: formatColor }}>
           COMPLETE!
         </p>
-        <p className="text-xl text-text-secondary mb-8">{result.wodName}</p>
+        <p className="text-xl  mb-8">{result.wodName}</p>
 
         {/* AMRAP結果 */}
         {result.format === "AMRAP" && (
@@ -46,12 +39,8 @@ export default function CompletionScreen({
             <p className="text-6xl font-mono font-bold" style={{ color: formatColor }}>
               {result.rounds ?? 0}
             </p>
-            <p className="text-text-secondary mt-1">ラウンド</p>
-            {(result.extraReps ?? 0) > 0 && (
-              <p className="text-2xl font-mono mt-2">
-                + {result.extraReps} reps
-              </p>
-            )}
+            <p className=" mt-1">ラウンド</p>
+            {(result.extraReps ?? 0) > 0 && <p className="text-2xl font-mono mt-2">+ {result.extraReps} reps</p>}
           </div>
         )}
 
@@ -70,7 +59,7 @@ export default function CompletionScreen({
             <p className="text-6xl font-mono font-bold" style={{ color: formatColor }}>
               {formatTime(result.elapsedSeconds)}
             </p>
-            <p className="text-text-secondary mt-1">タイム</p>
+            <p className=" mt-1">タイム</p>
           </div>
         )}
 

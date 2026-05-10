@@ -122,14 +122,14 @@ export default function CategoryFilter({
       {/* アクティブフィルター数 */}
       {activeCount > 0 && (
         <div className="flex items-center justify-between">
-          <p className="text-xs text-text-secondary">{activeCount}件のフィルター適用中</p>
+          <p className="text-xs ">{activeCount}件のフィルター適用中</p>
           <button
             onClick={() => {
               onCategoryChange(null);
               onBodyPartsChange([]);
               onEffectsChange([]);
             }}
-            className="text-xs text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
+            className="text-xs  hover:text-text-primary transition-colors cursor-pointer"
           >
             すべてクリア
           </button>

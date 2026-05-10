@@ -33,7 +33,7 @@ export function DifficultyDots({ difficulty }: Data) {
           />
         ))}
       </div>
-      <span className="text-xs text-text-secondary">{LABELS[difficulty]}</span>
+      <span className="text-xs ">{LABELS[difficulty]}</span>
     </div>
   );
 }

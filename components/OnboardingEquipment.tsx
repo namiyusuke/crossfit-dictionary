@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Equipment, ALL_EQUIPMENT } from "@/types/movement";
-
+import Image from "next/image";
 interface OnboardingEquipmentProps {
   onComplete: (selectedEquipment: Equipment[]) => void;
 }
@@ -18,13 +18,15 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
   const totalSteps = 4;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4 py-10">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-background px-8 py-10">
+      <div className="w-full max-w-md relative">
         {/* Step 1: ようこそ */}
         {step === 0 && (
-          <div className="text-center">
-            <div className="text-5xl mb-6">💪</div>
-            <h1 className="text-xs text-text-primary mb-3 px-3 py-2 rounded-lg bg-button w-max mx-auto font-black">
+          <div className="text-center mb-16">
+            <div className="text-5xl mb-6 max-w-[273px] ml-[-30px]">
+              <Image width={414} height={537} src="/onboarding-char01.png" alt="走るキャラクター" />
+            </div>
+            <h1 className="text-xs mb-3 px-3 py-2 rounded-lg bg-button w-max mx-auto text-black">
               本気のやつらのための
             </h1>
             <p className="leading-relaxed text-white font-gothic">
@@ -37,19 +39,19 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
 
         {/* Step 2: できること */}
         {step === 1 && (
-          <div className="text-center">
+          <div className="text-center mb-52">
             <h1 className="text-2xl font-bold mb-10 font-gothic text-white">できること</h1>
             <div className="space-y-4 text-left">
-              <div className="flex items-start gap-3 px-10 py-6 rounded-lg border border-border">
+              <div className="flex items-start gap-3 px-10 py-6 rounded-lg border-[5px] bg-gray">
                 <div>
-                  <div className="flex gap-x-2  text-2xl mb-4 font-gothic">
+                  <div className="flex gap-x-2  text-2xl mb-4 font-gothic ">
                     <span className="text-xl">📖</span>
                     <p className="font-medium text-text-primary">種目辞典</p>
                   </div>
-                  <p className="text-text-secondary">20種目のやり方・ポイントを確認</p>
+                  <p className="">20種目のやり方・ポイントを確認</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3 px-10 py-6 rounded-lg border border-border">
+              <div className="flex items-start gap-3 px-10 py-6 rounded-lg border-[5px] bg-gray">
                 <div>
                   <div className="flex gap-x-2 text-2xl mb-4">
                     <span className="text-xl">📖</span>
@@ -63,6 +65,9 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
                 </div>
               </div>
             </div>
+            <div className="max-w-[138px] absolute bottom-[82px] right-0">
+              <Image width={276} height={418} src="/onboarding-char02.png" alt="走るキャラクター" />
+            </div>
           </div>
         )}
 
@@ -73,7 +78,7 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
               <h1 className="text-4xl font-bold text-text-primary mb-6 font-gothic">使える設備は？</h1>
               <p className="text-left">チェックした設備に合わせて、種目・メニューを表示します。</p>
             </div>
-            <div className="flex flex-col gap-y-2">
+            <div className="flex flex-col gap-y-2 mb-11">
               {ALL_EQUIPMENT.map((eq) => {
                 const isSelected = selected.includes(eq);
                 return (
@@ -81,9 +86,7 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
                     key={eq}
                     onClick={() => toggleEquipment(eq)}
                     className={`bg-gray w-full flex items-center gap-3 p-4 rounded-xl transition-all cursor-pointer ${
-                      isSelected
-                        ? "border-border bg-border/10"
-                        : "border-border text-text-secondary hover:border-text-secondary"
+                      isSelected ? "border-border bg-border/10" : "border-border  hover:border-text-secondary"
                     }`}
                   >
                     <div
@@ -108,13 +111,24 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
                 );
               })}
             </div>
+            <div className="text-center mb-11">
+              <button
+                onClick={() => {
+                  setSelected([...ALL_EQUIPMENT]);
+                  setStep(step + 1);
+                }}
+                className="w-max m-auto p-2 font-bold text-center text-sm rounded-xl border-1 border-white cursor-pointer hover:opacity-80 transition-opacity"
+              >
+                スキップ（全項目を表示）
+              </button>
+            </div>
           </div>
         )}
 
         {/* Step 4: ご確認ください */}
         {step === 3 && (
-          <div>
-            <div className="text-center mb-6">
+          <div className="mb-3">
+            <div className="text-center mb-8">
               <h1 className="text-4xl font-bold text-text-primary mb-6 font-gothic">ご確認ください</h1>
               <p className="text-left">チェックした設備に合わせて、種目・メニューを表示します。</p>
             </div>
@@ -138,7 +152,7 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
                 </p>
               </article>
             </div>
-            <label className="flex items-center gap-3 cursor-pointer mt-4 justify-center">
+            <label className="mb-10 flex items-center gap-3 cursor-pointer mt-4 justify-center">
               <button
                 onClick={() => setCheck((prev) => !prev)}
                 type="button"
@@ -158,11 +172,12 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
               </button>
               <span className="text-sm text-white">上記の内容を確認しました。</span>
             </label>
+            <p className="text-center">＊チェックを入れるとは進めます</p>
           </div>
         )}
 
         {/* ナビゲーションボタン */}
-        <div className="mt-8 flex gap-3">
+        <div className="flex gap-3">
           {step === 0 && (
             <button
               onClick={() => setStep(1)}

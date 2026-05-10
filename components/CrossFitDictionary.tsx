@@ -97,12 +97,12 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
       {/* ヘッダー */}
       <div className="mb-6 flex items-start justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-text-primary font-gothic">種目辞典</h1>
+          <h1 className="text-4xl text-text-primary font-gothic">{activeSection}</h1>
           <p className="text-sm mt-1">種目名をタップして詳細を確認しよう</p>
         </div>
         <button
           onClick={() => setShowEquipmentSettings(true)}
-          className="text-xs text-text-secondary border border-border rounded-lg px-3 py-1.5 hover:text-text-primary hover:border-text-secondary transition-colors cursor-pointer"
+          className="text-xs  border border-border rounded-lg px-3 py-1.5 hover:text-text-primary hover:border-text-secondary transition-colors cursor-pointer"
         >
           設備変更
         </button>
@@ -116,9 +116,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
               key={section}
               onClick={() => handleSectionChange(section)}
               className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer  ${
-                activeSection === section
-                  ? "bg-button text-background"
-                  : "bg-gray text-text-secondary hover:text-text-primary"
+                activeSection === section ? "bg-button text-background" : "bg-gray  hover:text-text-primary"
               }`}
             >
               {section}
@@ -156,15 +154,15 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
               ))
             ) : (
               <div className="text-center py-12">
-                <p className="text-text-secondary text-lg mb-2">該当する種目が見つかりません</p>
-                <p className="text-text-secondary text-sm">検索条件を変更してください</p>
+                <p className=" text-lg mb-2">該当する種目が見つかりません</p>
+                <p className=" text-sm">検索条件を変更してください</p>
               </div>
             )}
           </div>
 
           {/* フッター */}
           <div className="mt-8 pb-4 text-center">
-            <p className="text-xs text-text-secondary">
+            <p className="text-xs ">
               {filteredMovements.length} / {movements.length} 種目を表示中
             </p>
           </div>

@@ -63,15 +63,12 @@ export default function AmrapTimer({ wod, onComplete, onQuit }: AmrapTimerProps)
       {/* ヘッダー */}
       <div className="px-6 pt-6 pb-2">
         <div className="flex items-center gap-3">
-          <span
-            className="text-xs px-2 py-0.5 rounded-full font-bold text-white"
-            style={{ backgroundColor: color }}
-          >
+          <span className="text-xs px-2 py-0.5 rounded-full font-bold text-white" style={{ backgroundColor: color }}>
             AMRAP
           </span>
           <h2 className="font-gothic text-lg">{wod.name}</h2>
         </div>
-        <p className="text-text-secondary text-sm mt-1">{wod.duration}</p>
+        <p className=" text-sm mt-1">{wod.duration}</p>
       </div>
 
       {/* プログレスリング + タイマー */}
@@ -86,7 +83,7 @@ export default function AmrapTimer({ wod, onComplete, onQuit }: AmrapTimerProps)
         <div className="rounded-xl bg-card-bg border border-border p-4">
           {/* ラウンドカウンター */}
           <div className="flex items-center justify-between mb-3">
-            <span className="text-text-secondary text-sm">ラウンド</span>
+            <span className=" text-sm">ラウンド</span>
             <div className="flex items-center gap-4">
               <button
                 type="button"
@@ -111,7 +108,7 @@ export default function AmrapTimer({ wod, onComplete, onQuit }: AmrapTimerProps)
 
           {/* 端数Repsカウンター */}
           <div className="flex items-center justify-between">
-            <span className="text-text-secondary text-sm">+ 端数 reps</span>
+            <span className=" text-sm">+ 端数 reps</span>
             <div className="flex items-center gap-4">
               <button
                 type="button"
@@ -120,9 +117,7 @@ export default function AmrapTimer({ wod, onComplete, onQuit }: AmrapTimerProps)
               >
                 <Minus size={16} />
               </button>
-              <span className="font-mono text-2xl w-12 text-center">
-                {extraReps}
-              </span>
+              <span className="font-mono text-2xl w-12 text-center">{extraReps}</span>
               <button
                 type="button"
                 onClick={() => setExtraReps((r) => r + 1)}
@@ -139,10 +134,7 @@ export default function AmrapTimer({ wod, onComplete, onQuit }: AmrapTimerProps)
       <div className="px-6 pb-4">
         <div className="flex flex-wrap gap-2">
           {allMovements.map((mov, i) => (
-            <span
-              key={i}
-              className="px-3 py-1 rounded-full text-xs border border-border bg-card-bg"
-            >
+            <span key={i} className="px-3 py-1 rounded-full text-xs border border-border bg-card-bg">
               {mov.name} {mov.reps}
             </span>
           ))}
@@ -151,12 +143,7 @@ export default function AmrapTimer({ wod, onComplete, onQuit }: AmrapTimerProps)
 
       {/* コントロール */}
       <div className="px-6 pb-8">
-        <TimerControls
-          isPaused={isPaused}
-          onToggle={toggle}
-          onQuit={onQuit}
-          formatColor={color}
-        />
+        <TimerControls isPaused={isPaused} onToggle={toggle} onQuit={onQuit} formatColor={color} />
       </div>
     </div>
   );

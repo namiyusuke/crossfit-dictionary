@@ -9,7 +9,7 @@ export default function SearchBar({ value, onChange }: SearchBarProps) {
   return (
     <div className="relative">
       <svg
-        className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary"
+        className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 "
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -26,7 +26,7 @@ export default function SearchBar({ value, onChange }: SearchBarProps) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder="種目名・筋肉名で検索..."
-        className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray border border-[#fff] text-text-primary placeholder:text-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-text-secondary/30 transition-all"
+        className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray border border-[#fff] text-text-primary placeholder:/50 focus:outline-none focus:ring-2 focus:ring-text-secondary/30 transition-all"
       />
     </div>
   );

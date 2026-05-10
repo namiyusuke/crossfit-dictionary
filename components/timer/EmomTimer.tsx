@@ -3,12 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import type { Wod } from "@/types/wod";
 import { useTimerSound } from "@/hooks/useTimerSound";
-import {
-  parseDurationMinutes,
-  getEmomSetForMinute,
-  FORMAT_COLORS,
-  formatTime,
-} from "@/lib/timer-utils";
+import { parseDurationMinutes, getEmomSetForMinute, FORMAT_COLORS, formatTime } from "@/lib/timer-utils";
 import ProgressRing from "./ProgressRing";
 import TimerControls from "./TimerControls";
 import type { TimerResult } from "./CompletionScreen";
@@ -22,8 +17,7 @@ interface EmomTimerProps {
 export default function EmomTimer({ wod, onComplete, onQuit }: EmomTimerProps) {
   const color = FORMAT_COLORS.EMOM;
   const totalMinutes = parseDurationMinutes(wod.duration);
-  const { playCountdownBeep, playMinuteChangeBeep, playCompleteBeep, vibrate } =
-    useTimerSound();
+  const { playCountdownBeep, playMinuteChangeBeep, playCompleteBeep, vibrate } = useTimerSound();
 
   const [currentMinute, setCurrentMinute] = useState(1);
   const [secondsInMinute, setSecondsInMinute] = useState(60);
@@ -113,8 +107,7 @@ export default function EmomTimer({ wod, onComplete, onQuit }: EmomTimerProps) {
 
   const currentSet = getEmomSetForMinute(wod.sets, currentMinute);
   const nextMinute = currentMinute + 1;
-  const nextSet =
-    nextMinute <= totalMinutes ? getEmomSetForMinute(wod.sets, nextMinute) : null;
+  const nextSet = nextMinute <= totalMinutes ? getEmomSetForMinute(wod.sets, nextMinute) : null;
 
   const isRest = currentSet.movements.length === 0;
   const progress = secondsInMinute / 60;
@@ -125,15 +118,12 @@ export default function EmomTimer({ wod, onComplete, onQuit }: EmomTimerProps) {
       <div className="px-6 pt-6 pb-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span
-              className="text-xs px-2 py-0.5 rounded-full font-bold text-white"
-              style={{ backgroundColor: color }}
-            >
+            <span className="text-xs px-2 py-0.5 rounded-full font-bold text-white" style={{ backgroundColor: color }}>
               EMOM
             </span>
             <h2 className="font-gothic text-lg">{wod.name}</h2>
           </div>
-          <span className="font-mono text-sm text-text-secondary">
+          <span className="font-mono text-sm ">
             {currentMinute}/{totalMinutes}分
           </span>
         </div>
@@ -158,9 +148,7 @@ export default function EmomTimer({ wod, onComplete, onQuit }: EmomTimerProps) {
             >
               {formatTime(secondsInMinute)}
             </span>
-            {currentSet.label && (
-              <p className="text-sm text-text-secondary mt-1">{currentSet.label}</p>
-            )}
+            {currentSet.label && <p className="text-sm  mt-1">{currentSet.label}</p>}
           </div>
         </ProgressRing>
       </div>
@@ -196,16 +184,16 @@ export default function EmomTimer({ wod, onComplete, onQuit }: EmomTimerProps) {
       {/* 次のセット（プレビュー） */}
       {nextSet && (
         <div className="px-6 pb-4">
-          <p className="text-xs text-text-secondary mb-1">NEXT</p>
+          <p className="text-xs  mb-1">NEXT</p>
           <div className="rounded-lg border border-border p-3 opacity-50">
             {nextSet.movements.length === 0 ? (
-              <p className="text-sm text-text-secondary">REST</p>
+              <p className="text-sm ">REST</p>
             ) : (
               <div className="space-y-1">
                 {nextSet.movements.map((mov, i) => (
                   <div key={i} className="flex justify-between text-sm">
                     <span>{mov.name}</span>
-                    <span className="text-text-secondary">{mov.reps}</span>
+                    <span className="">{mov.reps}</span>
                   </div>
                 ))}
               </div>
@@ -216,12 +204,7 @@ export default function EmomTimer({ wod, onComplete, onQuit }: EmomTimerProps) {
 
       {/* コントロール */}
       <div className="px-6 pb-8">
-        <TimerControls
-          isPaused={isPaused}
-          onToggle={toggle}
-          onQuit={onQuit}
-          formatColor={color}
-        />
+        <TimerControls isPaused={isPaused} onToggle={toggle} onQuit={onQuit} formatColor={color} />
       </div>
     </div>
   );

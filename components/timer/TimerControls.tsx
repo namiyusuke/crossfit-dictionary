@@ -10,12 +10,7 @@ interface TimerControlsProps {
   formatColor: string;
 }
 
-export default function TimerControls({
-  isPaused,
-  onToggle,
-  onQuit,
-  formatColor,
-}: TimerControlsProps) {
+export default function TimerControls({ isPaused, onToggle, onQuit, formatColor }: TimerControlsProps) {
   const [showConfirm, setShowConfirm] = useState(false);
 
   return (
@@ -24,7 +19,7 @@ export default function TimerControls({
         <button
           type="button"
           onClick={() => setShowConfirm(true)}
-          className="w-14 h-14 rounded-full border border-border flex items-center justify-center text-text-secondary active:scale-95 transition-transform"
+          className="w-14 h-14 rounded-full border border-border flex items-center justify-center  active:scale-95 transition-transform"
         >
           <X size={24} />
         </button>
@@ -43,9 +38,7 @@ export default function TimerControls({
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70">
           <div className="bg-card-bg border border-border rounded-2xl p-6 mx-8 max-w-sm w-full">
             <p className="text-lg font-bold mb-2">本当にやめますか？</p>
-            <p className="text-sm text-text-secondary mb-6">
-              このワークアウトの記録は保存されません。
-            </p>
+            <p className="text-sm  mb-6">このワークアウトの記録は保存されません。</p>
             <div className="flex gap-3">
               <button
                 type="button"
