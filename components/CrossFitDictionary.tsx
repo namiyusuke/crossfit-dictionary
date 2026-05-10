@@ -93,7 +93,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
   }
 
   return (
-    <div className="mx-auto px-4 py-6">
+    <div className="mx-auto px-6 py-6">
       {/* ヘッダー */}
       <div className="mb-6 flex items-start justify-between">
         <div>

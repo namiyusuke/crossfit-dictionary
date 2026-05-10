@@ -28,14 +28,14 @@ export default function MovementCard({ movement }: MovementCardProps) {
       >
         {CATEGORY_LABELS[movement.category]}
       </span>
-      <div className="px-4 py-4 ">
+      <div className="px-10 py-8">
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
-              <h2 className="text-base font-bold text-text-primary font-gothic">{movement.name}</h2>
+              <h2 className="text-2xl font-bold font-gothic">{movement.name}</h2>
             </div>
             <p className="text-sm mt-0.5">{movement.nameEn}</p>
-            <p className="text-sm mt-1 line-clamp-2">{movement.oneLiner}</p>
+            <p className="text-sm mt-6 line-clamp-2">{movement.oneLiner}</p>
           </div>
         </div>
         <div className="flex items-center gap-3 mt-2">

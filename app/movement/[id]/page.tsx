@@ -36,12 +36,12 @@ export default async function MovementPage({ params }: Props) {
   return (
     <main className="min-h-screen px-4 py-8 max-w-2xl mx-auto">
       {/* 戻るリンク */}
-      <Link href="/" className="inline-flex items-center gap-1 text-sm  hover:text-text-primary mb-10">
+      <Link href="/" className="inline-flex items-center gap-1 text-sm  hover:text-text-primary mb-14">
         ＜　種目辞典
       </Link>
       {/* <PracticeButton movementId={id} initialIsPracticed={isPracticed} /> */}
       {/* ヘッダー */}
-      <div className="mb-6">
+      <div className="mb-12">
         <div
           className="block rounded-xl transition-shadow border-6 hover:shadow-lg relative bg-[#0a0a0a]"
           style={{ borderColor: categoryColor }}
@@ -59,11 +59,11 @@ export default async function MovementPage({ params }: Props) {
           >
             {CATEGORY_LABELS[movement.category]}
           </span>
-          <div className="px-4 py-4 ">
+          <div className="px-10 py-8">
             <div className="flex items-start justify-between gap-2">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <h2 className="text-base font-bold text-text-primary font-gothic">{movement.name}</h2>
+                  <h2 className="text-2xl font-gothic">{movement.name}</h2>
                 </div>
                 <p className="text-sm mt-0.5">{movement.nameEn}</p>
                 <p className="text-sm mt-1 line-clamp-2">{movement.oneLiner}</p>
@@ -88,7 +88,7 @@ export default async function MovementPage({ params }: Props) {
         </div>
       </section>
       {/* 使う筋肉 */}
-      <section className="mb-6">
+      <section className="mb-16">
         <h2
           className="text-2xl mb-2 font-gothic"
           style={{
@@ -101,10 +101,7 @@ export default async function MovementPage({ params }: Props) {
           <p className="mb-2 font-bold">主動筋</p>
           <div className="flex flex-wrap gap-1.5">
             {movement.muscleMain.map((muscle) => (
-              <span
-                key={muscle}
-                className="text-xs px-2.5 py-1 rounded-full bg-text-primary/10 text-text-primary border border-border font-medium"
-              >
+              <span key={muscle} className="text-[13px] px-2.5 py-1 rounded-[10px] bg-white text-black">
                 {muscle}
               </span>
             ))}
@@ -115,7 +112,7 @@ export default async function MovementPage({ params }: Props) {
             <p className="mb-2 font-bold">補助筋</p>
             <div className="flex flex-wrap gap-1.5">
               {movement.muscleSub.map((muscle) => (
-                <span key={muscle} className="text-xs px-2.5 py-1 rounded-full bg-background  border border-border">
+                <span key={muscle} className="text-[13px] px-2.5 py-1 rounded-[10px] bg-white text-black">
                   {muscle}
                 </span>
               ))}
@@ -124,7 +121,7 @@ export default async function MovementPage({ params }: Props) {
         )}
       </section>
       {/* 目的・効果 */}
-      <section className="mb-6">
+      <section className="mb-16">
         <h2
           className="text-2xl mb-2 font-gothic"
           style={{
@@ -144,7 +141,7 @@ export default async function MovementPage({ params }: Props) {
             </span>
           ))} */}
           {movement.bodyPart.map((part) => (
-            <span key={part} className="text-[11px] px-2 py-0.5 rounded-full  border border-border">
+            <span key={part} className="text-[13px] px-2.5 py-1 rounded-[10px] bg-white text-black">
               {part}
             </span>
           ))}
@@ -152,7 +149,7 @@ export default async function MovementPage({ params }: Props) {
       </section>
 
       {/* やり方 */}
-      <section className="mb-6">
+      <section className="mb-16">
         <h2
           className="text-2xl mb-2 font-gothic"
           style={{
