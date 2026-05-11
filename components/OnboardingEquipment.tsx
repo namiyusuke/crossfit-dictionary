@@ -3,14 +3,36 @@
 import { useState } from "react";
 import { Equipment, ALL_EQUIPMENT } from "@/types/movement";
 import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+
+const slideVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 300 : -300,
+    opacity: 0,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+  },
+  exit: (direction: number) => ({
+    x: direction > 0 ? -300 : 300,
+    opacity: 0,
+  }),
+};
 interface OnboardingEquipmentProps {
   onComplete: (selectedEquipment: Equipment[]) => void;
 }
 
 export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentProps) {
   const [step, setStep] = useState(0);
+  const [direction, setDirection] = useState(1);
   const [check, setCheck] = useState(false);
   const [selected, setSelected] = useState<Equipment[]>([]);
+
+  const goToStep = (next: number) => {
+    setDirection(next > step ? 1 : -1);
+    setStep(next);
+  };
 
   const toggleEquipment = (eq: Equipment) => {
     setSelected((prev) => (prev.includes(eq) ? prev.filter((e) => e !== eq) : [...prev, eq]));
@@ -19,168 +41,192 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-8 py-10">
-      <div className="w-full max-w-md relative">
-        {/* Step 1: ようこそ */}
-        {step === 0 && (
-          <div className="text-center mb-16">
-            <div className="text-5xl mb-6 max-w-[273px] ml-[-30px]">
-              <Image width={414} height={537} src="/onboarding-char01.png" alt="走るキャラクター" />
-            </div>
-            <h1 className="text-xs mb-3 px-3 py-2 rounded-lg bg-button w-max mx-auto text-black">
-              本気のやつらのための
-            </h1>
-            <p className="leading-relaxed text-white font-gothic">
-              <span className="font-gothic text-4xl">CrossFit</span>
-              <br />
-              <span className="text-2xl">種目辞典</span>
-            </p>
-          </div>
-        )}
-
-        {/* Step 2: できること */}
-        {step === 1 && (
-          <div className="text-center mb-52">
-            <h1 className="text-2xl font-bold mb-10 font-gothic text-white">できること</h1>
-            <div className="space-y-4 text-left">
-              <div className="flex items-start gap-3 px-10 py-6 rounded-lg border-[5px] bg-gray">
-                <div>
-                  <div className="flex gap-x-2  text-2xl mb-4 font-gothic ">
-                    <span className="text-xl">📖</span>
-                    <p className="font-medium text-text-primary">種目辞典</p>
-                  </div>
-                  <p className="">20種目のやり方・ポイントを確認</p>
+      <div className="w-full max-w-md relative overflow-hidden">
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.div
+            key={step}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            {/* Step 1: ようこそ */}
+            {step === 0 && (
+              <div className="text-center mb-16">
+                <div className="text-5xl mb-6 max-w-[273px]">
+                  <Image width={414} height={537} src="/onboarding-char01.png" alt="走るキャラクター" />
                 </div>
+                <h1 className="text-xs mb-3 px-3 py-2 rounded-lg bg-button w-max mx-auto text-black">
+                  本気のやつらのための
+                </h1>
+                <p className="leading-relaxed text-white font-gothic">
+                  <span className="font-gothic text-4xl">CrossFit</span>
+                  <br />
+                  <span className="text-2xl">種目辞典</span>
+                </p>
               </div>
-              <div className="flex items-start gap-3 px-10 py-6 rounded-lg border-[5px] bg-gray">
-                <div>
-                  <div className="flex gap-x-2 text-2xl mb-4">
-                    <span className="text-xl">📖</span>
-                    <p className="font-medium text-text-primary font-gothic">
-                      WOD
-                      <br />
-                      テンプレート
-                    </p>
-                  </div>
-                  <p className="text-white">今日のメニューをフォーマット別・目的別に調べる</p>
-                </div>
-              </div>
-            </div>
-            <div className="max-w-[138px] absolute bottom-[82px] right-0">
-              <Image width={276} height={418} src="/onboarding-char02.png" alt="走るキャラクター" />
-            </div>
-          </div>
-        )}
+            )}
 
-        {/* Step 3: 使える設備は？ */}
-        {step === 2 && (
-          <div>
-            <div className="text-center mb-6">
-              <h1 className="text-4xl font-bold text-text-primary mb-6 font-gothic">使える設備は？</h1>
-              <p className="text-left">チェックした設備に合わせて、種目・メニューを表示します。</p>
-            </div>
-            <div className="flex flex-col gap-y-2 mb-11">
-              {ALL_EQUIPMENT.map((eq) => {
-                const isSelected = selected.includes(eq);
-                return (
-                  <button
-                    key={eq}
-                    onClick={() => toggleEquipment(eq)}
-                    className={`bg-gray w-full flex items-center gap-3 p-4 rounded-xl transition-all cursor-pointer ${
-                      isSelected ? "border-border bg-border/10" : "border-border  hover:border-text-secondary"
-                    }`}
-                  >
-                    <div
-                      className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 transition-colors ${
-                        isSelected ? "bg-button border-border " : "border-text-secondary"
-                      }`}
-                    >
-                      {isSelected && (
-                        <svg
-                          className="w-3 h-3 text-background"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={3}
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      )}
+            {/* Step 2: できること */}
+            {step === 1 && (
+              <div className="text-center mb-52">
+                <h1 className="text-2xl font-bold mb-10 font-gothic text-white">できること</h1>
+                <div className="space-y-4 text-left">
+                  <div className="flex items-start gap-3 px-10 py-6 rounded-lg border-[5px] bg-gray">
+                    <div>
+                      <div className="flex gap-x-2  text-2xl mb-4 font-gothic ">
+                        <span className="text-xl">📖</span>
+                        <p className="font-medium text-text-primary">種目辞典</p>
+                      </div>
+                      <p className="">20種目のやり方・ポイントを確認</p>
                     </div>
-                    <span className="text-sm font-medium text-white">{eq}</span>
-                  </button>
-                );
-              })}
-            </div>
-            <div className="text-center mb-11">
-              <button
-                onClick={() => {
-                  setSelected([...ALL_EQUIPMENT]);
-                  setStep(step + 1);
-                }}
-                className="w-max m-auto p-2 font-bold text-center text-sm rounded-xl border-1 border-white cursor-pointer hover:opacity-80 transition-opacity"
-              >
-                スキップ（全項目を表示）
-              </button>
-            </div>
-          </div>
-        )}
+                  </div>
+                  <div className="flex items-start gap-3 px-10 py-6 rounded-lg border-[5px] bg-gray">
+                    <div>
+                      <div className="flex gap-x-2 text-2xl mb-4">
+                        <span className="text-xl">📖</span>
+                        <p className="font-medium text-text-primary font-gothic">
+                          WOD
+                          <br />
+                          テンプレート
+                        </p>
+                      </div>
+                      <p className="text-white">今日のメニューをフォーマット別・目的別に調べる</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
 
-        {/* Step 4: ご確認ください */}
-        {step === 3 && (
-          <div className="mb-3">
-            <div className="text-center mb-8">
-              <h1 className="text-4xl font-bold text-text-primary mb-6 font-gothic">ご確認ください</h1>
-              <p className="text-left">チェックした設備に合わせて、種目・メニューを表示します。</p>
-            </div>
-            <div className="flex flex-col gap-y-4">
-              <article className="bg-gray px-7 py-6 rounded-xl font-bold">
-                <h3 className="text-xl mb-4">安全について</h3>
-                <p className="text-[14px]">
-                  掲載のトレーニングは身体への負荷が高い内容を含みます。持病・既往症のある方は開始前に医師へご相談ください。
-                </p>
-              </article>
-              <article className="bg-gray px-7 py-6 rounded-xl font-bold">
-                <h3 className="text-xl mb-4">安全について</h3>
-                <p className="text-[14px]">
-                  掲載のトレーニングは身体への負荷が高い内容を含みます。持病・既往症のある方は開始前に医師へご相談ください。
-                </p>
-              </article>
-              <article className="bg-gray px-7 py-6 rounded-xl font-bold">
-                <h3 className="text-xl mb-4">安全について</h3>
-                <p className="text-[14px]">
-                  掲載のトレーニングは身体への負荷が高い内容を含みます。持病・既往症のある方は開始前に医師へご相談ください。
-                </p>
-              </article>
-            </div>
-            <label className="mb-10 flex items-center gap-3 cursor-pointer mt-4 justify-center">
-              <button
-                onClick={() => setCheck((prev) => !prev)}
-                type="button"
-                className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 transition-colors ${check ? "bg-button border-border" : "border-text-secondary"}`}
-              >
-                {check && (
-                  <svg
-                    className="w-3 h-3 text-background"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={3}
+            {/* Step 3: 使える設備は？ */}
+            {step === 2 && (
+              <div>
+                <div className="text-center mb-6">
+                  <h1 className="text-4xl font-bold text-text-primary mb-6 font-gothic">使える設備は？</h1>
+                  <p className="text-left">チェックした設備に合わせて、種目・メニューを表示します。</p>
+                </div>
+                <div className="flex flex-col gap-y-2 mb-11">
+                  {ALL_EQUIPMENT.map((eq) => {
+                    const isSelected = selected.includes(eq);
+                    return (
+                      <button
+                        key={eq}
+                        onClick={() => toggleEquipment(eq)}
+                        className={`bg-gray w-full flex items-center gap-3 p-4 rounded-xl transition-all cursor-pointer ${
+                          isSelected ? "border-border bg-border/10" : "border-border  hover:border-text-secondary"
+                        }`}
+                      >
+                        <div
+                          className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 transition-colors ${
+                            isSelected ? "bg-button border-border " : "border-text-secondary"
+                          }`}
+                        >
+                          {isSelected && (
+                            <svg
+                              className="w-3 h-3 text-background"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth={3}
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                          )}
+                        </div>
+                        <span className="text-sm font-medium text-white">{eq}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+                <div className="text-center mb-11">
+                  <button
+                    onClick={() => {
+                      setSelected([...ALL_EQUIPMENT]);
+                      goToStep(step + 1);
+                    }}
+                    className="w-max m-auto p-2 font-bold text-center text-sm rounded-xl border-1 border-white cursor-pointer hover:opacity-80 transition-opacity"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                )}
-              </button>
-              <span className="text-sm text-white">上記の内容を確認しました。</span>
-            </label>
-            <p className="text-center">＊チェックを入れるとは進めます</p>
-          </div>
-        )}
+                    スキップ（全項目を表示）
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Step 4: ご確認ください */}
+            {step === 3 && (
+              <div className="mb-3">
+                <div className="text-center mb-8">
+                  <h1 className="text-4xl font-bold text-text-primary mb-6 font-gothic">ご確認ください</h1>
+                  <p className="text-left">チェックした設備に合わせて、種目・メニューを表示します。</p>
+                </div>
+                <div className="flex flex-col gap-y-4">
+                  <article className="bg-gray px-7 py-6 rounded-xl font-bold">
+                    <h3 className="text-xl mb-4">安全について</h3>
+                    <p className="text-[14px]">
+                      掲載のトレーニングは身体への負荷が高い内容を含みます。持病・既往症のある方は開始前に医師へご相談ください。
+                    </p>
+                  </article>
+                  <article className="bg-gray px-7 py-6 rounded-xl font-bold">
+                    <h3 className="text-xl mb-4">安全について</h3>
+                    <p className="text-[14px]">
+                      掲載のトレーニングは身体への負荷が高い内容を含みます。持病・既往症のある方は開始前に医師へご相談ください。
+                    </p>
+                  </article>
+                  <article className="bg-gray px-7 py-6 rounded-xl font-bold">
+                    <h3 className="text-xl mb-4">安全について</h3>
+                    <p className="text-[14px]">
+                      掲載のトレーニングは身体への負荷が高い内容を含みます。持病・既往症のある方は開始前に医師へご相談ください。
+                    </p>
+                  </article>
+                </div>
+                <label className="mb-10 flex items-center gap-3 cursor-pointer mt-4 justify-center">
+                  <button
+                    onClick={() => setCheck((prev) => !prev)}
+                    type="button"
+                    className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 transition-colors ${check ? "bg-button border-border" : "border-text-secondary"}`}
+                  >
+                    {check && (
+                      <svg
+                        className="w-3 h-3 text-background"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={3}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                  </button>
+                  <span className="text-sm text-white">上記の内容を確認しました。</span>
+                </label>
+                <p className="text-center">＊チェックを入れるとは進めます</p>
+              </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Step 2 キャラクター（アニメーション外で固定配置） */}
+        <AnimatePresence>
+          {step === 1 && (
+            <motion.div
+              className="max-w-[138px] absolute bottom-[82px] right-0"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Image width={276} height={418} src="/onboarding-char02.png" alt="走るキャラクター" />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* ナビゲーションボタン */}
         <div className="flex gap-3">
           {step === 0 && (
             <button
-              onClick={() => setStep(1)}
+              onClick={() => goToStep(1)}
               className="flex-1 py-3 rounded-xl bg-button text-background font-bold text-base transition-opacity hover:opacity-90 cursor-pointer"
             >
               はじめる
@@ -188,7 +234,7 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
           )}
           {step > 0 && step < totalSteps - 1 && (
             <button
-              onClick={() => setStep(step + 1)}
+              onClick={() => goToStep(step + 1)}
               className="flex-1 py-3 rounded-xl bg-button text-background font-bold text-base transition-opacity hover:opacity-90 cursor-pointer"
             >
               次へ
