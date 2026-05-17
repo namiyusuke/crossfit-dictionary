@@ -138,11 +138,11 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
         {activeSection === "種目辞典" && (
           <>
             {/* 検索 */}
-            <div className="mb-4">
+            <div className="mb-10">
               <SearchBar value={searchText} onChange={setSearchText} />
             </div>
             {/* フィルター */}
-            <div className="mb-75">
+            <div className="mb-100">
               <CategoryFilter
                 selectedCategory={selectedCategory}
                 onCategoryChange={setSelectedCategory}

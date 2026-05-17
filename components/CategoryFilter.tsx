@@ -64,21 +64,15 @@ export default function CategoryFilter({
   const activeCount = (selectedCategory ? 1 : 0) + selectedBodyParts.length + selectedEffects.length;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-10">
       {/* フィルタータグ */}
       <div>
         <button
           onClick={() => toggleSection("category")}
-          className="flex items-center justify-between w-full py-2 cursor-pointer"
+          className="bg-white rounded-[12px] p-4 text-black font-black text-[12px] flex items-center justify-between w-full cursor-pointer"
         >
           <p>カテゴリ</p>
-          <motion.span
-            className="text-white"
-            animate={{ rotate: openSections.has("category") ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            ▼
-          </motion.span>
+          <span>{openSections.has("category") ? "−" : "＋"}</span>
         </button>
         <AnimatePresence>
           {openSections.has("category") && (
@@ -89,7 +83,7 @@ export default function CategoryFilter({
               transition={{ duration: 0.2 }}
               className="overflow-hidden"
             >
-              <div className="flex gap-4 overflow-x-auto pb-1 pt-2 scrollbar-hide flex-wrap">
+              <div className="flex gap-2 overflow-x-auto px-4 py-8 bg-gray scrollbar-hide flex-wrap rounded-b-lg">
                 {CATEGORIES.map((cat) => {
                   const isActive = selectedCategory === cat;
                   const color = CATEGORY_COLORS[cat];
@@ -117,16 +111,10 @@ export default function CategoryFilter({
       <div>
         <button
           onClick={() => toggleSection("bodyPart")}
-          className="flex items-center justify-between w-full py-2 cursor-pointer"
+          className="bg-white rounded-[12px] p-4 text-black font-black text-[12px] flex items-center justify-between w-full cursor-pointer"
         >
           <p>部位</p>
-          <motion.span
-            className="text-white"
-            animate={{ rotate: openSections.has("bodyPart") ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            ▼
-          </motion.span>
+          <span>{openSections.has("bodyPart") ? "−" : "＋"}</span>
         </button>
         <AnimatePresence>
           {openSections.has("bodyPart") && (
@@ -137,7 +125,7 @@ export default function CategoryFilter({
               transition={{ duration: 0.2 }}
               className="overflow-hidden"
             >
-              <div className="flex gap-2 overflow-x-auto pb-1 pt-2 scrollbar-hide flex-wrap">
+              <div className="flex gap-2 overflow-x-auto px-4 py-8 bg-gray scrollbar-hide flex-wrap rounded-b-lg">
                 {ALL_BODY_PARTS.map((part) => {
                   const isActive = selectedBodyParts.includes(part);
                   return (
@@ -164,16 +152,10 @@ export default function CategoryFilter({
       <div>
         <button
           onClick={() => toggleSection("effect")}
-          className="flex items-center justify-between w-full py-2 cursor-pointer"
+          className="bg-white rounded-[12px] p-4 text-black font-black text-[12px] flex items-center justify-between w-full cursor-pointer"
         >
           <p>効果</p>
-          <motion.span
-            className="text-white"
-            animate={{ rotate: openSections.has("effect") ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            ▼
-          </motion.span>
+          <span>{openSections.has("effect") ? "−" : "＋"}</span>
         </button>
         <AnimatePresence>
           {openSections.has("effect") && (
@@ -184,7 +166,7 @@ export default function CategoryFilter({
               transition={{ duration: 0.2 }}
               className="overflow-hidden"
             >
-              <div className="flex gap-2 overflow-x-auto pb-1 pt-2 scrollbar-hide flex-wrap">
+              <div className="flex gap-2 overflow-x-auto px-4 py-8 bg-gray scrollbar-hide flex-wrap rounded-b-lg">
                 {ALL_EFFECTS.map((effect) => {
                   const isActive = selectedEffects.includes(effect);
                   return (
