@@ -35,7 +35,7 @@ export default function MovementCard({ movement }: MovementCardProps) {
               <h2 className="text-2xl font-bold font-gothic">{movement.name}</h2>
             </div>
             <p className="text-sm mt-0.5 font-black">{movement.nameEn}</p>
-            <p className="text-sm mt-6 line-clamp-2 leading-relaxed">{movement.oneLiner}</p>
+            <p className="text-base mt-6 line-clamp-2 leading-relaxed">{movement.oneLiner}</p>
           </div>
         </div>
         <div className="flex items-center gap-3 mt-6">

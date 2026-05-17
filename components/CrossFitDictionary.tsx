@@ -101,28 +101,39 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
             <h1 className="text-4xl text-text-primary font-gothic">{activeSection}</h1>
             <p className="text-sm mt-1">種目名をタップして詳細を確認しよう</p>
           </div>
+        </div>
+        {/* セクション切り替え */}
+        <div className="mb-5">
+          <div className="flex gap-1">
+            {sections.map((section) => (
+              <div className="relative w-full">
+                <button
+                  key={section}
+                  onClick={() => handleSectionChange(section)}
+                  className={`w-full font-black flex-1 py-2.5 rounded-lg text-sm transition-all cursor-pointer  ${
+                    activeSection === section
+                      ? "bg-button text-background"
+                      : "border border-[#F1FE7D] text-green hover:text-text-primary"
+                  }`}
+                >
+                  {section}
+                </button>
+                {activeSection === section ? (
+                  <span className="bg-white -z-1 absolute w-full h-full rounded-lg  block right-[-2px] top-[2px]"></span>
+                ) : (
+                  ""
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="text-right mb-10">
           <button
             onClick={() => setShowEquipmentSettings(true)}
-            className="text-xs  border border-border rounded-lg px-3 py-1.5 hover:text-text-primary hover:border-text-secondary transition-colors cursor-pointer"
+            className="text-xs rounded-[16px] bg-white font-black text-black px-4 py-2 hover:text-text-primary hover:border-text-secondary transition-colors cursor-pointer"
           >
             設備変更
           </button>
-        </div>
-        {/* セクション切り替え */}
-        <div className="">
-          <div className="flex gap-1 mb-4">
-            {sections.map((section) => (
-              <button
-                key={section}
-                onClick={() => handleSectionChange(section)}
-                className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer  ${
-                  activeSection === section ? "bg-button text-background" : "bg-gray  hover:text-text-primary"
-                }`}
-              >
-                {section}
-              </button>
-            ))}
-          </div>
         </div>
         {activeSection === "種目辞典" && (
           <>
