@@ -23,7 +23,7 @@ interface CategoryFilterProps {
   onEffectsChange: (effects: PrimaryEffect[]) => void;
 }
 
-const CATEGORIES: Category[] = ["weightlifting", "gymnastics", "cardio", "kettlebell", "bodyweight"];
+const CATEGORIES: Category[] = ["weightlifting", "gymnastics", "cardio", "bodyweight"];
 
 export default function CategoryFilter({
   selectedCategory,
@@ -48,11 +48,11 @@ export default function CategoryFilter({
   const activeCount = (selectedCategory ? 1 : 0) + selectedBodyParts.length + selectedEffects.length;
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-10">
       {/* フィルタータグ */}
       <div className="">
         <p className="mb-4">カテゴリ</p>
-        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide flex-wrap">
+        <div className="flex gap-4 overflow-x-auto pb-1 scrollbar-hide flex-wrap">
           {CATEGORIES.map((cat) => {
             const isActive = selectedCategory === cat;
             const color = CATEGORY_COLORS[cat];
@@ -60,11 +60,11 @@ export default function CategoryFilter({
               <button
                 key={cat}
                 onClick={() => onCategoryChange(isActive ? null : cat)}
-                className="shrink-0 px-3 py-1.5 rounded-[10px] text-sm font-medium transition-all border cursor-pointer"
+                className="shrink-0 px-5 py-3 rounded-[10px] text-[13px] font-black transition-all border cursor-pointer"
                 style={{
-                  backgroundColor: isActive ? "white" : "transparent",
-                  borderColor: "white",
-                  color: isActive ? "#0A0A0A" : "#fff",
+                  backgroundColor: isActive ? color : "transparent",
+                  borderColor: isActive ? "transparent" : "white",
+                  color: isActive ? (cat === "gymnastics" || cat === "cardio" ? "#fff" : "#0A0A0A") : "#fff",
                 }}
               >
                 {CATEGORY_LABELS[cat]}

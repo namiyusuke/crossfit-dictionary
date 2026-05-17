@@ -11,7 +11,7 @@ import CategoryFilter from "./CategoryFilter";
 import MovementCard from "./MovementCard";
 import WodCardScatter from "./WodCardScatter";
 import OnboardingEquipment from "./OnboardingEquipment";
-
+import Image from "next/image";
 const sections = ["種目辞典", "WOD"] as const;
 type ActiveSection = (typeof sections)[number];
 
@@ -94,82 +94,86 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
 
   return (
     <div className="mx-auto px-6 py-6">
-      {/* ヘッダー */}
-      <div className="mb-6 flex items-start justify-between">
-        <div>
-          <h1 className="text-4xl text-text-primary font-gothic">{activeSection}</h1>
-          <p className="text-sm mt-1">種目名をタップして詳細を確認しよう</p>
-        </div>
-        <button
-          onClick={() => setShowEquipmentSettings(true)}
-          className="text-xs  border border-border rounded-lg px-3 py-1.5 hover:text-text-primary hover:border-text-secondary transition-colors cursor-pointer"
-        >
-          設備変更
-        </button>
-      </div>
-
-      {/* セクション切り替え */}
-      <div className="">
-        <div className="flex gap-1 mb-4">
-          {sections.map((section) => (
-            <button
-              key={section}
-              onClick={() => handleSectionChange(section)}
-              className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer  ${
-                activeSection === section ? "bg-button text-background" : "bg-gray  hover:text-text-primary"
-              }`}
-            >
-              {section}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {activeSection === "種目辞典" && (
-        <>
-          {/* 検索 */}
-          <div className="mb-4">
-            <SearchBar value={searchText} onChange={setSearchText} />
+      <div className="relative">
+        {/* ヘッダー */}
+        <div className="mb-6 flex items-start justify-between">
+          <div>
+            <h1 className="text-4xl text-text-primary font-gothic">{activeSection}</h1>
+            <p className="text-sm mt-1">種目名をタップして詳細を確認しよう</p>
           </div>
-
-          {/* フィルター */}
-          <div className="mb-6">
-            <CategoryFilter
-              selectedCategory={selectedCategory}
-              onCategoryChange={setSelectedCategory}
-              selectedBodyParts={selectedBodyParts}
-              onBodyPartsChange={setSelectedBodyParts}
-              selectedEffects={selectedEffects}
-              onEffectsChange={setSelectedEffects}
-            />
+          <button
+            onClick={() => setShowEquipmentSettings(true)}
+            className="text-xs  border border-border rounded-lg px-3 py-1.5 hover:text-text-primary hover:border-text-secondary transition-colors cursor-pointer"
+          >
+            設備変更
+          </button>
+        </div>
+        {/* セクション切り替え */}
+        <div className="">
+          <div className="flex gap-1 mb-4">
+            {sections.map((section) => (
+              <button
+                key={section}
+                onClick={() => handleSectionChange(section)}
+                className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer  ${
+                  activeSection === section ? "bg-button text-background" : "bg-gray  hover:text-text-primary"
+                }`}
+              >
+                {section}
+              </button>
+            ))}
           </div>
+        </div>
+        {activeSection === "種目辞典" && (
+          <>
+            {/* 検索 */}
+            <div className="mb-4">
+              <SearchBar value={searchText} onChange={setSearchText} />
+            </div>
+            {/* フィルター */}
+            <div className="mb-75">
+              <CategoryFilter
+                selectedCategory={selectedCategory}
+                onCategoryChange={setSelectedCategory}
+                selectedBodyParts={selectedBodyParts}
+                onBodyPartsChange={setSelectedBodyParts}
+                selectedEffects={selectedEffects}
+                onEffectsChange={setSelectedEffects}
+              />
+            </div>
 
-          {/* 種目カード一覧 */}
-          <div className="space-y-9">
-            {filteredMovements.length > 0 ? (
-              filteredMovements.map((movement) => (
-                <div key={movement.id}>
-                  <MovementCard movement={movement} />
+            {/* 種目カード一覧 */}
+            <div className="space-y-15 relative">
+              <Image
+                className="absolute bottom-[99.5%] right-0"
+                src="/crossFitDictionary-char01.png"
+                alt="バーベルを持ち上げるキャラクター"
+                width={151}
+                height={320}
+              />
+              {filteredMovements.length > 0 ? (
+                filteredMovements.map((movement) => (
+                  <div key={movement.id}>
+                    <MovementCard movement={movement} />
+                  </div>
+                ))
+              ) : (
+                <div className="text-center py-12">
+                  <p className=" text-lg mb-2">該当する種目が見つかりません</p>
+                  <p className=" text-sm">検索条件を変更してください</p>
                 </div>
-              ))
-            ) : (
-              <div className="text-center py-12">
-                <p className=" text-lg mb-2">該当する種目が見つかりません</p>
-                <p className=" text-sm">検索条件を変更してください</p>
-              </div>
-            )}
-          </div>
-
-          {/* フッター */}
-          <div className="mt-8 pb-4 text-center">
-            <p className="text-xs ">
-              {filteredMovements.length} / {movements.length} 種目を表示中
-            </p>
-          </div>
-        </>
-      )}
-
-      {activeSection === "WOD" && <WodCardScatter wods={wods} />}
+              )}
+            </div>
+            {/* フッター */}
+            <div className="mt-8 pb-4 text-center">
+              <p className="text-xs ">
+                {filteredMovements.length} / {movements.length} 種目を表示中
+              </p>
+            </div>
+          </>
+        )}
+        {activeSection === "WOD" && <WodCardScatter wods={wods} />}
+      </div>
     </div>
   );
 }

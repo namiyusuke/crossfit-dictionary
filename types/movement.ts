@@ -1,4 +1,4 @@
-export type Category = "weightlifting" | "gymnastics" | "cardio" | "kettlebell" | "bodyweight";
+export type Category = "weightlifting" | "gymnastics" | "cardio" | "bodyweight";
 
 export type PrimaryEffect = "筋力" | "筋持久力" | "心肺" | "爆発力" | "可動域" | "体幹";
 
@@ -72,7 +72,6 @@ export const CATEGORY_LABELS: Record<Category, string> = {
   weightlifting: "ウェイトリフティング",
   gymnastics: "ジムナスティクス",
   cardio: "カーディオ",
-  kettlebell: "ケトルベル",
   bodyweight: "自重トレーニング",
 };
 
@@ -80,14 +79,12 @@ export const CATEGORY_COLORS: Record<Category, string> = {
   weightlifting: "#DB6C66",
   gymnastics: "#553EEC",
   cardio: "#6BAF7A",
-  kettlebell: "#F39C12",
   bodyweight: "#EDE0C8",
 };
 export const CATEGORY_SHADOW: Record<Category, string> = {
   weightlifting: "#5D4230",
   gymnastics: "#5D4230",
   cardio: "#5D4230",
-  kettlebell: "#5D4230",
   bodyweight: "#5D4230",
 };
 

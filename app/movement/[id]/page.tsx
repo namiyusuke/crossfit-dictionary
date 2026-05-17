@@ -65,8 +65,8 @@ export default async function MovementPage({ params }: Props) {
                 <div className="flex items-center gap-2 flex-wrap">
                   <h2 className="text-2xl font-gothic">{movement.name}</h2>
                 </div>
-                <p className="text-sm mt-0.5">{movement.nameEn}</p>
-                <p className="text-sm mt-1 line-clamp-2">{movement.oneLiner}</p>
+                <p className="text-sm mt-0.5 font-black">{movement.nameEn}</p>
+                <p className="text-sm mt-1 line-clamp-2 leading-relaxed">{movement.oneLiner}</p>
               </div>
             </div>
             <div className="flex items-center gap-3 mt-2">

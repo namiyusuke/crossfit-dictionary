@@ -40,7 +40,7 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
   const totalSteps = 4;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-8 py-10">
+    <div className="min-h-screen flex items-start justify-center bg-background px-8 py-10">
       <div className="w-full max-w-md relative overflow-hidden">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
@@ -250,23 +250,29 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
         </AnimatePresence>
 
         {/* ナビゲーションボタン */}
-        <div className="flex flex-col  gap-3">
+        <div className="flex flex-col gap-3">
           {step === 0 && (
-            <button
-              onClick={() => goToStep(1)}
-              className="flex-1 py-3 rounded-xl bg-button text-background font-bold text-base transition-opacity hover:opacity-90 cursor-pointer"
-            >
-              はじめる
-            </button>
+            <div className="relative inline-block">
+              <button
+                onClick={() => goToStep(1)}
+                className="z-10 relative w-full flex-1 py-3 rounded-xl bg-button text-background font-bold text-base transition-opacity hover:opacity-90 cursor-pointer"
+              >
+                はじめる
+              </button>
+              <span className="bg-white z-1 absolute w-full h-full rounded-2xl block right-[-4px] top-[4px]"></span>
+            </div>
           )}
           {step > 0 && step < totalSteps - 1 && (
             <>
-              <button
-                onClick={() => goToStep(step + 1)}
-                className="flex-1 py-3 rounded-xl bg-button text-background font-bold text-base transition-opacity hover:opacity-90 cursor-pointer"
-              >
-                次へ
-              </button>
+              <div className="relative">
+                <button
+                  onClick={() => goToStep(step + 1)}
+                  className="z-10 relative w-full flex-1 py-3 rounded-xl bg-button text-background font-bold text-base transition-opacity hover:opacity-90 cursor-pointer"
+                >
+                  次へ
+                </button>
+                <span className="bg-white z-1 absolute w-full h-full rounded-2xl block right-[-4px] top-[4px]"></span>
+              </div>
               {step >= 2 && (
                 <button className="block text-left text-[14px]" onClick={() => goToStep(step - 1)}>
                   ← 戻る
@@ -276,13 +282,18 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
           )}
           {step === totalSteps - 1 && (
             <>
-              <button
-                onClick={() => onComplete(selected)}
-                disabled={!check}
-                className={`flex-1 py-3 rounded-xl font-bold text-base transition-opacity ${check ? "bg-button text-background hover:opacity-90 cursor-pointer" : "bg-[#181818] text-[#414141] cursor-not-allowed"}`}
-              >
-                同意してはじめる
-              </button>
+              <div className="relative">
+                <button
+                  onClick={() => onComplete(selected)}
+                  disabled={!check}
+                  className={`z-10 relative w-full flex-1 py-3 rounded-xl font-bold text-base transition-opacity ${check ? "bg-button text-background hover:opacity-90 cursor-pointer" : "bg-[#181818] text-[#414141] cursor-not-allowed"}`}
+                >
+                  同意してはじめる
+                </button>
+                {check && (
+                  <span className="bg-white z-1 absolute w-full h-full rounded-2xl block right-[-4px] top-[4px]"></span>
+                )}
+              </div>
               <button className="block text-left text-[14px]" onClick={() => goToStep(step - 1)}>
                 ← 戻る
               </button>

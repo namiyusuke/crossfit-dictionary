@@ -3,11 +3,11 @@
 // ============================================
 
 // --- Step A-1: カテゴリの型を作る ---
-// ウェイトリフティング、ジムナスティクス、カーディオ、ケトルベル、自重トレーニング の5つ
+// ウェイトリフティング、ジムナスティクス、カーディオ、自重トレーニング の4つ
 // ヒント: type Category = "xxx" | "yyy" | ...
 // ここに書いてみよう👇
 
-export type Category = "weightlifting" | "gymnastics" | "cardio" | "kettlebell" | "bodyweight";
+export type Category = "weightlifting" | "gymnastics" | "cardio" | "bodyweight";
 
 // --- Step A-2: 効果と部位の型を作る ---
 // 効果: 筋力、筋持久力、心肺、爆発力、可動域、体幹
@@ -76,7 +76,6 @@ export const CATEGORY_LABELS: Record<Category, string> = {
   weightlifting: "ウェイトリフティング",
   gymnastics: "ジムナスティクス",
   cardio: "カーディオ",
-  kettlebell: "ケトルベル",
   bodyweight: "自重トレーニング",
 };
 export const ALL_EFFECTS: PrimaryEffect[] = ["筋力", "筋持久力", "心肺", "爆発力", "可動域", "体幹"];

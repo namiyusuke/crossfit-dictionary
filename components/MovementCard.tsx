@@ -1,7 +1,7 @@
 import { Movement, CATEGORY_LABELS, CATEGORY_COLORS, CATEGORY_SHADOW } from "@/types/movement";
 import DifficultyDots from "./DifficultyDots";
 import Link from "next/link";
-
+import Image from "next/image";
 interface MovementCardProps {
   movement: Movement;
 }
@@ -17,7 +17,7 @@ export default function MovementCard({ movement }: MovementCardProps) {
     >
       <span
         className="absolute right-[-9px] top-[-2px] rounded-xl border-5 -z-1 w-[calc(100%+12px)] h-[calc(100%+12px)]"
-        style={{ borderColor: categoryShadow }}
+        style={{ borderColor: "#fff" }}
       ></span>
       <span
         className="text-xs px-6 py-2 rounded-[10px] font-black absolute top-0 right-3.5 translate-y-[-50%] "
@@ -28,17 +28,17 @@ export default function MovementCard({ movement }: MovementCardProps) {
       >
         {CATEGORY_LABELS[movement.category]}
       </span>
-      <div className="px-10 py-8">
+      <div className="px-10 py-8 relative">
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
               <h2 className="text-2xl font-bold font-gothic">{movement.name}</h2>
             </div>
-            <p className="text-sm mt-0.5">{movement.nameEn}</p>
-            <p className="text-sm mt-6 line-clamp-2">{movement.oneLiner}</p>
+            <p className="text-sm mt-0.5 font-black">{movement.nameEn}</p>
+            <p className="text-sm mt-6 line-clamp-2 leading-relaxed">{movement.oneLiner}</p>
           </div>
         </div>
-        <div className="flex items-center gap-3 mt-2">
+        <div className="flex items-center gap-3 mt-6">
           <DifficultyDots difficulty={movement.difficulty} color={categoryColor} />
         </div>
       </div>
