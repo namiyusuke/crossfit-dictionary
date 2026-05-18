@@ -99,7 +99,9 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
         <div className="mb-6 flex items-start justify-between">
           <div>
             <h1 className="text-4xl text-text-primary font-gothic">{activeSection}</h1>
-            <p className="text-sm mt-1">種目名をタップして詳細を確認しよう</p>
+            <p className="text-sm mt-1">
+              {activeSection == "種目辞典" ? " 種目名をタップして詳細を確認しよう" : "今日のメニューを選ぼう"}
+            </p>
           </div>
         </div>
         {/* セクション切り替え */}
