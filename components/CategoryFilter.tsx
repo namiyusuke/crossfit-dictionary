@@ -83,7 +83,7 @@ export default function CategoryFilter({
               transition={{ duration: 0.2 }}
               className="overflow-hidden"
             >
-              <div className="flex gap-2 overflow-x-auto px-4 py-8 bg-gray scrollbar-hide flex-wrap rounded-b-lg">
+              <div className="flex gap-4 overflow-x-auto px-4 py-8 bg-gray scrollbar-hide flex-wrap rounded-b-lg">
                 {CATEGORIES.map((cat) => {
                   const isActive = selectedCategory === cat;
                   const color = CATEGORY_COLORS[cat];
@@ -125,14 +125,14 @@ export default function CategoryFilter({
               transition={{ duration: 0.2 }}
               className="overflow-hidden"
             >
-              <div className="flex gap-2 overflow-x-auto px-4 py-8 bg-gray scrollbar-hide flex-wrap rounded-b-lg">
+              <div className="flex gap-4 overflow-x-auto px-4 py-8 bg-gray scrollbar-hide flex-wrap rounded-b-lg">
                 {ALL_BODY_PARTS.map((part) => {
                   const isActive = selectedBodyParts.includes(part);
                   return (
                     <button
                       key={part}
                       onClick={() => toggleBodyPart(part)}
-                      className={`shrink-0 px-3 py-1.5 rounded-[10px] text-sm font-medium transition-all border cursor-pointer`}
+                      className={`shrink-0 p-3 rounded-[10px] font-black text-[13px] transition-all border cursor-pointer`}
                       style={{
                         backgroundColor: isActive ? "white" : "transparent",
                         borderColor: "white",
@@ -166,14 +166,14 @@ export default function CategoryFilter({
               transition={{ duration: 0.2 }}
               className="overflow-hidden"
             >
-              <div className="flex gap-2 overflow-x-auto px-4 py-8 bg-gray scrollbar-hide flex-wrap rounded-b-lg">
+              <div className="flex gap-4 overflow-x-auto px-4 py-8 bg-gray scrollbar-hide flex-wrap rounded-b-lg">
                 {ALL_EFFECTS.map((effect) => {
                   const isActive = selectedEffects.includes(effect);
                   return (
                     <button
                       key={effect}
                       onClick={() => toggleEffect(effect)}
-                      className={`shrink-0 px-3 py-1.5 rounded-[10px] text-sm font-medium transition-all border cursor-pointer`}
+                      className={`shrink-0 p-3 rounded-[10px] text-[13px] font-black transition-all border cursor-pointer`}
                       style={{
                         backgroundColor: isActive ? "white" : "transparent",
                         borderColor: "white",
@@ -192,15 +192,15 @@ export default function CategoryFilter({
 
       {/* アクティブフィルター数 */}
       {activeCount > 0 && (
-        <div className="flex items-center justify-between">
-          <p className="text-xs ">{activeCount}件のフィルター適用中</p>
+        <div className="">
+          <p className="text-[14px] ">{activeCount}件のフィルター適用中</p>
           <button
             onClick={() => {
               onCategoryChange(null);
               onBodyPartsChange([]);
               onEffectsChange([]);
             }}
-            className="text-xs  hover:text-text-primary transition-colors cursor-pointer"
+            className="mt-4 leading-none text-[12px] bg-white font-black text-black transition-colors cursor-pointer px-4 py-2 rounded-[1rem]"
           >
             すべてクリア
           </button>

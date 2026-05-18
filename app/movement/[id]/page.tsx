@@ -48,7 +48,7 @@ export default async function MovementPage({ params }: Props) {
         >
           <span
             className="absolute right-[-9px] top-[-2px] rounded-xl border-5 -z-1 w-[calc(100%+12px)] h-[calc(100%+12px)]"
-            style={{ borderColor: categoryShadow }}
+            style={{ borderColor: "#fff" }}
           ></span>
           <span
             className="text-xs px-6 py-2 rounded-[10px] font-black absolute top-0 right-3.5 translate-y-[-50%] "
@@ -59,17 +59,17 @@ export default async function MovementPage({ params }: Props) {
           >
             {CATEGORY_LABELS[movement.category]}
           </span>
-          <div className="px-10 py-8">
+          <div className="px-10 py-8 relative">
             <div className="flex items-start justify-between gap-2">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <h2 className="text-2xl font-gothic">{movement.name}</h2>
+                  <h2 className="text-2xl font-bold font-gothic">{movement.name}</h2>
                 </div>
                 <p className="text-sm mt-0.5 font-black">{movement.nameEn}</p>
-                <p className="text-sm mt-1 line-clamp-2 leading-relaxed">{movement.oneLiner}</p>
+                <p className="text-base mt-6 line-clamp-2 leading-relaxed">{movement.oneLiner}</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 mt-2">
+            <div className="flex items-center gap-3 mt-6">
               <DifficultyDots difficulty={movement.difficulty} color={categoryColor} />
             </div>
           </div>
@@ -77,10 +77,10 @@ export default async function MovementPage({ params }: Props) {
       </div>
 
       {/* YouTube動画 */}
-      <section className="mb-6">
+      <section className="mb-[64px]">
         <div className="aspect-video rounded-xl overflow-hidden bg-black">
           <iframe
-            src={`https://www.youtube.com/embed/${movement.videoId}`}
+            src={`https://www.youtube.com/embed/${movement.videoId}?mute=1`}
             className="w-full h-full"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
@@ -90,15 +90,15 @@ export default async function MovementPage({ params }: Props) {
       {/* 使う筋肉 */}
       <section className="mb-16">
         <h2
-          className="text-2xl mb-2 font-gothic"
+          className="text-2xl mb-6 font-gothic"
           style={{
             color: categoryColor,
           }}
         >
           使う部位
         </h2>
-        <div className="mb-2">
-          <p className="mb-2 font-bold">主動筋</p>
+        <div className="mb-6">
+          <p className="mb-2 font-bold text-[14px]">主動筋</p>
           <div className="flex flex-wrap gap-1.5">
             {movement.muscleMain.map((muscle) => (
               <span key={muscle} className="text-[13px] px-2.5 py-1 rounded-[10px] bg-white text-black">
@@ -109,7 +109,7 @@ export default async function MovementPage({ params }: Props) {
         </div>
         {movement.muscleSub.length > 0 && (
           <div>
-            <p className="mb-2 font-bold">補助筋</p>
+            <p className="mb-2 font-bold text-[14px]">補助筋</p>
             <div className="flex flex-wrap gap-1.5">
               {movement.muscleSub.map((muscle) => (
                 <span key={muscle} className="text-[13px] px-2.5 py-1 rounded-[10px] bg-white text-black">
@@ -123,7 +123,7 @@ export default async function MovementPage({ params }: Props) {
       {/* 目的・効果 */}
       <section className="mb-16">
         <h2
-          className="text-2xl mb-2 font-gothic"
+          className="text-2xl mb-6 font-gothic"
           style={{
             color: categoryColor,
           }}
@@ -151,16 +151,16 @@ export default async function MovementPage({ params }: Props) {
       {/* やり方 */}
       <section className="mb-16">
         <h2
-          className="text-2xl mb-2 font-gothic"
+          className="text-2xl mb-6 font-gothic"
           style={{
             color: categoryColor,
           }}
         >
           やり方
         </h2>
-        <ol className="space-y-1.5">
+        <ol className="space-y-5">
           {movement.steps.map((step, i) => (
-            <li key={i} className="text-basic font-bold flex gap-2 items-center">
+            <li key={i} className="text-basic font-black flex gap-4 items-center">
               <span
                 className="font-gothic w-[22px] text-2xl"
                 style={{
@@ -178,7 +178,7 @@ export default async function MovementPage({ params }: Props) {
       {/* 注意点 */}
       <section className="mb-6">
         <h2
-          className="text-2xl mb-2 font-gothic"
+          className="text-2xl mb-6 font-gothic"
           style={{
             color: categoryColor,
           }}
@@ -187,7 +187,11 @@ export default async function MovementPage({ params }: Props) {
         </h2>
         <ul className="space-y-3">
           {movement.tips.map((tip, i) => (
-            <li key={i} className="text-basic flex gap-2 list-none px-5 py-3 bg-gray rounded-[8px]">
+            <li
+              key={i}
+              style={{ borderColor: categoryColor }}
+              className="border-3 text-basic flex gap-2 list-none px-5 py-4 bg-gray rounded-[8px]"
+            >
               {tip}
             </li>
           ))}
@@ -199,7 +203,7 @@ export default async function MovementPage({ params }: Props) {
         <h2 className="text-sm font-semibold text-text-primary mb-2">スケーリング</h2>
         <p className="text-sm ">{movement.scaling}</p>
       </section> */}
-      <SpriteAnimation />
+      <SpriteAnimation category={movement.category} />
     </main>
   );
 }
