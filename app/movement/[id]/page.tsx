@@ -101,7 +101,7 @@ export default async function MovementPage({ params }: Props) {
           <p className="mb-2 font-bold text-[14px]">主動筋</p>
           <div className="flex flex-wrap gap-4">
             {movement.muscleMain.map((muscle) => (
-              <span key={muscle} className="text-[13px] px-2.5 py-1 rounded-[10px] bg-white text-black">
+              <span key={muscle} className="leading-none text-[13px] p-[12px] rounded-[10px] bg-white text-black">
                 {muscle}
               </span>
             ))}
@@ -112,7 +112,7 @@ export default async function MovementPage({ params }: Props) {
             <p className="mb-2 font-bold text-[14px]">補助筋</p>
             <div className="flex flex-wrap gap-4">
               {movement.muscleSub.map((muscle) => (
-                <span key={muscle} className="text-[13px] px-2.5 py-1 rounded-[10px] bg-white text-black">
+                <span key={muscle} className="leading-none text-[13px] p-[12px] rounded-[10px] bg-white text-black">
                   {muscle}
                 </span>
               ))}
@@ -130,7 +130,7 @@ export default async function MovementPage({ params }: Props) {
         >
           目的・効果
         </h2>
-        <p className="text-sm  mb-2">{movement.purpose}</p>
+        <p className="text-[13px]  mb-4">{movement.purpose}</p>
         <div className="flex flex-wrap gap-4">
           {/* {movement.primaryEffect.map((effect) => (
             <span
@@ -141,7 +141,7 @@ export default async function MovementPage({ params }: Props) {
             </span>
           ))} */}
           {movement.bodyPart.map((part) => (
-            <span key={part} className="text-[13px] px-2.5 py-1 rounded-[10px] bg-white text-black">
+            <span key={part} className="leading-none text-[13px] p-[12px] rounded-[10px] bg-white text-black">
               {part}
             </span>
           ))}
@@ -190,7 +190,7 @@ export default async function MovementPage({ params }: Props) {
             <li
               key={i}
               style={{ borderColor: categoryColor }}
-              className="border-3 text-basic flex gap-2 list-none px-5 py-4 bg-gray rounded-[8px]"
+              className="font-black border-3 text-basic flex gap-2 list-none px-5 py-6 bg-gray rounded-[8px]"
             >
               {tip}
             </li>

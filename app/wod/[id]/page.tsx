@@ -35,7 +35,7 @@ export default async function WodPage({ params, searchParams }: Props) {
   const matchingMoods = MOODS.filter((m) => m.filter(wod));
   return (
     <div className="mx-auto px-4 py-6">
-      <Link href={`/?section=WOD${mood ? `&mood=${mood}` : ""}`} className="mb-3 text-white text-[12px] block">
+      <Link href={`/?section=WOD${mood ? `&mood=${mood}` : ""}`} className="mb-10 text-white text-[12px] block">
         ＜　wod / 今日のメニューを選ぼう
       </Link>
       {/* ヘッダー */}
