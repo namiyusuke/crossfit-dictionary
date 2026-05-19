@@ -7,11 +7,11 @@ const framesByCategory: Record<string, string[]> = {
   cardio: ["/green01.png", "/green02.png"],
   gymnastics: ["/blue01.png", "/blue02.png"],
   bodyweight: ["/cream01.png", "/cream02.png"],
+  wod: ["/cream01.png", "/cream02.png"],
 };
 
 export default function SpriteAnimation({ category }: { category: string }) {
   const [frame, setFrame] = useState(0);
-
   const frames = useMemo(() => framesByCategory[category] ?? framesByCategory.red, [category]);
 
   useEffect(() => {

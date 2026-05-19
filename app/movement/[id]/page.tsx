@@ -99,7 +99,7 @@ export default async function MovementPage({ params }: Props) {
         </h2>
         <div className="mb-6">
           <p className="mb-2 font-bold text-[14px]">主動筋</p>
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-4">
             {movement.muscleMain.map((muscle) => (
               <span key={muscle} className="text-[13px] px-2.5 py-1 rounded-[10px] bg-white text-black">
                 {muscle}
@@ -110,7 +110,7 @@ export default async function MovementPage({ params }: Props) {
         {movement.muscleSub.length > 0 && (
           <div>
             <p className="mb-2 font-bold text-[14px]">補助筋</p>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-4">
               {movement.muscleSub.map((muscle) => (
                 <span key={muscle} className="text-[13px] px-2.5 py-1 rounded-[10px] bg-white text-black">
                   {muscle}
@@ -131,7 +131,7 @@ export default async function MovementPage({ params }: Props) {
           目的・効果
         </h2>
         <p className="text-sm  mb-2">{movement.purpose}</p>
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-4">
           {/* {movement.primaryEffect.map((effect) => (
             <span
               key={effect}

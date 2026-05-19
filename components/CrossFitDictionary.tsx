@@ -93,13 +93,13 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
   }
 
   return (
-    <div className="mx-auto px-6 py-6">
+    <div className="mx-auto w-[100%] px-6 py-6">
       <div className="relative">
         {/* ヘッダー */}
-        <div className="mb-6 flex items-start justify-between">
+        <div className="mb-10 flex items-start justify-between">
           <div>
             <h1 className="text-4xl text-text-primary font-gothic">{activeSection}</h1>
-            <p className="text-sm mt-1">
+            <p className="text-sm mt-4">
               {activeSection == "種目辞典" ? " 種目名をタップして詳細を確認しよう" : "今日のメニューを選ぼう"}
             </p>
           </div>

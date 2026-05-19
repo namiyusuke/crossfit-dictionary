@@ -69,20 +69,20 @@ export default async function WodPage({ params, searchParams }: Props) {
         {/* 気分バッジ */}
         <div className="flex flex-wrap gap-2">
           {matchingMoods.map((mood) => (
-            <span key={mood.id} className="px-2 py-0.5 rounded-[10px] bg-card-bg text-black">
+            <span key={mood.id} className="px-2 py-0.5 rounded-[10px] bg-white text-black font-black">
               {mood.label}
             </span>
           ))}
         </div>
       </div>
       <div className="mt-4 space-y-3">
-        <div className="flex gap-2 text-sm">
-          <span className="px-2 py-0.5 rounded-[10px] bg-card-bg text-black">{wod.format}</span>
-          <span className="px-2 py-0.5 rounded-[10px] bg-card-bg text-black">{wod.level}</span>
-          <span className="px-2 py-0.5 rounded-[10px] bg-card-bg text-black">{wod.duration}</span>
+        <div className="flex gap-2 text-[14px] items-center font-black">
+          <span className="px-2 py-0.5 rounded-[10px] bg-white text-black">{wod.format}</span>
+          <span className="px-2 py-0.5 rounded-[10px] bg-white text-black">{wod.duration}</span>
+          <span className=" text-white">{wod.level}</span>
         </div>
         <div className="mb-10">
-          <h1 className="font-gothic text-4xl text-green">{wod.name}</h1>
+          <h1 className="font-gothic text-4xl text-green mb-4">{wod.name}</h1>
           <p className="text-sm">{wod.goal}</p>
         </div>
         <div className="">
@@ -174,7 +174,7 @@ export default async function WodPage({ params, searchParams }: Props) {
         <div className="">
           {/* 一覧に戻る */}
           <Link href={`/?section=WOD${mood ? `&mood=${mood}` : ""}`} className="text-green font-black text-[14px]">
-            一覧に戻る
+            WODトップに戻る
           </Link>
         </div>
         <div className="mt-8">
