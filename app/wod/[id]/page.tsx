@@ -4,7 +4,8 @@ import type { Metadata } from "next";
 import { MOODS } from "@/data/wods";
 import Link from "next/link";
 import WodTimerLauncher from "@/components/timer/WodTimerLauncher";
-
+import Image from "next/image";
+import ScrollComment from "@/components/ScrollComment";
 type Props = {
   params: Promise<{ id: string }>;
   searchParams: Promise<{ mood?: string }>;
@@ -30,7 +31,11 @@ export default async function WodPage({ params, searchParams }: Props) {
   if (!wod) {
     notFound();
   }
-
+  const comment = {
+    AMRAP: "まだまだイケるぞ！",
+    ForTime: "全力でぶっちぎれ！",
+    EMOM: "リズムを刻め！",
+  };
   // このWODに該当する気分を探す
   const matchingMoods = MOODS.filter((m) => m.filter(wod));
   return (
@@ -161,7 +166,11 @@ export default async function WodPage({ params, searchParams }: Props) {
           </div>
         </div>
       </div>
-
+      {/* 画像 */}
+      <div className="pt-32 pb-10 my-10 bg-[#414141] relative">
+        <ScrollComment text={comment[wod.format]} />
+        <Image className="mx-auto" width={240} height={334} src={`/${wod.format}.png`} alt="走るキャラクター" />
+      </div>
       {/* ワンポイントアドバイス */}
       <div className="mt-4 rounded-lg p-4 bg-gray">
         <p className="">{wod.tip}</p>

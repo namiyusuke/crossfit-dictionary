@@ -32,6 +32,7 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
   const goToStep = (next: number) => {
     setDirection(next > step ? 1 : -1);
     setStep(next);
+    window.scrollTo(0, 0);
   };
 
   const toggleEquipment = (eq: Equipment) => {
@@ -284,7 +285,10 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
             <>
               <div className="relative">
                 <button
-                  onClick={() => onComplete(selected)}
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                    onComplete(selected);
+                  }}
                   disabled={!check}
                   className={`z-10 relative w-full flex-1 py-3 rounded-xl font-bold text-base transition-opacity ${check ? "bg-button text-background hover:opacity-90 cursor-pointer" : "bg-[#181818] text-[#414141] cursor-not-allowed"}`}
                 >

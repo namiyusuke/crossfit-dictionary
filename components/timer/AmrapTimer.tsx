@@ -68,7 +68,6 @@ export default function AmrapTimer({ wod, onComplete, onQuit }: AmrapTimerProps)
           </span>
           <h2 className="font-gothic text-lg">{wod.name}</h2>
         </div>
-        <p className=" text-sm mt-1">{wod.duration}</p>
       </div>
 
       {/* プログレスリング + タイマー */}

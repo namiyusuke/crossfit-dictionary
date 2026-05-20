@@ -190,7 +190,7 @@ export default async function MovementPage({ params }: Props) {
             <li
               key={i}
               style={{ borderColor: categoryColor }}
-              className="font-black border-3 text-basic flex gap-2 list-none px-5 py-6 bg-gray rounded-[8px]"
+              className="font-black border-3 text-basic flex gap-2 list-none px-5 py-6 bg-gray rounded-[12px]"
             >
               {tip}
             </li>
