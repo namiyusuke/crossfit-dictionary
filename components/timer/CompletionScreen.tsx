@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import type { WodFormat } from "@/types/wod";
 import { formatTime } from "@/lib/timer-utils";
@@ -21,8 +21,26 @@ interface CompletionScreenProps {
   onClose: () => void;
 }
 
+const STAR_COUNT = 5;
+
+function generateStars() {
+  return Array.from({ length: STAR_COUNT }, (_, i) => {
+    // 左端(0~20%)か右端(80~100%)にランダム配置して中央を避ける
+    const left = Math.random() < 0.5
+      ? Math.random() * 20
+      : 80 + Math.random() * 20;
+    return {
+      id: i,
+      top: `${Math.random() * 90}%`,
+      left: `${left}%`,
+      delay: Math.random() * 1.5,
+    };
+  });
+}
+
 export default function CompletionScreen({ result, formatColor, onClose }: CompletionScreenProps) {
   const [showResultModal, setShowResultModal] = useState(false);
+  const stars = useMemo(() => generateStars(), []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -33,6 +51,21 @@ export default function CompletionScreen({ result, formatColor, onClose }: Compl
 
   return (
     <div className="fixed inset-0 pt-[123px] z-50 flex flex-col items-center bg-[#553EEC] px-6 overflow-y-auto">
+      {stars.map((star) => (
+        <motion.div
+          key={star.id}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: star.delay, duration: 0.5, ease: "easeOut" }}
+          className="absolute pointer-events-none"
+          style={{
+            top: star.top,
+            left: star.left,
+          }}
+        >
+          <Image width={22} height={25} src="/star.svg" alt="" />
+        </motion.div>
+      ))}
       {/* COMPLETE! テキスト */}
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
@@ -41,7 +74,7 @@ export default function CompletionScreen({ result, formatColor, onClose }: Compl
         className="text-center"
       >
         <p className="font-gothic text-[40px] mb-6 text-green">COMPLETE!</p>
-        <p className="font-gothic text-[20px]">おつかれさまでした</p>
+        <p className="font-gothic text-[20px] text-white">おつかれさまでした</p>
       </motion.div>
       <div className="mt-[83px]">
         <Image className="mx-auto" width={278} height={369} src="/protein01.png" alt="走るキャラクター" />
