@@ -113,98 +113,80 @@ export default function EmomTimer({ wod, onComplete, onQuit }: EmomTimerProps) {
   const progress = secondsInMinute / 60;
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-background">
-      {/* ヘッダー */}
-      <div className="px-6 pt-6 pb-2">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+    <div className="fixed inset-0 z-50 flex flex-col md:max-w-[375px] md:mx-auto z-20 bg-black min-h-screen">
+      <div className="flex-1 overflow-auto">
+        {/* ヘッダー */}
+        <div className="px-6 pt-6 pb-2 mb-6">
+          <div className="flex items-center gap-3 pb-2 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#553EEC]">
             <span className="text-xs px-2 py-0.5 rounded-full font-bold text-white" style={{ backgroundColor: color }}>
               EMOM
             </span>
-            <h2 className="font-gothic text-lg">{wod.name}</h2>
-          </div>
-          <span className="font-mono text-sm ">
-            {currentMinute}/{totalMinutes}分
-          </span>
-        </div>
-        {/* 全体プログレスバー */}
-        <div className="mt-3 h-1.5 rounded-full bg-border overflow-hidden">
-          <div
-            className="h-full rounded-full transition-all duration-300"
-            style={{
-              width: `${((currentMinute - 1 + (60 - secondsInMinute) / 60) / totalMinutes) * 100}%`,
-              backgroundColor: color,
-            }}
-          />
-        </div>
-      </div>
-
-      {/* メインタイマー */}
-      <div className="flex-1 flex flex-col items-center justify-center">
-        <ProgressRing progress={progress} color={color} size={260}>
-          <div className="text-center">
-            <span
-              className={`font-mono text-5xl font-bold tabular-nums ${secondsInMinute <= 10 ? "text-red-500" : ""}`}
-            >
-              {formatTime(secondsInMinute)}
+            <h2 className="font-gothic text-[20px]">{wod.name}</h2>
+            <span className="font-mono text-sm ml-auto">
+              {currentMinute}/{totalMinutes}分
             </span>
-            {currentSet.label && <p className="text-sm  mt-1">{currentSet.label}</p>}
           </div>
-        </ProgressRing>
-      </div>
+        </div>
 
-      {/* 現在のセット */}
-      <div className="px-6 pb-3">
-        <div
-          className="rounded-xl border p-4"
-          style={{
-            borderColor: isRest ? "#2ECC71" : color,
-            backgroundColor: isRest ? "rgba(46,204,113,0.1)" : "rgba(58,143,232,0.1)",
-          }}
-        >
+        {/* メインタイマー */}
+        <div className="flex-1 flex flex-col items-center justify-center mb-[60px]">
+          <ProgressRing progress={progress} color={color} size={260}>
+            <div className="text-center">
+              <span
+                className={`font-mono text-5xl font-bold tabular-nums ${secondsInMinute <= 10 ? "text-red-500" : ""}`}
+              >
+                {formatTime(secondsInMinute)}
+              </span>
+              {currentSet.label && <p className="text-sm  mt-1">{currentSet.label}</p>}
+            </div>
+          </ProgressRing>
+        </div>
+
+        {/* 現在のセット */}
+        <div className="px-6 pb-6">
           {isRest ? (
             <p className="text-center text-2xl font-gothic" style={{ color: "#2ECC71" }}>
               REST
             </p>
           ) : (
-            <div className="space-y-2">
+            <div className="flex flex-col flex-wrap gap-2">
               {currentSet.movements.map((mov, i) => (
-                <div key={i} className="flex justify-between items-center">
-                  <span className="font-bold">{mov.name}</span>
-                  <span className="font-mono" style={{ color }}>
-                    {mov.reps}
-                  </span>
-                </div>
+                <span
+                  key={i}
+                  className="mx-auto px-4 py-4 leading-none rounded-[12px] font-black text-base border-[3px] border-[#553EEC] inline-block w-[204px]"
+                >
+                  {mov.name} {mov.reps}
+                </span>
               ))}
             </div>
           )}
         </div>
-      </div>
 
-      {/* 次のセット（プレビュー） */}
-      {nextSet && (
-        <div className="px-6 pb-4">
-          <p className="text-xs  mb-1">NEXT</p>
-          <div className="rounded-lg border border-border p-3 opacity-50">
-            {nextSet.movements.length === 0 ? (
-              <p className="text-sm ">REST</p>
-            ) : (
-              <div className="space-y-1">
-                {nextSet.movements.map((mov, i) => (
-                  <div key={i} className="flex justify-between text-sm">
-                    <span>{mov.name}</span>
-                    <span className="">{mov.reps}</span>
-                  </div>
-                ))}
-              </div>
-            )}
+        {/* 次のセット（プレビュー） */}
+        {nextSet && (
+          <div className="px-6 pb-6">
+            <p className="text-[12px] mb-2 font-black">NEXT</p>
+            <div className="flex flex-col flex-wrap gap-2">
+              {nextSet.movements.length === 0 ? (
+                <p className="text-sm">REST</p>
+              ) : (
+                nextSet.movements.map((mov, i) => (
+                  <span
+                    key={i}
+                    className="mx-auto px-4 py-4 leading-none rounded-[12px] font-black text-[12px] border-[1px] border-[#553EEC] inline-block  w-[204px]"
+                  >
+                    {mov.name} {mov.reps}
+                  </span>
+                ))
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* コントロール */}
-      <div className="px-6 pb-8">
-        <TimerControls isPaused={isPaused} onToggle={toggle} onQuit={onQuit} formatColor={color} />
+        {/* コントロール */}
+        <div className="px-6 pb-8">
+          <TimerControls isPaused={isPaused} onToggle={toggle} onQuit={onQuit} formatColor={color} />
+        </div>
       </div>
     </div>
   );

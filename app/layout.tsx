@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Space_Mono, Geist, Dela_Gothic_One } from "next/font/google";
+import { Noto_Sans_JP, Dela_Gothic_One, Orbitron } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import AutoAnonymousLogin from "@/components/AutoAnonymousLogin";
 import BackgroundDecoration from "@/components/BackgroundDecoration";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
-
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
@@ -21,10 +19,10 @@ const delaGothicOne = Dela_Gothic_One({
   display: "swap",
 });
 
-const spaceMono = Space_Mono({
-  variable: "--font-space-mono",
+const orbitron = Orbitron({
+  variable: "--font-orbitron",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
@@ -51,7 +49,7 @@ export default function RootLayout({
         "h-full",
         "antialiased",
         notoSansJP.variable,
-        spaceMono.variable,
+        orbitron.variable,
         delaGothicOne.variable,
         "font-sans",
       )}

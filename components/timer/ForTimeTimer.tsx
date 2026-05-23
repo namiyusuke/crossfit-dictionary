@@ -41,17 +41,18 @@ export default function ForTimeTimer({ wod, onComplete, onQuit }: ForTimeTimerPr
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-background">
+    <div className="fixed inset-0 z-50 flex flex-col md:max-w-[375px] md:mx-auto z-20 bg-black min-h-screen">
+      <div className="flex-1 overflow-auto">
       {/* ヘッダー */}
-      <div className="px-6 pt-6 pb-4">
-        <div className="flex items-center gap-3">
+      <div className="px-6 pt-6 pb-2 mb-6">
+        <div className="flex items-center gap-3 pb-2 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#E85D3A]">
           <span className="text-xs px-2 py-0.5 rounded-full font-bold text-white" style={{ backgroundColor: color }}>
             ForTime
           </span>
-          <h2 className="font-gothic text-lg">{wod.name}</h2>
+          <h2 className="font-gothic text-[20px]">{wod.name}</h2>
         </div>
         {totalRounds > 1 && (
-          <p className=" text-sm mt-1">
+          <p className="text-sm mt-2">
             ラウンド {currentRound} / {totalRounds}
           </p>
         )}
@@ -64,20 +65,19 @@ export default function ForTimeTimer({ wod, onComplete, onQuit }: ForTimeTimerPr
       </div>
 
       {/* ムーブメントリスト */}
-      <div className="px-6 pb-4">
-        <div className="rounded-xl bg-card-bg border border-border p-4 space-y-2 max-h-48 overflow-y-auto">
+      <div className="px-6 pb-6">
+        <div className="flex flex-col flex-wrap gap-2">
           {wod.sets.map((set, i) => (
-            <div key={i}>
-              {set.label && <p className="text-xs font-bold  mb-1">{set.label}</p>}
+            <div key={i} className="flex flex-col flex-wrap gap-2">
+              {set.label && <p className="text-xs font-bold mb-1">{set.label}</p>}
               {set.movements.map((mov, j) => (
-                <div key={j} className="flex justify-between text-sm py-1">
-                  <span>{mov.name}</span>
-                  <span className="">{mov.reps}</span>
-                </div>
+                <span key={j} className="px-4 py-3 font-black rounded-[12px] text-[12px] bg-[#414141] inline-block w-max">
+                  {mov.name} {mov.reps}
+                </span>
               ))}
             </div>
           ))}
-          {wod.repScheme && <p className="text-xs ">Rep Scheme: {wod.repScheme}</p>}
+          {wod.repScheme && <p className="text-xs mt-2">Rep Scheme: {wod.repScheme}</p>}
         </div>
       </div>
 
@@ -119,6 +119,7 @@ export default function ForTimeTimer({ wod, onComplete, onQuit }: ForTimeTimerPr
       {/* コントロール */}
       <div className="px-6 pb-8">
         <TimerControls isPaused={isPaused} onToggle={toggle} onQuit={onQuit} formatColor={color} />
+      </div>
       </div>
     </div>
   );

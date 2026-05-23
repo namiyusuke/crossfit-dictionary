@@ -20,9 +20,7 @@ export function getEmomSetForMinute(sets: WodSet[], minute: number): WodSet {
   const hasOddEvenLabels = sets.some((s) => s.label === "奇数分");
 
   if (hasOddEvenLabels) {
-    return minute % 2 === 1
-      ? sets.find((s) => s.label === "奇数分")!
-      : sets.find((s) => s.label === "偶数分")!;
+    return minute % 2 === 1 ? sets.find((s) => s.label === "奇数分")! : sets.find((s) => s.label === "偶数分")!;
   }
 
   // "1分目", "2分目", ... パターンまたはラベルなし
@@ -33,6 +31,6 @@ export function getEmomSetForMinute(sets: WodSet[], minute: number): WodSet {
 /** フォーマットに対応する色 */
 export const FORMAT_COLORS: Record<WodFormat, string> = {
   AMRAP: "#2ECC71",
-  EMOM: "#3A8FE8",
+  EMOM: "#553EEC",
   ForTime: "#E85D3A",
 };

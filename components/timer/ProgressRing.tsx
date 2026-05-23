@@ -10,13 +10,7 @@ interface ProgressRingProps {
   children?: ReactNode;
 }
 
-export default function ProgressRing({
-  progress,
-  size = 240,
-  strokeWidth = 8,
-  color,
-  children,
-}: ProgressRingProps) {
+export default function ProgressRing({ progress, size = 240, strokeWidth = 8, color, children }: ProgressRingProps) {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference * (1 - Math.max(0, Math.min(1, progress)));
@@ -30,7 +24,7 @@ export default function ProgressRing({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="currentColor"
+          stroke="#F1FE7D"
           strokeWidth={strokeWidth}
           className="text-border"
         />
@@ -48,9 +42,7 @@ export default function ProgressRing({
           style={{ transition: "stroke-dashoffset 0.3s ease" }}
         />
       </svg>
-      <div className="absolute inset-0 flex items-center justify-center">
-        {children}
-      </div>
+      <div className="absolute inset-0 flex items-center justify-center">{children}</div>
     </div>
   );
 }
