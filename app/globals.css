@@ -156,6 +156,19 @@ body {
 @utility animate-flip-x {
   animation: flipX 1s steps(1) infinite;
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee 20s linear infinite;
+}
 /*
 .dark {
   --background: oklch(0.145 0 0);

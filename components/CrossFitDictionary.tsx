@@ -94,29 +94,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
 
   return (
     <div className="">
-      <div
-        className="min-h-screen z-10 fixed inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/bg.png')" }}
-      ></div>
-
-      <div className="fixed inset-0 w-full h-full pointer-events-none visible translate-z-0">
-        <div className="grid grid-cols-[1fr_375px_1fr] h-screen overflow-hidden sticky top-0 w-full">
-          <div className="">
-            <div className="flex items-center flex-col justify-center m-auto h-full">
-              <p className="bg-green rounded-[8px] text-black py-2 px-3 font-black mb-3.5 leading-none">
-                本気のやつらのための
-              </p>
-              <p className="text-center">
-                <span className="block font-gothic text-5xl mb-4">CrossFit</span>
-                <span className="font-gothic text-2xl">種目辞典</span>
-              </p>
-            </div>
-          </div>
-          <div className=""></div>
-          <div className=""></div>
-        </div>
-      </div>
-      <div className="max-w-[375px] mx-auto relative z-20 bg-black">
+      <div className="">
         <div className="mx-auto w-[100%] px-6 py-6">
           <div className="relative">
             {/* ヘッダー */}

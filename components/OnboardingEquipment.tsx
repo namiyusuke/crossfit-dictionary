@@ -41,7 +41,7 @@ export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentP
   const totalSteps = 4;
 
   return (
-    <div className="max-w-[375px] mx-auto relative z-20 bg-black">
+    <div className="">
       <div className="min-h-screen flex items-start justify-center  px-8 py-10">
         <div className="w-full max-w-md relative overflow-hidden">
           <AnimatePresence mode="wait" custom={direction}>

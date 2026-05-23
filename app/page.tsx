@@ -6,7 +6,9 @@ import CrossFitDictionary from "@/components/CrossFitDictionary";
 export default function Page() {
   return (
     <Suspense>
-      <CrossFitDictionary movements={movements} wods={wods} />
+      <div className="relative z-10 bg-black">
+        <CrossFitDictionary movements={movements} wods={wods} />
+      </div>
     </Suspense>
   );
 }
