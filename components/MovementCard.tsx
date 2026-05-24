@@ -9,6 +9,7 @@ interface MovementCardProps {
 export default function MovementCard({ movement }: MovementCardProps) {
   const categoryColor = CATEGORY_COLORS[movement.category];
   const categoryShadow = CATEGORY_SHADOW[movement.category];
+
   return (
     <Link
       href={`/movement/${movement.id}`}

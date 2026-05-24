@@ -49,7 +49,10 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
   const [userEquipment, setUserEquipment] = useLocalStorage<Equipment[] | null>("crossfit-user-equipment", null);
 
   const filteredMovements = useMemo(() => {
-    return movements.filter((m) => {
+    // category順にソート
+    const categoryOrder = ["weightlifting", "gymnastics", "cardio", "bodyweight"];
+    const sorted = movements.toSorted((a, b) => categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category));
+    return sorted.filter((m) => {
       // 設備フィルター: 「なし」（自重）は常に表示、それ以外はユーザーの設備と一致する場合のみ
       if (userEquipment && userEquipment.length > 0) {
         const needsEquipment = m.equipment.filter((e) => e !== "なし");
