@@ -32,5 +32,5 @@ export function getEmomSetForMinute(sets: WodSet[], minute: number): WodSet {
 export const FORMAT_COLORS: Record<WodFormat, string> = {
   AMRAP: "#2ECC71",
   EMOM: "#553EEC",
-  ForTime: "#E85D3A",
+  ForTime: "#DB6C66",
 };

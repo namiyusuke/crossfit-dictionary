@@ -58,7 +58,7 @@ export default function TimerControls({ isPaused, onToggle, onQuit, formatColor 
       {/* 中止確認ダイアログ */}
       {showConfirm && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70">
-          <div className="bg-card-bg border border-border rounded-2xl p-6 mx-8 max-w-sm w-full">
+          <div className="bg-black rounded-2xl p-6 mx-8 max-w-sm w-full">
             <p className="text-lg font-bold mb-2">本当にやめますか？</p>
             <p className="text-sm  mb-6">このワークアウトの記録は保存されません。</p>
             <div className="flex gap-3">

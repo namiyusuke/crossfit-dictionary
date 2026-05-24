@@ -12,6 +12,8 @@ import MovementCard from "./MovementCard";
 import WodCardScatter from "./WodCardScatter";
 import OnboardingEquipment from "./OnboardingEquipment";
 import Image from "next/image";
+import SpriteAnimation from "@/app/movement/[id]/SpriteAnimation";
+import GlobalMenu, { MenuKey } from "./GlobalMenu";
 const sections = ["種目辞典", "WOD"] as const;
 type ActiveSection = (typeof sections)[number];
 
@@ -84,18 +86,28 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
   if (userEquipment === null || showEquipmentSettings) {
     return (
       <OnboardingEquipment
+        key={showEquipmentSettings ? "settings" : "onboarding"}
         onComplete={(selected) => {
           handleOnboardingComplete(selected);
           setShowEquipmentSettings(false);
         }}
+        {...(showEquipmentSettings ? { initialStep: 2, initialSelected: userEquipment ?? [] } : {})}
       />
     );
   }
 
+  const handleMenuChange = (key: MenuKey) => {
+    if (key === "施設変更") {
+      setShowEquipmentSettings(true);
+    } else {
+      handleSectionChange(key);
+    }
+  };
+
   return (
     <div className="">
       <div className="">
-        <div className="mx-auto w-[100%] px-6 py-6">
+        <div className="mx-auto w-[100%] px-6 py-6 pb-24">
           <div className="relative">
             {/* ヘッダー */}
             <div className="mb-10 flex items-start justify-between">
@@ -158,12 +170,9 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
                 </div>
                 {/* 種目カード一覧 */}
                 <div className="space-y-15 relative">
-                  <Image
-                    className="absolute bottom-[99.5%] right-0"
-                    src="/crossFitDictionary-char01.png"
-                    alt="バーベルを持ち上げるキャラクター"
-                    width={151}
-                    height={320}
+                  <SpriteAnimation
+                    category={"start"}
+                    className="w-[min(calc(151_/_1440_*_100vw),151px)] absolute bottom-[99.5%] right-0"
                   />
                   {filteredMovements.length > 0 ? (
                     filteredMovements.map((movement) => (
@@ -190,6 +199,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
           </div>
         </div>
       </div>
+      <GlobalMenu active={activeSection as MenuKey} onChange={handleMenuChange} />
     </div>
   );
 }

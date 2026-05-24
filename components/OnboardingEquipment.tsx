@@ -21,13 +21,15 @@ const slideVariants = {
 };
 interface OnboardingEquipmentProps {
   onComplete: (selectedEquipment: Equipment[]) => void;
+  initialStep?: number;
+  initialSelected?: Equipment[];
 }
 
-export default function OnboardingEquipment({ onComplete }: OnboardingEquipmentProps) {
-  const [step, setStep] = useState(0);
+export default function OnboardingEquipment({ onComplete, initialStep = 0, initialSelected = [] }: OnboardingEquipmentProps) {
+  const [step, setStep] = useState(initialStep);
   const [direction, setDirection] = useState(1);
   const [check, setCheck] = useState(false);
-  const [selected, setSelected] = useState<Equipment[]>([]);
+  const [selected, setSelected] = useState<Equipment[]>(initialSelected);
 
   const goToStep = (next: number) => {
     setDirection(next > step ? 1 : -1);

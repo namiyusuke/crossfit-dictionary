@@ -15,8 +15,8 @@ export default function ScrollComment({ text }: Props) {
       transition={{ type: "spring", stiffness: 140, damping: 10 }}
       className="absolute top-14 left-0 right-0"
     >
-      <p className="text-[28px] top-0 absolute font-gothic z-10 text-green text-center left-0 right-0">{text}</p>
-      <p className="text-[28px] top-2 font-gothic absolute text-black text-center left-0 right-0 ">{text}</p>
+      <p className="text-[36px] top-0 absolute font-gothic z-10 text-green text-center left-0 right-0">{text}</p>
+      <p className="text-[36px] top-2 font-gothic absolute text-black text-center left-0 right-0 ">{text}</p>
     </motion.div>
   );
 }
