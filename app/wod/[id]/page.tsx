@@ -6,6 +6,7 @@ import Link from "next/link";
 import WodTimerLauncher from "@/components/timer/WodTimerLauncher";
 import Image from "next/image";
 import ScrollComment from "@/components/ScrollComment";
+import GlobalMenuNav from "@/components/GlobalMenuNav";
 type Props = {
   params: Promise<{ id: string }>;
   searchParams: Promise<{ mood?: string }>;
@@ -193,6 +194,7 @@ export default async function WodPage({ params, searchParams }: Props) {
           </Link>
         </div>
       </div>
+      <GlobalMenuNav active="WOD" />
     </div>
   );
 }

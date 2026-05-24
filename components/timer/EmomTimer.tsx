@@ -113,7 +113,7 @@ export default function EmomTimer({ wod, onComplete, onQuit }: EmomTimerProps) {
   const progress = secondsInMinute / 60;
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col md:max-w-[375px] md:mx-auto z-20 bg-black min-h-screen">
+    <div className="fixed inset-0 z-100 flex flex-col md:max-w-[375px] md:mx-auto z-20 bg-black min-h-screen">
       <div className="flex-1 overflow-auto">
         {/* ヘッダー */}
         <div className="px-6 pt-6 pb-2 mb-6">

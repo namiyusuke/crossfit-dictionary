@@ -43,7 +43,7 @@ export default function ForTimeTimer({ wod, onComplete, onQuit }: ForTimeTimerPr
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col md:max-w-[375px] md:mx-auto z-20 bg-black min-h-screen">
+    <div className="fixed inset-0 z-100 flex flex-col md:max-w-[375px] md:mx-auto z-20 bg-black min-h-screen">
       <div className="flex-1 overflow-auto">
         {/* ヘッダー */}
         <div className="px-6 pt-10 pb-2 mb-[100px]">

@@ -82,8 +82,7 @@ export default function WodCardScatter({ wods }: WodCardScatterProps) {
           <div className="mb-12">
             <p className="font-gothic text-base mb-4">おすすめWOD</p>
             <div className="leading-none inline-block font-black text-black border rounded-[10px] bg-white py-2 px-4">
-              {" "}
-              {MOODS.map((mood) => mood.id == selectedMood && <>{mood.label}</>)}
+              {MOODS.map((mood) => mood.id == selectedMood && <div key={mood.id}>{mood.label}</div>)}
             </div>
           </div>
           {filteredWods.length === 0 ? (

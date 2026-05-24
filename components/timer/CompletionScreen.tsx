@@ -3,9 +3,8 @@ import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import type { WodFormat } from "@/types/wod";
-import { formatTime } from "@/lib/timer-utils";
 import Link from "next/link";
-
+import SpriteAnimation from "@/app/movement/[id]/SpriteAnimation";
 export interface TimerResult {
   format: WodFormat;
   wodName: string;
@@ -80,7 +79,12 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
         <p className="font-gothic text-[20px] text-white">おつかれさまでした</p>
       </motion.div>
       <div className="mt-[83px]">
-        <Image className="mx-auto" width={278} height={369} src="/protein01.png" alt="走るキャラクター" />
+        <SpriteAnimation
+          category={"end"}
+          className="w-[min(calc(278_/_375_*_100vw),278px)]"
+          interval={1000}
+          delay={0}
+        />
       </div>
       <div className="text-right w-full text-green mt-[33px] mb-10">
         <p>

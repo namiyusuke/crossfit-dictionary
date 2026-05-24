@@ -122,9 +122,8 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
             <div className="mb-5">
               <div className="flex gap-1">
                 {sections.map((section) => (
-                  <div className="relative w-full">
+                  <div key={section} className="relative w-full">
                     <button
-                      key={section}
                       onClick={() => handleSectionChange(section)}
                       className={`w-full font-black flex-1 py-2.5 rounded-lg text-sm transition-all cursor-pointer  ${
                         activeSection === section
@@ -146,7 +145,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
             <div className="text-right mb-10">
               <button
                 onClick={() => setShowEquipmentSettings(true)}
-                className="text-xs rounded-[16px] bg-white font-black text-black px-4 py-2 hover:text-text-primary hover:border-text-secondary transition-colors cursor-pointer"
+                className="text-xs rounded-[16px] bg-white font-black text-black px-4 py-2 hover:text-text-primary transition-colors cursor-pointer"
               >
                 設備変更
               </button>
@@ -172,7 +171,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
                 <div className="space-y-15 relative">
                   <SpriteAnimation
                     category={"start"}
-                    className="w-[min(calc(151_/_1440_*_100vw),151px)] absolute bottom-[99.5%] right-0"
+                    className="w-[min(calc(151_/_375_*_100vw),151px)] absolute bottom-[99.5%] right-0"
                   />
                   {filteredMovements.length > 0 ? (
                     filteredMovements.map((movement) => (

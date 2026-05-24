@@ -13,6 +13,7 @@ const framesByCategory: Record<string, string[]> = {
   bg03: ["/bg-char03-01.png", "/bg-char03-02.png"],
   bg04: ["/bg-char04-01.png", "/bg-char04-02.png"],
   start: ["/crossFitDictionary-char01.png", "/crossFitDictionary-char01-move.png"],
+  end: ["/protein01.png", "/protein02.png"],
 };
 
 export default function SpriteAnimation({
@@ -27,37 +28,9 @@ export default function SpriteAnimation({
   delay?: number;
 }) {
   const [frame, setFrame] = useState(0);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
   const frames = useMemo(() => framesByCategory[category] ?? framesByCategory.red, [category]);
 
-  // 全フレーム画像をプリロード
   useEffect(() => {
-    setImagesLoaded(false);
-    let cancelled = false;
-
-    const promises = frames.map(
-      (src) =>
-        new Promise<void>((resolve) => {
-          const img = new window.Image();
-          img.onload = () => resolve();
-          img.onerror = () => resolve();
-          img.src = src;
-        }),
-    );
-
-    Promise.all(promises).then(() => {
-      if (!cancelled) setImagesLoaded(true);
-    });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [frames]);
-
-  // プリロード完了後にアニメーション開始
-  useEffect(() => {
-    if (!imagesLoaded) return;
-
     setFrame(0);
     let intervalId: ReturnType<typeof setInterval>;
     const timeoutId = setTimeout(() => {
@@ -70,17 +43,22 @@ export default function SpriteAnimation({
       clearTimeout(timeoutId);
       clearInterval(intervalId);
     };
-  }, [frames, interval, delay, imagesLoaded]);
+  }, [frames, interval, delay]);
 
   return (
     <div className={className ?? "flex justify-center items-end h-48"}>
-      {imagesLoaded && (
-        <img
-          src={frames[frame]}
-          alt="movement character animation"
-          className="w-full h-full object-contain object-bottom"
-        />
-      )}
+      <div className="relative w-full h-full">
+        {frames.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt="movement character animation"
+            className={`object-contain object-bottom w-full h-full ${
+              i === 0 ? "" : "absolute inset-0"
+            } ${i === frame ? "" : "invisible"}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }

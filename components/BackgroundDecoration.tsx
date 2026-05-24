@@ -8,16 +8,19 @@ export default function BackgroundDecoration() {
         style={{ backgroundImage: "url('/bg.png')" }}
       ></div>
       <div className="fixed z-20 top-[80px] w-full overflow-hidden font-gothic text-[100px] leading-none">
-        <div className="bg-[#414141] py-10">
+        <div
+          className="bg-[#414141] py-10 bg-contain bg-center bg-repeat"
+          style={{ backgroundImage: "url('/noise-bg.webp')" }}
+        >
           <div className="flex gap-6 w-max animate-marquee">
             {[...Array(2)].map((_, i) => (
               <div key={i} className="flex gap-6 items-center shrink-0">
                 <span className="text-[#181818]">CrossFit</span>
-                <span className="text-transparent" style={{ WebkitTextStroke: "1px #F1FE7D" }}>
+                <span className="text-transparent tracking-wider" style={{ WebkitTextStroke: "1px #F1FE7D" }}>
                   CrossFit
                 </span>
                 <span className="text-[#181818]">CrossFit</span>
-                <span className="text-transparent" style={{ WebkitTextStroke: "1px #F1FE7D" }}>
+                <span className="text-transparent tracking-wider" style={{ WebkitTextStroke: "1px #F1FE7D" }}>
                   CrossFit
                 </span>
               </div>

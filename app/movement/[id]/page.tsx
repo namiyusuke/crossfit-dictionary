@@ -7,6 +7,7 @@ import { getPracticeLog } from "./action";
 import PracticeButton from "../PracticeButton";
 import SpriteAnimation from "./SpriteAnimation";
 import DifficultyDots from "@/components/DifficultyDots";
+import GlobalMenuNav from "@/components/GlobalMenuNav";
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -204,6 +205,7 @@ export default async function MovementPage({ params }: Props) {
         <p className="text-sm ">{movement.scaling}</p>
       </section> */}
       <SpriteAnimation category={movement.category} />
+      <GlobalMenuNav active="種目辞典" />
     </main>
   );
 }
