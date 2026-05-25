@@ -5,9 +5,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <nav className="border-b border-[#333] px-6 py-4">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <Link href="/admin" className="text-xl font-bold">
-            CrossFit辞典 管理パネル
-          </Link>
           <div className="flex gap-6 text-sm">
             <Link href="/admin" className="hover:text-[#F1FE7D] transition-colors">
               ダッシュボード

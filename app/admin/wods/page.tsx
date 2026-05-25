@@ -24,8 +24,8 @@ export default async function WodsAdminPage() {
         </Link>
       </div>
 
-      <div className="border border-[#333] rounded-xl overflow-hidden">
-        <table className="w-full">
+      <div className="border border-[#333] rounded-xl overflow-auto">
+        <table className="w-max">
           <thead className="bg-[#1a1a1a]">
             <tr className="text-left text-sm text-gray-400">
               <th className="px-4 py-3">ID</th>
@@ -53,10 +53,7 @@ export default async function WodsAdminPage() {
                 <td className="px-4 py-3 text-sm">{w.duration}</td>
                 <td className="px-4 py-3 text-right">
                   <div className="flex gap-2 justify-end">
-                    <Link
-                      href={`/admin/wods/${w.id}/edit`}
-                      className="text-sm text-[#F1FE7D] hover:underline"
-                    >
+                    <Link href={`/admin/wods/${w.id}/edit`} className="text-sm text-[#F1FE7D] hover:underline">
                       編集
                     </Link>
                     <DeleteWodButton id={w.id} name={w.name} />
