@@ -1,0 +1,40 @@
+CREATE TABLE `movements` (
+	`id` text PRIMARY KEY NOT NULL,
+	`name` text NOT NULL,
+	`name_en` text NOT NULL,
+	`category` text NOT NULL,
+	`equipment` text NOT NULL,
+	`one_liner` text NOT NULL,
+	`purpose` text NOT NULL,
+	`primary_effect` text NOT NULL,
+	`body_part` text NOT NULL,
+	`steps` text NOT NULL,
+	`tips` text NOT NULL,
+	`muscle_main` text NOT NULL,
+	`muscle_sub` text NOT NULL,
+	`difficulty` integer NOT NULL,
+	`scaling` text NOT NULL,
+	`video_id` text NOT NULL,
+	`roadmap` text,
+	`created_at` integer DEFAULT (cast(unixepoch('subsecond') * 1000 as integer)) NOT NULL,
+	`updated_at` integer DEFAULT (cast(unixepoch('subsecond') * 1000 as integer)) NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE `wods` (
+	`id` text PRIMARY KEY NOT NULL,
+	`name` text NOT NULL,
+	`format` text NOT NULL,
+	`level` text NOT NULL,
+	`goal` text NOT NULL,
+	`target_body_part` text NOT NULL,
+	`target_effect` text NOT NULL,
+	`duration` text NOT NULL,
+	`sets` text NOT NULL,
+	`rounds` integer,
+	`rep_scheme` text,
+	`estimate` text NOT NULL,
+	`tip` text NOT NULL,
+	`notes` text,
+	`created_at` integer DEFAULT (cast(unixepoch('subsecond') * 1000 as integer)) NOT NULL,
+	`updated_at` integer DEFAULT (cast(unixepoch('subsecond') * 1000 as integer)) NOT NULL
+);

@@ -1,4 +1,4 @@
-import { wods } from "@/data/wods";
+import { getAllWods, getWodById } from "@/lib/data/wods";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { MOODS } from "@/data/wods";
@@ -12,13 +12,14 @@ type Props = {
   searchParams: Promise<{ mood?: string }>;
 };
 export async function generateStaticParams() {
+  const wods = await getAllWods();
   return wods.map((wod) => ({
     id: wod.id,
   }));
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const wod = wods.find((m) => m.id === id);
+  const wod = await getWodById(id);
   return {
     title: wod?.name,
   };
@@ -27,7 +28,7 @@ export default async function WodPage({ params, searchParams }: Props) {
   const { id } = await params;
   const { mood } = await searchParams;
 
-  const wod = wods.find((m) => m.id === id);
+  const wod = await getWodById(id);
 
   if (!wod) {
     notFound();

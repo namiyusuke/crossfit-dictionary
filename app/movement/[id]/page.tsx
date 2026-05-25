@@ -1,4 +1,4 @@
-import { movements } from "@/data/movements";
+import { getAllMovements, getMovementById } from "@/lib/data/movements";
 import { CATEGORY_LABELS, CATEGORY_COLORS, CATEGORY_SHADOW } from "@/types/movement";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -13,20 +13,21 @@ type Props = {
 };
 
 export async function generateStaticParams() {
+  const movements = await getAllMovements();
   return movements.map((movement) => ({
     id: movement.id,
   }));
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const movement = movements.find((m) => m.id === id);
+  const movement = await getMovementById(id);
   return {
     title: movement?.name,
   };
 }
 export default async function MovementPage({ params }: Props) {
   const { id } = await params;
-  const movement = movements.find((m) => m.id === id);
+  const movement = await getMovementById(id);
   if (!movement) {
     notFound();
   }

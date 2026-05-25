@@ -5,8 +5,8 @@ import type { WodFormat } from "@/types/wod";
 import Link from "next/link";
 import Image from "next/image";
 import { useQueryState } from "nuqs";
-import { movements } from "@/data/movements";
 import { CATEGORY_COLORS } from "@/types/movement";
+import type { Movement } from "@/types/movement";
 
 const FORMAT_COLORS: Record<WodFormat, string> = {
   AMRAP: "#2ECC71",
@@ -16,9 +16,10 @@ const FORMAT_COLORS: Record<WodFormat, string> = {
 
 interface WodCardScatterProps {
   wods: Wod[];
+  movements: Movement[];
 }
 
-export default function WodCardScatter({ wods }: WodCardScatterProps) {
+export default function WodCardScatter({ wods, movements }: WodCardScatterProps) {
   const [selectedMood, setSelectedMood] = useQueryState("mood", {
     history: "push",
     scroll: false,

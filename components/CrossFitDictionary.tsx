@@ -197,7 +197,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
                 </div>
               </>
             )}
-            {activeSection === "WOD" && <WodCardScatter wods={wods} />}
+            {activeSection === "WOD" && <WodCardScatter wods={wods} movements={movements} />}
           </div>
         </div>
       </div>
