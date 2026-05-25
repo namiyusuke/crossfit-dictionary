@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getAllWods } from "@/lib/data/wods";
 import type { WodFormat } from "@/types/wod";
 import { DeleteWodButton } from "./DeleteButton";
+import { requireAdmin } from "@/lib/admin-auth";
 
 const FORMAT_COLORS: Record<WodFormat, string> = {
   AMRAP: "#2ECC71",
@@ -10,6 +11,7 @@ const FORMAT_COLORS: Record<WodFormat, string> = {
 };
 
 export default async function WodsAdminPage() {
+  await requireAdmin();
   const wods = await getAllWods();
 
   return (

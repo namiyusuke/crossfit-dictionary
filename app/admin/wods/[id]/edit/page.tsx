@@ -3,8 +3,10 @@ import { getWodById } from "@/lib/data/wods";
 import { getAllMovements } from "@/lib/data/movements";
 import WodForm from "@/components/admin/WodForm";
 import { updateWodAction } from "../../actions";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export default async function EditWodPage({ params }: { params: Promise<{ id: string }> }) {
+  await requireAdmin();
   const { id } = await params;
   const [wod, movements] = await Promise.all([getWodById(id), getAllMovements()]);
   if (!wod) notFound();

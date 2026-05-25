@@ -1,8 +1,10 @@
 import { getAllMovements } from "@/lib/data/movements";
 import WodForm from "@/components/admin/WodForm";
 import { createWodAction } from "../actions";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export default async function NewWodPage() {
+  await requireAdmin();
   const movements = await getAllMovements();
 
   return (

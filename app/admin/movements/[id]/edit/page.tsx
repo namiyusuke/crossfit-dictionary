@@ -2,8 +2,10 @@ import { notFound } from "next/navigation";
 import { getMovementById } from "@/lib/data/movements";
 import MovementForm from "@/components/admin/MovementForm";
 import { updateMovementAction } from "../../actions";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export default async function EditMovementPage({ params }: { params: Promise<{ id: string }> }) {
+  await requireAdmin();
   const { id } = await params;
   const movement = await getMovementById(id);
   if (!movement) notFound();

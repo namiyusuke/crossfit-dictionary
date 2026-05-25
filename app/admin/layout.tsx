@@ -1,6 +1,17 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { LogoutButton } from "@/components/admin/LogoutButton";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+
+  // ログインページの場合はナビゲーションなしで表示
+  if (pathname === "/admin/login") {
+    return <>{children}</>;
+  }
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <nav className="border-b border-[#333] px-6 py-4">
@@ -19,6 +30,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               サイトへ戻る
             </Link>
           </div>
+          <LogoutButton />
         </div>
       </nav>
       <main className="max-w-5xl mx-auto px-6 py-8">{children}</main>

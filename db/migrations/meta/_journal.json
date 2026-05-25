@@ -22,6 +22,13 @@
       "when": 1779717358716,
       "tag": "0002_chemical_rumiko_fujikawa",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1779724629506,
+      "tag": "0003_old_pet_avengers",
+      "breakpoints": true
     }
   ]
 }

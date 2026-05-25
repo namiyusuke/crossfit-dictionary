@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { getAllMovements } from "@/lib/data/movements";
 import { getAllWods } from "@/lib/data/wods";
+import { requireAdmin } from "@/lib/admin-auth";
 
 export default async function AdminPage() {
+  await requireAdmin();
   const [movements, wods] = await Promise.all([getAllMovements(), getAllWods()]);
 
   return (
