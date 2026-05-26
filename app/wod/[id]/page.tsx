@@ -7,9 +7,9 @@ import WodTimerLauncher from "@/components/timer/WodTimerLauncher";
 import Image from "next/image";
 import ScrollComment from "@/components/ScrollComment";
 import GlobalMenuNav from "@/components/GlobalMenuNav";
+import MoodBackLink from "./MoodBackLink";
 type Props = {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ mood?: string }>;
 };
 export async function generateStaticParams() {
   const wods = await getAllWods();
@@ -24,9 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: wod?.name,
   };
 }
-export default async function WodPage({ params, searchParams }: Props) {
+export default async function WodPage({ params }: Props) {
   const { id } = await params;
-  const { mood } = await searchParams;
 
   const wod = await getWodById(id);
 
@@ -42,9 +41,9 @@ export default async function WodPage({ params, searchParams }: Props) {
   const matchingMoods = MOODS.filter((m) => m.filter(wod));
   return (
     <div className="mx-auto px-4 py-6">
-      <Link href={`/?section=WOD${mood ? `&mood=${mood}` : ""}`} className="mb-10 text-white text-[12px] block">
+      <MoodBackLink className="mb-10 text-white text-[12px] block">
         ＜　wod / 今日のメニューを選ぼう
-      </Link>
+      </MoodBackLink>
       {/* ヘッダー */}
       <div className="mb-6 flex items-start justify-between">
         <div>
@@ -184,9 +183,9 @@ export default async function WodPage({ params, searchParams }: Props) {
       <div className="text-right mt-9">
         <div className="">
           {/* 一覧に戻る */}
-          <Link href={`/?section=WOD${mood ? `&mood=${mood}` : ""}`} className="text-green font-black text-[14px]">
+          <MoodBackLink className="text-green font-black text-[14px]">
             WODトップに戻る
-          </Link>
+          </MoodBackLink>
         </div>
         <div className="mt-8">
           {/* 一覧に戻る */}

@@ -3,8 +3,6 @@ import { CATEGORY_LABELS, CATEGORY_COLORS, CATEGORY_SHADOW } from "@/types/movem
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getPracticeLog } from "./action";
-import PracticeButton from "../PracticeButton";
 import SpriteAnimation from "./SpriteAnimation";
 import DifficultyDots from "@/components/DifficultyDots";
 import GlobalMenuNav from "@/components/GlobalMenuNav";
@@ -31,8 +29,6 @@ export default async function MovementPage({ params }: Props) {
   if (!movement) {
     notFound();
   }
-  const practiceLog = await getPracticeLog();
-  const isPracticed = practiceLog.includes(id);
   const categoryColor = CATEGORY_COLORS[movement.category];
   const categoryShadow = CATEGORY_SHADOW[movement.category];
   return (
@@ -41,7 +37,6 @@ export default async function MovementPage({ params }: Props) {
       <Link href="/" className="inline-flex items-center gap-1 text-sm  hover:text-text-primary mb-14">
         ＜　種目辞典
       </Link>
-      {/* <PracticeButton movementId={id} initialIsPracticed={isPracticed} /> */}
       {/* ヘッダー */}
       <div className="mb-12">
         <div
