@@ -41,9 +41,7 @@ export default async function WodPage({ params }: Props) {
   const matchingMoods = MOODS.filter((m) => m.filter(wod));
   return (
     <div className="mx-auto px-4 py-6">
-      <MoodBackLink className="mb-10 text-white text-[12px] block">
-        ＜　wod / 今日のメニューを選ぼう
-      </MoodBackLink>
+      <MoodBackLink className="mb-10 text-white text-[12px] block">＜　wod / 今日のメニューを選ぼう</MoodBackLink>
       {/* ヘッダー */}
       <div className="mb-6 flex items-start justify-between">
         <div>
@@ -139,7 +137,7 @@ export default async function WodPage({ params }: Props) {
               {set.movements.map((mov, j) => (
                 <li key={j} className="flex gap-6 rounded-lg p-4 bg-gray">
                   <div
-                    className={`font-gothic text-5xl ${j === 0 ? "text-[#DB6C66]" : j === 1 ? "text-[#553EEC]" : "text-accent-green"}`}
+                    className={`font-gothic text-5xl ${j === 0 ? "text-[#DB6C66]" : j === 1 ? "text-[#553EEC]" : "text-[#6BAF7A]"}`}
                   >{`0${j + 1}`}</div>
                   <div className="">
                     <p className="font-gothic text-green text-2xl">{mov.name}</p>
@@ -183,9 +181,7 @@ export default async function WodPage({ params }: Props) {
       <div className="text-right mt-9">
         <div className="">
           {/* 一覧に戻る */}
-          <MoodBackLink className="text-green font-black text-[14px]">
-            WODトップに戻る
-          </MoodBackLink>
+          <MoodBackLink className="text-green font-black text-[14px]">WODトップに戻る</MoodBackLink>
         </div>
         <div className="mt-8">
           {/* 一覧に戻る */}

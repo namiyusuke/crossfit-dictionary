@@ -72,7 +72,7 @@ export default function TimerControls({ isPaused, onToggle, onQuit, formatColor 
               <button
                 type="button"
                 onClick={onQuit}
-                className="flex-1 py-3 rounded-xl bg-red-600 text-white font-medium active:scale-95 transition-transform"
+                className="flex-1 py-3 rounded-xl bg-[#DB6C66] text-white font-gothic font-normal"
               >
                 やめる
               </button>
