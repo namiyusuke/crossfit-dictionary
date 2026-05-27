@@ -123,13 +123,11 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
                               {set.movements.map((mov, j) => {
                                 const movement = movements.find((m) => m.id === mov.movementId);
                                 const movColor = movement ? CATEGORY_COLORS[movement.category] : undefined;
-                                const bodyweightColor =
-                                  movement && CATEGORY_COLORS[movement.category] === "#EDE0C8" ? "#0A0A0A" : "#fff";
                                 return (
                                   <div key={j} className="flex justify-between text-[14px] ">
                                     <span
                                       className="py-2 px-3 rounded-xl font-black"
-                                      style={movColor ? { background: movColor, color: bodyweightColor } : undefined}
+                                      style={movColor ? { background: movColor, color: "#fff" } : undefined}
                                     >
                                       {mov.name}
                                     </span>

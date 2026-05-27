@@ -21,17 +21,18 @@ import type {
   PrimaryEffect,
   BodyPart,
   Equipment,
+  MovementPattern,
   Prerequisite,
   Drill,
 } from "@/types/movement";
-import { ALL_EQUIPMENT, ALL_EFFECTS, ALL_BODY_PARTS, CATEGORY_LABELS } from "@/types/movement";
+import { ALL_EQUIPMENT, ALL_EFFECTS, ALL_BODY_PARTS, ALL_MOVEMENT_PATTERNS, categoryLabels, movementPatternLabels } from "@/types/movement";
 
 interface MovementFormProps {
   initialData?: Movement;
   action: (data: string) => Promise<{ error?: string }>;
 }
 
-const ALL_CATEGORIES: Category[] = ["weightlifting", "gymnastics", "cardio", "bodyweight"];
+const ALL_CATEGORIES: Category[] = ["W", "G", "M"];
 
 export default function MovementForm({ initialData, action }: MovementFormProps) {
   const router = useRouter();
@@ -41,7 +42,7 @@ export default function MovementForm({ initialData, action }: MovementFormProps)
   const [id, setId] = useState(initialData?.id ?? "");
   const [name, setName] = useState(initialData?.name ?? "");
   const [nameEn, setNameEn] = useState(initialData?.nameEn ?? "");
-  const [category, setCategory] = useState<Category>(initialData?.category ?? "weightlifting");
+  const [category, setCategory] = useState<Category>(initialData?.category ?? "W");
   const [difficulty, setDifficulty] = useState(initialData?.difficulty ?? 1);
   const [videoId, setVideoId] = useState(initialData?.videoId ?? "");
   const [scaling, setScaling] = useState(initialData?.scaling ?? "");
@@ -51,6 +52,7 @@ export default function MovementForm({ initialData, action }: MovementFormProps)
   const [equipment, setEquipment] = useState<Equipment[]>(initialData?.equipment ?? []);
   const [primaryEffect, setPrimaryEffect] = useState<PrimaryEffect[]>(initialData?.primaryEffect ?? []);
   const [bodyPart, setBodyPart] = useState<BodyPart[]>(initialData?.bodyPart ?? []);
+  const [movementPattern, setMovementPattern] = useState<MovementPattern[]>(initialData?.movementPattern ?? []);
 
   const [steps, setSteps] = useState<string[]>(initialData?.steps ?? [""]);
   const [tips, setTips] = useState<string[]>(initialData?.tips ?? [""]);
@@ -84,6 +86,7 @@ export default function MovementForm({ initialData, action }: MovementFormProps)
       purpose,
       primaryEffect,
       bodyPart,
+      movementPattern,
       steps: steps.filter(Boolean),
       tips: tips.filter(Boolean),
       muscleMain: muscleMain.filter(Boolean),
@@ -135,7 +138,7 @@ export default function MovementForm({ initialData, action }: MovementFormProps)
               <SelectContent>
                 {ALL_CATEGORIES.map((c) => (
                   <SelectItem key={c} value={c}>
-                    {CATEGORY_LABELS[c]}
+                    {categoryLabels[c].ja}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -275,6 +278,22 @@ export default function MovementForm({ initialData, action }: MovementFormProps)
                   className="accent-[#F1FE7D]"
                 />
                 {bp}
+              </label>
+            ))}
+          </div>
+        </div>
+        <div>
+          <Label>動作パターン</Label>
+          <div className="flex flex-wrap gap-2 mt-1">
+            {ALL_MOVEMENT_PATTERNS.map((mp) => (
+              <label key={mp} className="flex items-center gap-1 text-sm cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={movementPattern.includes(mp)}
+                  onChange={() => toggleCheckbox(movementPattern, mp, setMovementPattern)}
+                  className="accent-[#F1FE7D]"
+                />
+                {movementPatternLabels[mp].ja}
               </label>
             ))}
           </div>

@@ -96,7 +96,7 @@ export default function OnboardingEquipment({ onComplete, initialStep = 0, initi
                           </span>
                           <p className="font-medium text-text-primary">種目辞典</p>
                         </div>
-                        <p className="">20種目のやり方・ポイントを確認</p>
+                        <p className="">38種目のやり方・ポイントを確認</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 px-10 py-6 rounded-lg border-[5px] bg-gray">

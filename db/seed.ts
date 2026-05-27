@@ -27,6 +27,7 @@ async function seed() {
         purpose: m.purpose,
         primaryEffect: m.primaryEffect,
         bodyPart: m.bodyPart,
+        movementPattern: m.movementPattern,
         steps: m.steps,
         tips: m.tips,
         muscleMain: m.muscleMain,

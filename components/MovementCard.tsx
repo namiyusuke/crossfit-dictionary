@@ -1,4 +1,4 @@
-import { Movement, CATEGORY_LABELS, CATEGORY_COLORS, CATEGORY_SHADOW } from "@/types/movement";
+import { Movement, categoryLabels, CATEGORY_COLORS, CATEGORY_SHADOW } from "@/types/movement";
 import DifficultyDots from "./DifficultyDots";
 import Link from "next/link";
 import Image from "next/image";
@@ -27,7 +27,7 @@ export default function MovementCard({ movement }: MovementCardProps) {
           color: "#0A0A0A",
         }}
       >
-        {CATEGORY_LABELS[movement.category]}
+        {categoryLabels[movement.category].ja}
       </span>
       <div className="px-10 py-8 relative">
         <div className="flex items-start justify-between gap-2">

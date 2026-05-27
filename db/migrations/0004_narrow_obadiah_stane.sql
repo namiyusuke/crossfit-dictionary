@@ -1,0 +1,1 @@
+ALTER TABLE `movements` ADD `movement_pattern` text NOT NULL;

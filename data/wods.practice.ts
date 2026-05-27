@@ -40,7 +40,7 @@ export const wods: Wod[] = [
     format: "EMOM",
     level: "初心者",
     goal: "上半身の筋持久力アップ",
-    targetBodyPart: ["上半身"],
+    targetBodyPart: ["胸", "背中", "腕"],
     targetEffect: ["筋力", "筋持久力"],
     duration: "10分（5ラウンド）",
     sets: [

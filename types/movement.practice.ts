@@ -3,18 +3,18 @@
 // ============================================
 
 // --- Step A-1: カテゴリの型を作る ---
-// ウェイトリフティング、ジムナスティクス、カーディオ、自重トレーニング の4つ
+// M(カーディオ)、G(ジムナスティクス)、W(ウェイトリフティング) の3つ
 // ヒント: type Category = "xxx" | "yyy" | ...
 // ここに書いてみよう👇
 
-export type Category = "weightlifting" | "gymnastics" | "cardio" | "bodyweight";
+export type Category = "M" | "G" | "W";
 
 // --- Step A-2: 効果と部位の型を作る ---
 // 効果: 筋力、筋持久力、心肺、爆発力、可動域、体幹
-// 部位: 上半身、下半身、コア、全身
+// 部位: 脚、臀部、背中、肩、腕、胸、コア、全身、ふくらはぎ
 // ここに書いてみよう👇
 export type PrimaryEffect = "筋力" | "筋持久力" | "心肺" | "爆発力" | "可動域" | "体幹";
-export type BodyPart = "上半身" | "下半身" | "コア" | "全身";
+export type BodyPart = "脚" | "臀部" | "背中" | "肩" | "腕" | "胸" | "コア" | "全身" | "ふくらはぎ";
 
 // --- Step A-3: ロードマップ関連の型を作る ---
 // Prerequisite（前提スキル）: name, description, target を持つ
@@ -73,11 +73,10 @@ export interface Movement {
 // ここに書いてみよう👇
 
 export const CATEGORY_LABELS: Record<Category, string> = {
-  weightlifting: "ウェイトリフティング",
-  gymnastics: "ジムナスティクス",
-  cardio: "カーディオ",
-  bodyweight: "自重トレーニング",
+  M: "カーディオ",
+  G: "ジムナスティクス",
+  W: "ウェイトリフティング",
 };
 export const ALL_EFFECTS: PrimaryEffect[] = ["筋力", "筋持久力", "心肺", "爆発力", "可動域", "体幹"];
 
-export const ALL_BODY_PARTS: BodyPart[] = ["上半身", "下半身", "コア", "全身"];
+export const ALL_BODY_PARTS: BodyPart[] = ["脚", "臀部", "背中", "肩", "腕", "胸", "コア", "全身", "ふくらはぎ"];

@@ -4,9 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Category,
-  CATEGORY_LABELS,
+  categoryLabels,
   CATEGORY_COLORS,
-  CATEGORY_SHADOW,
   PrimaryEffect,
   BodyPart,
   ALL_EFFECTS,
@@ -25,7 +24,7 @@ interface CategoryFilterProps {
   onEffectsChange: (effects: PrimaryEffect[]) => void;
 }
 
-const CATEGORIES: Category[] = ["weightlifting", "gymnastics", "cardio", "bodyweight"];
+const CATEGORIES: Category[] = ["W", "G", "M"];
 
 export default function CategoryFilter({
   selectedCategory,
@@ -95,10 +94,10 @@ export default function CategoryFilter({
                       style={{
                         backgroundColor: isActive ? color : "transparent",
                         borderColor: isActive ? "transparent" : "white",
-                        color: isActive ? (cat === "gymnastics" || cat === "cardio" ? "#fff" : "#0A0A0A") : "#fff",
+                        color: isActive ? (cat === "G" || cat === "M" ? "#fff" : "#0A0A0A") : "#fff",
                       }}
                     >
-                      {CATEGORY_LABELS[cat]}
+                      {categoryLabels[cat].ja}
                     </button>
                   );
                 })}

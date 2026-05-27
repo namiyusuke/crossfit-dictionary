@@ -1,19 +1,34 @@
-export type Category = "weightlifting" | "gymnastics" | "cardio" | "bodyweight";
+export type Category = "M" | "G" | "W";
+
+export type MovementPattern =
+  | "squat"
+  | "hinge"
+  | "push-vertical"
+  | "push-horizontal"
+  | "pull-vertical"
+  | "pull-horizontal"
+  | "core"
+  | "locomotion"
+  | "olympic";
 
 export type PrimaryEffect = "筋力" | "筋持久力" | "心肺" | "爆発力" | "可動域" | "体幹";
 
-export type BodyPart = "上半身" | "下半身" | "コア" | "全身";
+export type BodyPart = "脚" | "臀部" | "背中" | "肩" | "腕" | "胸" | "コア" | "全身" | "ふくらはぎ";
 
 export type Equipment =
   | "バーベル"
   | "ケトルベル"
   | "鉄棒"
   | "ローイングマシン"
-  | "トレッドミル"
   | "縄跳び"
-  | "バイク"
   | "ボックス"
   | "ウォールボール"
+  | "平行棒"
+  | "つり輪"
+  | "クライミングロープ"
+  | "ダンベル"
+  | "パラレットまたは床"
+  | "スラムボール"
   | "なし";
 
 export const ALL_EQUIPMENT: Equipment[] = [
@@ -21,11 +36,15 @@ export const ALL_EQUIPMENT: Equipment[] = [
   "ケトルベル",
   "鉄棒",
   "ローイングマシン",
-  "トレッドミル",
   "縄跳び",
-  "バイク",
   "ボックス",
   "ウォールボール",
+  "平行棒",
+  "つり輪",
+  "クライミングロープ",
+  "ダンベル",
+  "パラレットまたは床",
+  "スラムボール",
 ];
 
 export interface Prerequisite {
@@ -58,6 +77,7 @@ export interface Movement {
   purpose: string;
   primaryEffect: PrimaryEffect[];
   bodyPart: BodyPart[];
+  movementPattern: MovementPattern[];
   steps: string[];
   tips: string[];
   muscleMain: string[];
@@ -68,26 +88,48 @@ export interface Movement {
   roadmap: Roadmap | null;
 }
 
-export const CATEGORY_LABELS: Record<Category, string> = {
-  weightlifting: "ウェイトリフティング",
-  gymnastics: "ジムナスティクス",
-  cardio: "カーディオ",
-  bodyweight: "自重トレーニング",
+export const categoryLabels: Record<Category, { ja: string; en: string }> = {
+  M: { ja: "カーディオ", en: "Monostructural" },
+  G: { ja: "ジムナスティクス", en: "Gymnastics" },
+  W: { ja: "ウェイトリフティング", en: "Weightlifting" },
+};
+
+export const movementPatternLabels: Record<MovementPattern, { ja: string; en: string }> = {
+  squat: { ja: "スクワット", en: "Squat" },
+  hinge: { ja: "ヒンジ", en: "Hinge" },
+  "push-vertical": { ja: "押す・垂直", en: "Vertical Push" },
+  "push-horizontal": { ja: "押す・水平", en: "Horizontal Push" },
+  "pull-vertical": { ja: "引く・垂直", en: "Vertical Pull" },
+  "pull-horizontal": { ja: "引く・水平", en: "Horizontal Pull" },
+  core: { ja: "コア", en: "Core" },
+  locomotion: { ja: "移動・運搬", en: "Locomotion" },
+  olympic: { ja: "オリンピックリフト", en: "Olympic Lift" },
 };
 
 export const CATEGORY_COLORS: Record<Category, string> = {
-  weightlifting: "#DB6C66",
-  gymnastics: "#553EEC",
-  cardio: "#6BAF7A",
-  bodyweight: "#EDE0C8",
+  W: "#DB6C66",
+  G: "#553EEC",
+  M: "#6BAF7A",
 };
+
 export const CATEGORY_SHADOW: Record<Category, string> = {
-  weightlifting: "#5D4230",
-  gymnastics: "#5D4230",
-  cardio: "#5D4230",
-  bodyweight: "#5D4230",
+  W: "#5D4230",
+  G: "#5D4230",
+  M: "#5D4230",
 };
 
 export const ALL_EFFECTS: PrimaryEffect[] = ["筋力", "筋持久力", "心肺", "爆発力", "可動域", "体幹"];
 
-export const ALL_BODY_PARTS: BodyPart[] = ["上半身", "下半身", "コア", "全身"];
+export const ALL_BODY_PARTS: BodyPart[] = ["脚", "臀部", "背中", "肩", "腕", "胸", "コア", "全身", "ふくらはぎ"];
+
+export const ALL_MOVEMENT_PATTERNS: MovementPattern[] = [
+  "squat",
+  "hinge",
+  "push-vertical",
+  "push-horizontal",
+  "pull-vertical",
+  "pull-horizontal",
+  "core",
+  "locomotion",
+  "olympic",
+];

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getAllMovements } from "@/lib/data/movements";
-import { CATEGORY_LABELS, CATEGORY_COLORS } from "@/types/movement";
+import { categoryLabels, CATEGORY_COLORS } from "@/types/movement";
 import type { Category } from "@/types/movement";
 import { DeleteMovementButton } from "./DeleteButton";
 import { requireAdmin } from "@/lib/admin-auth";
@@ -45,10 +45,10 @@ export default async function MovementsAdminPage() {
                     className="text-xs px-2 py-1 rounded-full"
                     style={{
                       backgroundColor: CATEGORY_COLORS[m.category as Category],
-                      color: m.category === "bodyweight" ? "#0a0a0a" : "#fff",
+                      color: "#fff",
                     }}
                   >
-                    {CATEGORY_LABELS[m.category as Category]}
+                    {categoryLabels[m.category as Category].ja}
                   </span>
                 </td>
                 <td className="px-4 py-3">{m.difficulty}</td>

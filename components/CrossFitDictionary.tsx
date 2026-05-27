@@ -50,7 +50,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
 
   const filteredMovements = useMemo(() => {
     // category順にソート
-    const categoryOrder = ["weightlifting", "gymnastics", "cardio", "bodyweight"];
+    const categoryOrder = ["W", "G", "M"];
     const sorted = movements.toSorted((a, b) => categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category));
     return sorted.filter((m) => {
       // 設備フィルター: 「なし」（自重）は常に表示、それ以外はユーザーの設備と一致する場合のみ

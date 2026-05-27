@@ -18,6 +18,7 @@ export const movements = sqliteTable("movements", {
   muscleSub: text("muscle_sub", { mode: "json" }).notNull().$type<string[]>(),
   difficulty: integer("difficulty").notNull(),
   scaling: text("scaling").notNull(),
+  movementPattern: text("movement_pattern", { mode: "json" }).notNull().$type<string[]>(),
   videoId: text("video_id").notNull(),
   roadmap: text("roadmap", { mode: "json" }).$type<Roadmap | null>(),
   createdAt: integer("created_at", { mode: "timestamp_ms" })

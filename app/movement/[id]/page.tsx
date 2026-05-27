@@ -1,5 +1,5 @@
 import { getAllMovements, getMovementById } from "@/lib/data/movements";
-import { CATEGORY_LABELS, CATEGORY_COLORS, CATEGORY_SHADOW } from "@/types/movement";
+import { categoryLabels, CATEGORY_COLORS, CATEGORY_SHADOW } from "@/types/movement";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -54,7 +54,7 @@ export default async function MovementPage({ params }: Props) {
               color: "#0A0A0A",
             }}
           >
-            {CATEGORY_LABELS[movement.category]}
+            {categoryLabels[movement.category].ja}
           </span>
           <div className="px-10 py-8 relative">
             <div className="flex items-start justify-between gap-2">

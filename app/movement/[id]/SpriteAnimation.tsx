@@ -3,10 +3,9 @@
 import { useState, useEffect, useMemo } from "react";
 
 const framesByCategory: Record<string, string[]> = {
-  weightlifting: ["/red01.png", "/red02.png"],
-  cardio: ["/green01.png", "/green02.png"],
-  gymnastics: ["/blue01.png", "/blue02.png"],
-  bodyweight: ["/cream01.png", "/cream02.png"],
+  W: ["/red01.png", "/red02.png"],
+  M: ["/green01.png", "/green02.png"],
+  G: ["/blue01.png", "/blue02.png"],
   wod: ["/cream01.png", "/cream02.png"],
   bg01: ["/bg-char01-01.png", "/bg-char01-02.png"],
   bg02: ["/bg-char02-01.png", "/bg-char02-02.png"],
@@ -28,7 +27,7 @@ export default function SpriteAnimation({
   delay?: number;
 }) {
   const [frame, setFrame] = useState(0);
-  const frames = useMemo(() => framesByCategory[category] ?? framesByCategory.red, [category]);
+  const frames = useMemo(() => framesByCategory[category] ?? framesByCategory.W, [category]);
 
   useEffect(() => {
     setFrame(0);
