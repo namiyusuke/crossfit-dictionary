@@ -22,7 +22,7 @@ export default function GlobalMenu({ active, onChange }: GlobalMenuProps) {
   return (
     <div className="">
       <p
-        className="text-black fixed bottom-4 left-0 right-3 z-50 text-right md:max-w-[375px] md:mx-auto"
+        className="cursor-pointer text-black fixed bottom-4 left-0 right-3 z-50 text-right md:max-w-[375px] md:mx-auto"
         onClick={() => setIsOpen((pre) => !pre)}
       >
         <span className="bg-white inline-block font-gothic py-3 pl-6 pr-10 rounded-3xl text-[14px] relative leading-none">

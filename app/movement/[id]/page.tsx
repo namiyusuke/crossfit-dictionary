@@ -2,8 +2,8 @@ import { getAllMovements, getMovementById } from "@/lib/data/movements";
 import { categoryLabels, CATEGORY_COLORS, CATEGORY_SHADOW } from "@/types/movement";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
 import SpriteAnimation from "./SpriteAnimation";
+import BackButton from "@/components/BackButton";
 import DifficultyDots from "@/components/DifficultyDots";
 import GlobalMenuNav from "@/components/GlobalMenuNav";
 type Props = {
@@ -33,10 +33,8 @@ export default async function MovementPage({ params }: Props) {
   const categoryShadow = CATEGORY_SHADOW[movement.category];
   return (
     <main className="min-h-screen px-4 py-8 max-w-2xl mx-auto">
-      {/* 戻るリンク */}
-      <Link href="/" className="inline-flex items-center gap-1 text-sm  hover:text-text-primary mb-14">
-        ＜　種目辞典
-      </Link>
+      {/* 戻るボタン */}
+      <BackButton label="もどる" />
       {/* ヘッダー */}
       <div className="mb-12">
         <div
