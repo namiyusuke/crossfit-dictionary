@@ -8,7 +8,7 @@ export const wods: Wod[] = [
     format: "AMRAP",
     level: "初心者",
     goal: "全身の基礎体力づくり",
-    targetBodyPart: ["全身"],
+    targetBodyPart: ["脚", "臀部", "胸", "腕", "コア"],
     targetEffect: ["筋持久力", "心肺"],
     duration: "10分",
     sets: [
@@ -99,7 +99,7 @@ export const wods: Wod[] = [
     format: "EMOM",
     level: "初心者",
     goal: "バーベル基本動作の習得",
-    targetBodyPart: ["全身"],
+    targetBodyPart: ["脚", "臀部", "背中", "肩", "腕"],
     targetEffect: ["筋力"],
     duration: "12分（4分×3サイクル）",
     sets: [
@@ -200,7 +200,7 @@ export const wods: Wod[] = [
     format: "ForTime",
     level: "中級者",
     goal: "下半身総合強化",
-    targetBodyPart: ["脚", "臀部", "全身"],
+    targetBodyPart: ["脚", "臀部", "背中", "全身"],
     targetEffect: ["筋持久力", "心肺"],
     duration: "〜25分",
     rounds: 3,

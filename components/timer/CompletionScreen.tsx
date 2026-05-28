@@ -47,7 +47,7 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
   }, []);
 
   return (
-    <div className="fixed inset-0 pt-[123px] z-50 flex flex-col items-center bg-[#553EEC] px-6 overflow-y-auto  z-50 flex flex-col md:max-w-[375px] md:mx-auto z-20 min-h-screen">
+    <div className="fixed inset-0 pt-[100px] z-50 flex flex-col items-center bg-[#553EEC] px-6 overflow-y-auto  z-50 flex flex-col md:max-w-[375px] md:mx-auto z-20 min-h-screen">
       {stars.map((star) => (
         <motion.div
           key={star.id}
@@ -70,18 +70,18 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
         transition={{ duration: 0.4, ease: "easeOut" }}
         className="text-center"
       >
-        <div className="relative">
-          <p className="font-gothic relative z-10 text-[40px] mb-6 text-green">COMPLETE</p>
-          <p className="font-gothic absolute z-0 text-[40px] top-[5px] right-[-5px] mb-6 text-[#414141] whitespace-nowrap">
+        <div className="relative leading-normal">
+          <p className="font-gothic relative z-10 text-[40px] mb-1 text-green">COMPLETE</p>
+          <p className="font-gothic absolute z-0 text-[40px] top-[5px] mb-1 right-[-5px]  text-[#414141] whitespace-nowrap">
             COMPLETE
           </p>
         </div>
-        <p className="font-gothic text-[20px] text-white">おつかれさまでした</p>
+        <p className="font-gothic text-[20px] text-white leading-normal">おつかれさまでした</p>
       </motion.div>
-      <div className="mt-[83px]">
+      <div className="mt-[40px]">
         <SpriteAnimation
           category={"end"}
-          className="w-[min(calc(278_/_375_*_100vw),278px)]"
+          className="w-[min(calc(210_/_375_*_100vw),210px)]"
           interval={1000}
           delay={0}
         />
@@ -119,7 +119,7 @@ function CompletionScreenB({ result, formatColor, onClose }: CompletionScreenPro
   }, []);
 
   return (
-    <div className="fixed inset-0 pt-[123px] z-50 flex flex-col items-center bg-[#553EEC] px-6 overflow-y-auto  z-50 flex flex-col md:max-w-[375px] overflow-clip md:mx-auto z-20 min-h-screen">
+    <div className="fixed inset-0 pt-[100px] z-50 flex flex-col items-center bg-[#553EEC] px-6 overflow-y-auto  z-50 flex flex-col md:max-w-[375px] overflow-clip md:mx-auto z-20 min-h-screen">
       {stars.map((star) => (
         <motion.div
           key={star.id}
@@ -147,8 +147,13 @@ function CompletionScreenB({ result, formatColor, onClose }: CompletionScreenPro
           達成感
         </p>
       </motion.div>
-      <div className="mt-[83px]">
-        <Image className="mx-auto" width={278} height={369} src="/protein01.png" alt="走るキャラクター" />
+      <div className="mt-[0px]">
+        <SpriteAnimation
+          category={"end"}
+          className="w-[min(calc(220_/_375_*_100vw),220px)]"
+          interval={1000}
+          delay={0}
+        />
       </div>
       <div className="text-right w-full text-green mt-[33px] mb-10">
         <p>

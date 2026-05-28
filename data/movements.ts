@@ -405,7 +405,7 @@ export const movements: Movement[] = [
     muscleSub: ["広背筋", "前腕"],
     difficulty: 4,
     scaling: "ニーレイズ → ニーズ・トゥ・エルボー → トゥーズ・トゥ・バー",
-    videoId: "GeFmFSVSdPE",
+    videoId: "_03pCKOv4l4",
     roadmap: {
       goal: "キッピング・トゥーズ・トゥ・バーを連続で行う",
       prerequisites: [
@@ -447,7 +447,7 @@ export const movements: Movement[] = [
     muscleSub: ["僧帽筋", "体幹"],
     difficulty: 5,
     scaling: "壁倒立キープ → パイクプッシュアップ → ネガティブHSPU → フルHSPU",
-    videoId: "sLdMecX2mFI",
+    videoId: "SwTEKKU2RSU",
     roadmap: {
       goal: "壁倒立からのハンドスタンド・プッシュアップを連続で行う",
       prerequisites: [
@@ -489,7 +489,7 @@ export const movements: Movement[] = [
     muscleSub: ["上腕二頭筋", "体幹"],
     difficulty: 5,
     scaling: "プルアップ → チェストトゥバー → ジャンプマッスルアップ → マッスルアップ",
-    videoId: "astqh1LSaic",
+    videoId: "Al2P0nR2lB8",
     roadmap: {
       goal: "バーマッスルアップを1回以上成功させる",
       prerequisites: [
@@ -714,7 +714,7 @@ export const movements: Movement[] = [
     muscleSub: ["肩", "前腕"],
     difficulty: 3,
     scaling: "シングルアンダー → シングル＋ダブル交互 → 連続ダブルアンダー",
-    videoId: "82eEIByKRWE",
+    videoId: "gnjSkO1gR8U",
     roadmap: {
       goal: "連続ダブルアンダーを20回以上",
       prerequisites: [
