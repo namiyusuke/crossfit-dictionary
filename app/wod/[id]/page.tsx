@@ -132,17 +132,18 @@ export default async function WodPage({ params }: Props) {
         <p className="text-2xl font-bold mb-2 font-gothic">種目リスト</p>
         {wod.sets.map((set, i) => (
           <div key={i}>
-            {set.label && <p className="text-sm font-bold mb-1">{set.label}</p>}
             <ul className="space-y-4">
               {set.movements.map((mov, j) => (
                 <li key={j} className="flex gap-6 rounded-lg p-4 bg-gray">
-                  <div
-                    className={`font-gothic text-5xl ${j === 0 ? "text-[#DB6C66]" : j === 1 ? "text-[#553EEC]" : "text-[#6BAF7A]"}`}
-                  >{`0${j + 1}`}</div>
-                  <div className="">
-                    <p className="font-gothic text-green text-2xl">{mov.name}</p>
-                    <p className="font-gothic">{mov.reps}</p>
-                  </div>
+                  <Link href={`/movement/${mov.movementId}`}>
+                    <div
+                      className={`font-gothic text-5xl ${j === 0 ? "text-[#DB6C66]" : j === 1 ? "text-[#553EEC]" : "text-[#6BAF7A]"}`}
+                    >{`0${j + 1}`}</div>
+                    <div className="">
+                      <p className="font-gothic text-green text-2xl">{mov.name}</p>
+                      <p className="font-gothic">{mov.reps}</p>
+                    </div>
+                  </Link>
                 </li>
               ))}
             </ul>

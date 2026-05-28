@@ -4,10 +4,10 @@ export default function BackgroundDecoration() {
   return (
     <>
       <div
-        className="min-h-screen z-1 fixed inset-0 bg-cover bg-center bg-no-repeat"
+        className="hidden md:block min-h-screen z-1 fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/bg.png')" }}
       ></div>
-      <div className="fixed z-20 top-[80px] w-full overflow-hidden font-gothic text-[100px] leading-none">
+      <div className="hidden md:block fixed z-20 top-[80px] w-full overflow-hidden font-gothic text-[100px] leading-none">
         <div
           className="bg-[#414141] py-10 bg-contain bg-center bg-repeat"
           style={{ backgroundImage: "url('/noise-bg.webp')" }}
@@ -28,7 +28,7 @@ export default function BackgroundDecoration() {
           </div>
         </div>
       </div>
-      <div className="z-2 fixed inset-0 w-full h-full pointer-events-none visible translate-z-0">
+      <div className="hidden md:block z-2 fixed inset-0 w-full h-full pointer-events-none visible translate-z-0">
         <div className="grid grid-cols-[1fr_375px_1fr] h-screen overflow-hidden sticky top-0 w-full">
           <div className="relative">
             <div className="flex absolute inset-0 mb-[10%] items-center flex-col justify-center m-auto h-full">

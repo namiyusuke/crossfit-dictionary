@@ -81,12 +81,10 @@ export const wods: Wod[] = [
     duration: "10分",
     sets: [
       {
-        label: "奇数分",
-        movements: [{ movementId: "air-squat", name: "エアスクワット", reps: "15回", rx: "股関節が膝より下まで" }],
-      },
-      {
-        label: "偶数分",
-        movements: [{ movementId: "push-up", name: "プッシュアップ", reps: "10回", rx: "胸が床に触れる" }],
+        movements: [
+          { movementId: "air-squat", name: "エアスクワット", reps: "15回", rx: "股関節が膝より下まで" },
+          { movementId: "push-up", name: "プッシュアップ", reps: "10回", rx: "胸が床に触れる" },
+        ],
       },
     ],
     estimate: { beginner: "各セット40〜50秒", rx: "各セット25〜35秒" },
@@ -104,20 +102,11 @@ export const wods: Wod[] = [
     duration: "12分（4分×3サイクル）",
     sets: [
       {
-        label: "1分目",
-        movements: [{ movementId: "deadlift", name: "デッドリフト", reps: "5回", rx: "男性60kg / 女性40kg" }],
-      },
-      {
-        label: "2分目",
-        movements: [{ movementId: "shoulder-press", name: "ショルダープレス", reps: "5回", rx: "男性30kg / 女性20kg" }],
-      },
-      {
-        label: "3分目",
-        movements: [{ movementId: "front-squat", name: "フロントスクワット", reps: "5回", rx: "男性40kg / 女性30kg" }],
-      },
-      {
-        label: "4分目",
-        movements: [],
+        movements: [
+          { movementId: "deadlift", name: "デッドリフト", reps: "5回", rx: "男性60kg / 女性40kg" },
+          { movementId: "shoulder-press", name: "ショルダープレス", reps: "5回", rx: "男性30kg / 女性20kg" },
+          { movementId: "front-squat", name: "フロントスクワット", reps: "5回", rx: "男性40kg / 女性30kg" },
+        ],
       },
     ],
     rounds: 3,
@@ -136,12 +125,10 @@ export const wods: Wod[] = [
     duration: "10分",
     sets: [
       {
-        label: "奇数分",
-        movements: [{ movementId: "double-under", name: "ダブルアンダー", reps: "30回", rx: "連続（シングル不可）" }],
-      },
-      {
-        label: "偶数分",
-        movements: [{ movementId: "rowing", name: "ローイング", reps: "15cal", rx: "ダンパー設定5〜7" }],
+        movements: [
+          { movementId: "double-under", name: "ダブルアンダー", reps: "30回", rx: "連続（シングル不可）" },
+          { movementId: "rowing", name: "ローイング", reps: "15cal", rx: "ダンパー設定5〜7" },
+        ],
       },
     ],
     estimate: { beginner: "各セット45〜55秒", rx: "各セット30〜40秒" },
