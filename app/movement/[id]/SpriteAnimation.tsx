@@ -11,6 +11,7 @@ const framesByCategory: Record<string, string[]> = {
   bg02: ["/bg-char02-01.png", "/bg-char02-02.png"],
   bg03: ["/bg-char03-01.png", "/bg-char03-02.png"],
   bg04: ["/bg-char04-01.png", "/bg-char04-02.png"],
+  bg05: ["/bg-char05-01.png", "/bg-char05-02.png"],
   start: ["/crossFitDictionary-char01.png", "/crossFitDictionary-char01-move.png"],
   end: ["/protein01.png", "/protein02.png"],
 };

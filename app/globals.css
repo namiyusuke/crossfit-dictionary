@@ -155,7 +155,23 @@ body {
 }
 
 @utility animate-flip-x {
-  animation: flipX 1s steps(1) infinite;
+  animation: flipX 3s steps(1) infinite;
+}
+
+@utility animate-rotate {
+  animation: rotate 5s infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
 }
 
 @keyframes marquee {

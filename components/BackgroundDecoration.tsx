@@ -8,19 +8,23 @@ export default function BackgroundDecoration() {
         style={{ backgroundImage: "url('/bg.png')" }}
       ></div>
       <div className="hidden md:block fixed z-20 top-[80px] w-full overflow-hidden font-gothic text-[100px] leading-none">
-        <div
-          className="bg-[#414141] py-10 bg-contain bg-center bg-repeat"
-          style={{ backgroundImage: "url('/noise-bg.webp')" }}
-        >
+        <div className="bg-[#414141] py-10 bg-center bg-repeat ">
+          <div className="bg-contain absolute inset-0" style={{ backgroundImage: "url('/noise-bg.png')" }}></div>
           <div className="flex gap-6 w-max animate-marquee">
             {[...Array(2)].map((_, i) => (
-              <div key={i} className="flex gap-6 items-center shrink-0">
-                <span className="text-[#181818]">CrossFit</span>
-                <span className="text-transparent tracking-wider" style={{ WebkitTextStroke: "1px #F1FE7D" }}>
+              <div key={i} className="flex gap-6 items-center shrink-0 leading-none">
+                <span className="text-[#181818] leading-none">CrossFit</span>
+                <span
+                  className="leading-none text-transparent tracking-wider"
+                  style={{ WebkitTextStroke: "1px #F1FE7D" }}
+                >
                   CrossFit
                 </span>
-                <span className="text-[#181818]">CrossFit</span>
-                <span className="text-transparent tracking-wider" style={{ WebkitTextStroke: "1px #F1FE7D" }}>
+                <span className="text-[#181818] leading-none">CrossFit</span>
+                <span
+                  className="text-transparent tracking-wider leading-none"
+                  style={{ WebkitTextStroke: "1px #F1FE7D" }}
+                >
                   CrossFit
                 </span>
               </div>
@@ -28,17 +32,27 @@ export default function BackgroundDecoration() {
           </div>
         </div>
       </div>
-      <div className="hidden md:block z-2 fixed inset-0 w-full h-full pointer-events-none visible translate-z-0">
+      <div className="hidden z-40 md:block  fixed inset-0 w-full h-full pointer-events-none visible translate-z-0">
         <div className="grid grid-cols-[1fr_375px_1fr] h-screen overflow-hidden sticky top-0 w-full">
           <div className="relative">
             <div className="flex absolute inset-0 mb-[10%] items-center flex-col justify-center m-auto h-full">
-              <p className="bg-green rounded-[8px] text-black py-2 px-3 font-black mb-3.5 leading-none">
-                本気のやつらのための
-              </p>
-              <p className="text-center">
-                <span className="block font-gothic text-5xl mb-4">CrossFit</span>
-                <span className="font-gothic text-2xl">種目辞典</span>
-              </p>
+              <div className="relative">
+                <div className="absolute bottom-[99%] mx-auto left-0 right-0 ">
+                  <SpriteAnimation
+                    category={"bg02"}
+                    className="w-[min(calc(174_/_1440_*_100vw),174px)] mx-auto left-0 right-0 "
+                    interval={1200}
+                    delay={1400}
+                  />
+                </div>
+                <p className="bg-green rounded-[8px] text-center text-black py-2 px-3 font-black mb-3.5 leading-none">
+                  本気のやつらのための
+                </p>
+                <p className="text-center">
+                  <span className="block font-gothic text-5xl mb-4">CrossFit</span>
+                  <span className="font-gothic text-2xl">種目辞典</span>
+                </p>
+              </div>
             </div>
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="absolute translate-x-[-100px] translate-y-[216px] ">
@@ -49,12 +63,12 @@ export default function BackgroundDecoration() {
                   delay={0}
                 />
               </div>
-              <div className="absolute translate-x-[120px] translate-y-[216px] ">
+              <div className="absolute translate-x-[200px] translate-y-[216px] ">
                 <SpriteAnimation
-                  category={"bg02"}
-                  className="w-[min(calc(174_/_1440_*_100vw),174px)]"
+                  category={"bg05"}
+                  className="w-[min(calc(130_/_1440_*_100vw),130px)]"
                   interval={1200}
-                  delay={1400}
+                  delay={10}
                 />
               </div>
               <Image
@@ -78,12 +92,13 @@ export default function BackgroundDecoration() {
                 />
               </div>
               <div className="absolute translate-x-[120px] translate-y-[206px] ">
-                <SpriteAnimation
+                {/* <SpriteAnimation
                   category={"bg04"}
                   className="w-[min(calc(180_/_1440_*_100vw),180px)]"
                   interval={1400}
                   delay={600}
-                />
+                /> */}
+                <Image className="animate-rotate" alt="バー" src="/bg-char04-02.png" width={160} height={168} />
               </div>
               <Image
                 className="absolute translate-x-[180px] translate-y-[356px] "

@@ -117,7 +117,7 @@ export default async function WodPage({ params }: Props) {
         {/* RX（規定） */}
         <p className="text-2xl font-bold mb-2 font-gothic">RX（規定）</p>
         <div className="mt-4 rounded-lg py-4 px-6 space-y-1 bg-gray">
-          <p className="text-green mb-8">RX CONDITIONS</p>
+          <p className="text-green mb-8 text-[24px]">RX CONDITIONS</p>
           {wod.sets
             .flatMap((set) => set.movements)
             .filter((mov) => mov.rx)
@@ -132,7 +132,7 @@ export default async function WodPage({ params }: Props) {
         <p className="text-2xl font-bold mb-2 font-gothic">種目リスト</p>
         {wod.sets.map((set, i) => (
           <div key={i}>
-            <ul className="space-y-4">
+            <ul className="space-y-6">
               {set.movements.map((mov, j) => (
                 <li key={j} className="flex gap-6 rounded-lg p-4 bg-gray">
                   <Link href={`/movement/${mov.movementId}`}>
