@@ -221,9 +221,7 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
               >
                 ✕
               </button>
-              <p className="text-lg font-gothic mb-4" style={{ color: FORMAT_COLORS[formatModal] }}>
-                {FORMAT_DESCRIPTIONS[formatModal].title}
-              </p>
+              <p className="text-lg font-gothic mb-4 text-green">{FORMAT_DESCRIPTIONS[formatModal].title}</p>
               <p className="text-sm leading-6">{FORMAT_DESCRIPTIONS[formatModal].description}</p>
             </motion.div>
           </motion.div>
