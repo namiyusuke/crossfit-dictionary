@@ -11,8 +11,6 @@ export default function GlobalMenuNav({ active }: { active: MenuKey }) {
       router.push("/");
     } else if (key === "WOD") {
       router.push("/?section=WOD");
-    } else if (key === "施設変更") {
-      router.push("/?showEquipment=true");
     }
   };
 

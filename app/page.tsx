@@ -8,7 +8,7 @@ export default async function Page() {
 
   return (
     <Suspense>
-      <div className="relative z-10 bg-black">
+      <div className="relative z-10 bg-[#414141]">
         <CrossFitDictionary movements={movements} wods={wods} />
       </div>
     </Suspense>

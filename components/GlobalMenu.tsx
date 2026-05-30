@@ -1,13 +1,30 @@
 "use client";
-import Image from "next/image";
-import { BookOpen, Dumbbell, Settings } from "lucide-react";
-import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+
+function DictionaryIcon({ color }: { color: string }) {
+  return (
+    <svg width="33" height="24" viewBox="0 0 33 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M19.5 8.85V6.3C20.325 5.95 21.1688 5.6875 22.0313 5.5125C22.8938 5.3375 23.8 5.25 24.75 5.25C25.4 5.25 26.0375 5.3 26.6625 5.4C27.2875 5.5 27.9 5.625 28.5 5.775V8.175C27.9 7.95 27.2938 7.78125 26.6813 7.66875C26.0688 7.55625 25.425 7.5 24.75 7.5C23.8 7.5 22.8875 7.61875 22.0125 7.85625C21.1375 8.09375 20.3 8.425 19.5 8.85ZM19.5 17.1V14.55C20.325 14.2 21.1688 13.9375 22.0313 13.7625C22.8938 13.5875 23.8 13.5 24.75 13.5C25.4 13.5 26.0375 13.55 26.6625 13.65C27.2875 13.75 27.9 13.875 28.5 14.025V16.425C27.9 16.2 27.2938 16.0313 26.6813 15.9188C26.0688 15.8063 25.425 15.75 24.75 15.75C23.8 15.75 22.8875 15.8625 22.0125 16.0875C21.1375 16.3125 20.3 16.65 19.5 17.1ZM19.5 12.975V10.425C20.325 10.075 21.1688 9.8125 22.0313 9.6375C22.8938 9.4625 23.8 9.375 24.75 9.375C25.4 9.375 26.0375 9.425 26.6625 9.525C27.2875 9.625 27.9 9.75 28.5 9.9V12.3C27.9 12.075 27.2938 11.9063 26.6813 11.7938C26.0688 11.6813 25.425 11.625 24.75 11.625C23.8 11.625 22.8875 11.7438 22.0125 11.9813C21.1375 12.2188 20.3 12.55 19.5 12.975ZM8.25 18C9.425 18 10.5688 18.1313 11.6813 18.3938C12.7938 18.6563 13.9 19.05 15 19.575V4.8C13.975 4.2 12.8875 3.75 11.7375 3.45C10.5875 3.15 9.425 3 8.25 3C7.35 3 6.45625 3.0875 5.56875 3.2625C4.68125 3.4375 3.825 3.7 3 4.05V18.9C3.875 18.6 4.74375 18.375 5.60625 18.225C6.46875 18.075 7.35 18 8.25 18ZM18 19.575C19.1 19.05 20.2063 18.6563 21.3188 18.3938C22.4313 18.1313 23.575 18 24.75 18C25.65 18 26.5313 18.075 27.3938 18.225C28.2563 18.375 29.125 18.6 30 18.9V4.05C29.175 3.7 28.3188 3.4375 27.4313 3.2625C26.5438 3.0875 25.65 3 24.75 3C23.575 3 22.4125 3.15 21.2625 3.45C20.1125 3.75 19.025 4.2 18 4.8V19.575ZM16.5 24C15.3 23.05 14 22.3125 12.6 21.7875C11.2 21.2625 9.75 21 8.25 21C7.2 21 6.16875 21.1375 5.15625 21.4125C4.14375 21.6875 3.175 22.075 2.25 22.575C1.725 22.85 1.21875 22.8375 0.73125 22.5375C0.24375 22.2375 0 21.8 0 21.225V3.15C0 2.875 0.06875 2.6125 0.20625 2.3625C0.34375 2.1125 0.55 1.925 0.825 1.8C1.975 1.2 3.175 0.75 4.425 0.45C5.675 0.15 6.95 0 8.25 0C9.7 0 11.1188 0.1875 12.5063 0.5625C13.8938 0.9375 15.225 1.5 16.5 2.25C17.775 1.5 19.1063 0.9375 20.4938 0.5625C21.8813 0.1875 23.3 0 24.75 0C26.05 0 27.325 0.15 28.575 0.45C29.825 0.75 31.025 1.2 32.175 1.8C32.45 1.925 32.6563 2.1125 32.7938 2.3625C32.9313 2.6125 33 2.875 33 3.15V21.225C33 21.8 32.7563 22.2375 32.2688 22.5375C31.7813 22.8375 31.275 22.85 30.75 22.575C29.825 22.075 28.8563 21.6875 27.8438 21.4125C26.8313 21.1375 25.8 21 24.75 21C23.25 21 21.8 21.2625 20.4 21.7875C19 22.3125 17.7 23.05 16.5 24Z"
+        fill={color}
+      />
+    </svg>
+  );
+}
+
+function WodIcon({ color }: { color: string }) {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M7.61667 18.2833C7.87222 18.0278 8 17.7111 8 17.3333C8 16.9556 7.87222 16.6389 7.61667 16.3833C7.36111 16.1278 7.04444 16 6.66667 16C6.28889 16 5.97222 16.1278 5.71667 16.3833C5.46111 16.6389 5.33333 16.9556 5.33333 17.3333C5.33333 17.7111 5.46111 18.0278 5.71667 18.2833C5.97222 18.5389 6.28889 18.6667 6.66667 18.6667C7.04444 18.6667 7.36111 18.5389 7.61667 18.2833ZM7.61667 12.95C7.87222 12.6944 8 12.3778 8 12C8 11.6222 7.87222 11.3056 7.61667 11.05C7.36111 10.7944 7.04444 10.6667 6.66667 10.6667C6.28889 10.6667 5.97222 10.7944 5.71667 11.05C5.46111 11.3056 5.33333 11.6222 5.33333 12C5.33333 12.3778 5.46111 12.6944 5.71667 12.95C5.97222 13.2056 6.28889 13.3333 6.66667 13.3333C7.04444 13.3333 7.36111 13.2056 7.61667 12.95ZM7.61667 7.61667C7.87222 7.36111 8 7.04444 8 6.66667C8 6.28889 7.87222 5.97222 7.61667 5.71667C7.36111 5.46111 7.04444 5.33333 6.66667 5.33333C6.28889 5.33333 5.97222 5.46111 5.71667 5.71667C5.46111 5.97222 5.33333 6.28889 5.33333 6.66667C5.33333 7.04444 5.46111 7.36111 5.71667 7.61667C5.97222 7.87222 6.28889 8 6.66667 8C7.04444 8 7.36111 7.87222 7.61667 7.61667ZM10.6667 18.6667H18.6667V16H10.6667V18.6667ZM10.6667 13.3333H18.6667V10.6667H10.6667V13.3333ZM10.6667 8H18.6667V5.33333H10.6667V8ZM2.66667 24C1.93333 24 1.30556 23.7389 0.783333 23.2167C0.261111 22.6944 0 22.0667 0 21.3333V2.66667C0 1.93333 0.261111 1.30556 0.783333 0.783333C1.30556 0.261111 1.93333 0 2.66667 0H21.3333C22.0667 0 22.6944 0.261111 23.2167 0.783333C23.7389 1.30556 24 1.93333 24 2.66667V21.3333C24 22.0667 23.7389 22.6944 23.2167 23.2167C22.6944 23.7389 22.0667 24 21.3333 24H2.66667ZM2.66667 21.3333H21.3333V2.66667H2.66667V21.3333Z"
+        fill={color}
+      />
+    </svg>
+  );
+}
 
 const menuItems = [
-  { key: "種目辞典", sub: "", label: "種目辞典" },
-  { key: "WOD", sub: "今日のメニューを選ぼう", label: "WOD" },
-  { key: "施設変更", sub: "", label: "施設変更" },
+  { key: "種目辞典", label: "種目辞典", icon: DictionaryIcon },
+  { key: "WOD", label: "WOD", icon: WodIcon },
 ] as const;
 
 export type MenuKey = (typeof menuItems)[number]["key"];
@@ -18,60 +35,26 @@ interface GlobalMenuProps {
 }
 
 export default function GlobalMenu({ active, onChange }: GlobalMenuProps) {
-  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="">
-      <p
-        className="cursor-pointer text-black fixed bottom-4 left-0 right-3 z-50 text-right md:max-w-[375px] md:mx-auto"
-        onClick={() => setIsOpen((pre) => !pre)}
-      >
-        <span className="bg-white inline-block font-gothic py-3 pl-6 pr-10 rounded-3xl text-[14px] relative leading-none">
-          {isOpen ? <>Close</> : <>Menu</>}
-          <Image className="absolute right-0 bottom-0" width={40} height={52} src="/kettlebell.png" alt="ケトルべル" />
-        </span>
-      </p>
-      <nav>
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: 80 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 80 }}
-              transition={{
-                type: "spring",
-                stiffness: 400,
-                damping: 20,
-                opacity: { type: "tween", duration: 0.2 },
-              }}
-              className=" fixed bottom-20 left-0 right-0 z-50  mx-auto  max-w-[375px]"
+    <nav className="fixed bottom-0 left-0 right-0 z-50 md:max-w-[375px] md:mx-auto">
+      <div className="flex">
+        {menuItems.map(({ key, label, icon: Icon }) => {
+          const isActive = active === key;
+          const color = isActive ? "#F1FE7D" : "white";
+          return (
+            <button
+              key={key}
+              onClick={() => onChange(key)}
+              className={`bg-black flex-1 flex flex-col items-center justify-center py-[22px] cursor-pointer ${
+                isActive ? "text-[#F1FE7D]" : "text-white"
+              }`}
             >
-              <div className="rounded-[20px] bg-white max-w-[212px] p-10 ml-auto">
-                <div className="flex flex-col gap-10">
-                  {menuItems.map(({ key, sub, label }) => {
-                    const isActive = active === key;
-                    return (
-                      <button
-                        key={key}
-                        onClick={() => onChange(key)}
-                        className={`text-black flex flex-col gap-1 cursor-pointer text-left items-baseline`}
-                      >
-                        <span className={`text-base block w-full ${isActive ? "font-bold" : ""}`}>
-                          {label == "施設変更" ? (
-                            <span className="text-[12px] block text-right">{label}</span>
-                          ) : (
-                            <span className="text-[18px] ">{label}</span>
-                          )}
-                        </span>
-                        <span className="text-[12px] block ">{sub}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-    </div>
+              <Icon color={color} />
+              <span className={`text-[14px] mt-1 ${isActive ? "font-bold" : ""}`}>{label}</span>
+            </button>
+          );
+        })}
+      </div>
+    </nav>
   );
 }

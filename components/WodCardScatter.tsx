@@ -8,6 +8,7 @@ import { useQueryState } from "nuqs";
 import { CATEGORY_COLORS } from "@/types/movement";
 import type { Movement } from "@/types/movement";
 import { motion, AnimatePresence } from "framer-motion";
+import WodBuilder from "./wod-builder/WodBuilder";
 
 const FORMAT_COLORS: Record<WodFormat, string> = {
   AMRAP: "#2ECC71",
@@ -44,6 +45,7 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
     scroll: false,
   });
   const [formatModal, setFormatModal] = useState<WodFormat | null>(null);
+  const [showBuilder, setShowBuilder] = useState(false);
 
   const filteredWods = useMemo(() => {
     if (!selectedMood) return [];
@@ -65,7 +67,7 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
       {!selectedMood ? (
         /* 気分セレクター */
         <div className="">
-          <div className="flex items-center justify-center pb-12 pt-5">
+          <div className="flex items-center justify-center pb-12">
             <div className="bg-gray shadow-lg p-10 text-center rounded-3xl relative">
               <span className="bg-[#414141] absolute top-[10px] right-[-6px] rounded-3xl -z-10 w-full h-full"></span>
               <p className="text-3xl mb-12 font-gothic text-green">今日の気分は？</p>
@@ -79,6 +81,14 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
                     {mood.label}
                   </button>
                 ))}
+              </div>
+              <div className="mt-6 pt-6 border-t border-[#414141]">
+                <button
+                  onClick={() => setShowBuilder(true)}
+                  className="text-base font-black px-4 py-4 rounded-xl border-2 border-green text-green hover:bg-green hover:text-black transition-all cursor-pointer w-full"
+                >
+                  自分でWODを作る
+                </button>
               </div>
             </div>
           </div>
@@ -195,6 +205,9 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
           )}
         </div>
       )}
+
+      {/* WODビルダー */}
+      {showBuilder && <WodBuilder movements={movements} onClose={() => setShowBuilder(false)} />}
 
       {/* フォーマット説明モーダル */}
       <AnimatePresence>

@@ -34,9 +34,9 @@ export default async function WodPage({ params }: Props) {
     notFound();
   }
   const comment = {
-    AMRAP: "まだまだイケるぞ！",
-    ForTime: "全力でぶっちぎれ！",
-    EMOM: "リズムを刻め！",
+    AMRAP: "No Repは許さねぇ!",
+    ForTime: "スケールなし、言い訳なし！",
+    EMOM: "レストは自分で勝ち取れ！",
   };
   // このWODに該当する気分を探す
   const matchingMoods = MOODS.filter((m) => m.filter(wod));

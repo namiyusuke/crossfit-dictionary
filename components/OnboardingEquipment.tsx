@@ -25,7 +25,11 @@ interface OnboardingEquipmentProps {
   initialSelected?: Equipment[];
 }
 
-export default function OnboardingEquipment({ onComplete, initialStep = 0, initialSelected = [] }: OnboardingEquipmentProps) {
+export default function OnboardingEquipment({
+  onComplete,
+  initialStep = 0,
+  initialSelected = [],
+}: OnboardingEquipmentProps) {
   const [step, setStep] = useState(initialStep);
   const [direction, setDirection] = useState(1);
   const [check, setCheck] = useState(false);
@@ -62,14 +66,15 @@ export default function OnboardingEquipment({ onComplete, initialStep = 0, initi
                   <div className="text-5xl mb-6 max-w-[273px]">
                     <Image width={414} height={537} src="/onboarding-char01.png" alt="走るキャラクター" />
                   </div>
-                  <h1 className="text-xs mb-3 px-3 py-2 rounded-lg bg-button w-max mx-auto text-black">
+                  {/* <h1 className="text-xs mb-3 px-3 py-2 rounded-lg bg-button w-max mx-auto text-black">
                     本気のやつらのための
                   </h1>
                   <p className="leading-relaxed text-white font-gothic">
                     <span className="font-gothic text-4xl">CrossFit</span>
                     <br />
                     <span className="text-2xl">種目辞典</span>
-                  </p>
+                  </p> */}
+                  <Image className="mx-auto" width={254.05} height={70} src="/logo.svg" alt="走るキャラクター" />
                 </div>
               )}
               {/* Step 2: できること */}
