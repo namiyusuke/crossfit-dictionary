@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Wod } from "@/types/wod";
 import { MOODS } from "@/data/wods";
 import type { WodFormat } from "@/types/wod";
@@ -7,11 +7,30 @@ import Image from "next/image";
 import { useQueryState } from "nuqs";
 import { CATEGORY_COLORS } from "@/types/movement";
 import type { Movement } from "@/types/movement";
+import { motion, AnimatePresence } from "framer-motion";
 
 const FORMAT_COLORS: Record<WodFormat, string> = {
   AMRAP: "#2ECC71",
   EMOM: "#3A8FE8",
   ForTime: "#E85D3A",
+};
+
+const FORMAT_DESCRIPTIONS: Record<WodFormat, { title: string; description: string }> = {
+  AMRAP: {
+    title: "AMRAP（As Many Rounds As Possible）",
+    description:
+      "制限時間内にできるだけ多くのラウンドをこなすフォーマット。自分のペースで動き続け、合計ラウンド数がスコアになります。",
+  },
+  EMOM: {
+    title: "EMOM（Every Minute On the Minute）",
+    description:
+      "毎分0秒にスタートし、指定された動作を行うフォーマット。動作を終えた残りの時間がレストになります。ペース配分とリカバリーが鍵です。",
+  },
+  ForTime: {
+    title: "ForTime（タイムアタック）",
+    description:
+      "指定されたメニューをできるだけ早く完了するフォーマット。完了までの時間がスコアになります。全力で駆け抜けましょう。",
+  },
 };
 
 interface WodCardScatterProps {
@@ -24,6 +43,7 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
     history: "push",
     scroll: false,
   });
+  const [formatModal, setFormatModal] = useState<WodFormat | null>(null);
 
   const filteredWods = useMemo(() => {
     if (!selectedMood) return [];
@@ -54,7 +74,7 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
                   <button
                     key={mood.id}
                     onClick={() => handleMoodSelect(mood.id)}
-                    className="text-base font-black px-4 py-4 rounded-xl border border-transparent hover:border-2 hover:border-[#F1FE7D] transition-all cursor-pointer"
+                    className="text-base font-black px-4 py-4 rounded-xl border border-2 border-transparent hover:border-2 hover:border-[#F1FE7D] transition-all cursor-pointer"
                   >
                     {mood.label}
                   </button>
@@ -104,8 +124,30 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
                         <div className="pt-9 px-8">
                           <p className="text-6xl font-gothic text-green mb-4">0{index + 1}</p>
                           <div className="flex gap-2 mb-4">
-                            <span className="text-[14px] px-2 py-0.5 rounded-[10px] font-regular text-white border border-white">
-                              {wod.format}
+                            <span className="text-[14px] px-2 py-2 rounded-[10px] font-regular text-white border border-white flex gap-2.5">
+                              <span>{wod.format}</span>
+                              <span
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  setFormatModal(wod.format);
+                                }}
+                                className="cursor-pointer"
+                              >
+                                <svg
+                                  width="20"
+                                  height="20"
+                                  viewBox="0 0 20 20"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <circle cx="10" cy="10" r="10" fill="white" />
+                                  <path
+                                    d="M8.592 11.744C8.54933 11.3387 8.58667 10.9813 8.704 10.672C8.832 10.3627 9.008 10.0907 9.232 9.856C9.456 9.61067 9.70133 9.392 9.968 9.2C10.2347 8.99733 10.4853 8.80533 10.72 8.624C10.9547 8.44267 11.1467 8.256 11.296 8.064C11.456 7.872 11.536 7.65867 11.536 7.424C11.536 7.12533 11.456 6.88533 11.296 6.704C11.1467 6.512 10.9333 6.37333 10.656 6.288C10.3893 6.192 10.08 6.144 9.728 6.144C9.26933 6.144 8.85867 6.24533 8.496 6.448C8.144 6.64 7.792 6.92267 7.44 7.296L5.872 5.856C6.37333 5.248 6.98667 4.76267 7.712 4.4C8.43733 4.02667 9.22133 3.84 10.064 3.84C10.8533 3.84 11.5627 3.95733 12.192 4.192C12.8213 4.42667 13.3227 4.78933 13.696 5.28C14.0693 5.77067 14.256 6.4 14.256 7.168C14.256 7.552 14.176 7.888 14.016 8.176C13.856 8.45333 13.6533 8.69867 13.408 8.912C13.1627 9.12533 12.9013 9.33333 12.624 9.536C12.3467 9.728 12.0853 9.92533 11.84 10.128C11.6053 10.3307 11.4133 10.5653 11.264 10.832C11.1253 11.088 11.0667 11.392 11.088 11.744H8.592ZM9.84 16.192C9.36 16.192 8.96533 16.0373 8.656 15.728C8.35733 15.4187 8.208 15.0293 8.208 14.56C8.208 14.0907 8.36267 13.7067 8.672 13.408C8.98133 13.1093 9.37067 12.96 9.84 12.96C10.3093 12.96 10.6987 13.1093 11.008 13.408C11.3173 13.7067 11.472 14.0907 11.472 14.56C11.472 15.0293 11.3173 15.4187 11.008 15.728C10.6987 16.0373 10.3093 16.192 9.84 16.192Z"
+                                    fill="black"
+                                  />
+                                </svg>
+                              </span>
                             </span>
                             <span className="text-[14px] px-2 py-0.5 font-black font-black">{wod.level}</span>
                           </div>
@@ -153,6 +195,40 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
           )}
         </div>
       )}
+
+      {/* フォーマット説明モーダル */}
+      <AnimatePresence>
+        {formatModal && (
+          <motion.div
+            className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center px-6"
+            onClick={() => setFormatModal(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <motion.div
+              className="bg-gray rounded-2xl p-8 max-w-sm w-full relative"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+            >
+              <button
+                onClick={() => setFormatModal(null)}
+                className="absolute top-4 right-4 text-white text-2xl leading-none cursor-pointer"
+              >
+                ✕
+              </button>
+              <p className="text-lg font-gothic mb-4" style={{ color: FORMAT_COLORS[formatModal] }}>
+                {FORMAT_DESCRIPTIONS[formatModal].title}
+              </p>
+              <p className="text-sm leading-6">{FORMAT_DESCRIPTIONS[formatModal].description}</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

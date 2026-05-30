@@ -26,7 +26,7 @@ export default function GlobalMenu({ active, onChange }: GlobalMenuProps) {
         onClick={() => setIsOpen((pre) => !pre)}
       >
         <span className="bg-white inline-block font-gothic py-3 pl-6 pr-10 rounded-3xl text-[14px] relative leading-none">
-          Menu
+          {isOpen ? <>Close</> : <>Menu</>}
           <Image className="absolute right-0 bottom-0" width={40} height={52} src="/kettlebell.png" alt="ケトルべル" />
         </span>
       </p>
@@ -34,10 +34,15 @@ export default function GlobalMenu({ active, onChange }: GlobalMenuProps) {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
+              initial={{ opacity: 0, y: 80 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 80 }}
+              transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 20,
+                opacity: { type: "tween", duration: 0.2 },
+              }}
               className=" fixed bottom-20 left-0 right-0 z-50  mx-auto  max-w-[375px]"
             >
               <div className="rounded-[20px] bg-white max-w-[212px] p-10 ml-auto">

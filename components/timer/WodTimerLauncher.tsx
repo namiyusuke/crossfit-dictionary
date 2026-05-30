@@ -24,7 +24,7 @@ export default function WodTimerLauncher({ wod }: WodTimerLauncherProps) {
         <div className="relative inline-block">
           <button
             onClick={handleClick}
-            className="py-5 px-7 rounded-2xl font-gothic bg-button text-black text-2xl mx-auto"
+            className="py-5 px-7 rounded-2xl font-gothic bg-button text-black text-2xl mx-auto cursor-pointer"
             type="button"
           >
             きょうはこれをやる！

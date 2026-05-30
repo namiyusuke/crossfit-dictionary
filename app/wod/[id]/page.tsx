@@ -8,6 +8,7 @@ import Image from "next/image";
 import ScrollComment from "@/components/ScrollComment";
 import GlobalMenuNav from "@/components/GlobalMenuNav";
 import MoodBackLink from "./MoodBackLink";
+import RxHelpButton from "./RxHelpButton";
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -51,10 +52,7 @@ export default async function WodPage({ params }: Props) {
       </div>
       {/* セクション切り替えタブ */}
       <div className="flex gap-1 mb-4">
-        <Link
-          href="/"
-          className="flex-1 py-2.5 rounded-lg text-base text-center text-green border hover:text-text-primary transition-all"
-        >
+        <Link href="/" className="flex-1 py-2.5 rounded-lg text-base text-center text-green border transition-all">
           種目辞典
         </Link>
         <span className="flex-1 py-2.5 rounded-lg text-base text-center text-black bg-button relative">
@@ -115,7 +113,10 @@ export default async function WodPage({ params }: Props) {
 
       <div className="mt-20">
         {/* RX（規定） */}
-        <p className="text-2xl font-bold mb-2 font-gothic">RX（規定）</p>
+        <div className="text-2xl font-bold mb-2 font-gothic flex gap-2">
+          <span>RX</span>
+          <RxHelpButton />
+        </div>
         <div className="mt-4 rounded-lg py-4 px-6 space-y-1 bg-gray">
           <p className="text-green mb-8 text-[24px]">RX CONDITIONS</p>
           {wod.sets

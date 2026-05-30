@@ -37,7 +37,7 @@ export default function BackgroundDecoration() {
           <div className="relative">
             <div className="flex absolute inset-0 mb-[10%] items-center flex-col justify-center m-auto h-full">
               <div className="relative">
-                <div className="absolute bottom-[99%] mx-auto left-0 right-0 ">
+                <div className="absolute bottom-[96%] mx-auto left-0 right-0 ">
                   <SpriteAnimation
                     category={"bg02"}
                     className="w-[min(calc(174_/_1440_*_100vw),174px)] mx-auto left-0 right-0 "
@@ -91,7 +91,7 @@ export default function BackgroundDecoration() {
                   delay={1200}
                 />
               </div>
-              <div className="absolute translate-x-[120px] translate-y-[206px] ">
+              <div className="absolute z-1 translate-x-[120px] translate-y-[236px] ">
                 {/* <SpriteAnimation
                   category={"bg04"}
                   className="w-[min(calc(180_/_1440_*_100vw),180px)]"
@@ -101,7 +101,7 @@ export default function BackgroundDecoration() {
                 <Image className="animate-rotate" alt="バー" src="/bg-char04-02.png" width={160} height={168} />
               </div>
               <Image
-                className="absolute translate-x-[180px] translate-y-[356px] "
+                className="absolute z-0 translate-x-[180px] translate-y-[356px] "
                 width={221}
                 height={164}
                 src="/dumbbell.png"
