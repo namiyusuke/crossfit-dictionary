@@ -119,7 +119,7 @@ export default function WodBuilder({ movements, onClose }: WodBuilderProps) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-black overflow-y-auto md:max-w-[375px] md:mx-auto">
+    <div className="fixed inset-0 z-50 bg-black overflow-y-auto md:max-w-[375px] md:mx-auto pb-24">
       {/* ヘッダー */}
       <div className="px-6 pt-6 pb-2 flex justify-between items-center">
         <button onClick={step === 0 ? onClose : goBack} className="text-green text-sm cursor-pointer font-black">
