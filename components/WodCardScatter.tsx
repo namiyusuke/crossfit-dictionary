@@ -87,7 +87,7 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
                   onClick={() => setShowBuilder(true)}
                   className="text-base font-black px-4 py-3 rounded-xl bg-gray border-2 border-green text-white hover:bg-green hover:text-black transition-all cursor-pointer w-full"
                 >
-                  自分でWODを作る
+                  自分でWODを組む
                 </button>
               </div>
             </div>
