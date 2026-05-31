@@ -48,8 +48,8 @@ export default function OnboardingEquipment({
 
   return (
     <div className="">
-      <div className="min-h-screen flex items-start justify-center  px-8 py-10">
-        <div className="w-full max-w-md relative overflow-hidden">
+      <div className="min-h-screen flex items-start justify-center  px-8 py-10 bg-[#262626]">
+        <div className="w-full max-w-md relative ">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={step}
@@ -82,7 +82,7 @@ export default function OnboardingEquipment({
                 <div className="text-center mb-52">
                   <h1 className="text-2xl font-bold mb-10 font-gothic text-white">できること</h1>
                   <div className="space-y-4 text-left">
-                    <div className="flex items-start gap-3 px-10 py-6 rounded-lg border-[5px] bg-gray">
+                    <div className="flex items-start gap-3 px-10 py-6 rounded-lg border-[5px] bg-[#414141] border-[#F1FE7D]">
                       <div>
                         <div className="flex gap-x-2  text-2xl mb-4 font-gothic ">
                           <span className="text-xl flex items-center">
@@ -104,7 +104,7 @@ export default function OnboardingEquipment({
                         <p className="">38種目のやり方・ポイントを確認</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 px-10 py-6 rounded-lg border-[5px] bg-gray">
+                    <div className="flex items-start gap-3 px-10 py-6 rounded-lg border-[5px] bg-[#414141] border-[#F1FE7D]">
                       <div>
                         <div className="flex gap-x-2 text-2xl mb-4">
                           <span className="text-xl items-center">
@@ -147,10 +147,8 @@ export default function OnboardingEquipment({
                         <button
                           key={eq}
                           onClick={() => toggleEquipment(eq)}
-                          className={`bg-gray w-full flex items-center gap-3 p-4 rounded-xl transition-all cursor-pointer ${
-                            isSelected
-                              ? "border-border bg-border/10 text-green"
-                              : "border-border  hover:border-text-secondary"
+                          className={`bg-[#414141] w-full flex items-center gap-3 p-4 rounded-xl transition-all cursor-pointer ${
+                            isSelected ? "border-border  text-green" : "border-border  hover:border-text-secondary"
                           }`}
                         >
                           <div
@@ -197,26 +195,26 @@ export default function OnboardingEquipment({
                     <h1 className="text-4xl font-bold text-text-primary mb-6 font-gothic">ご確認ください</h1>
                   </div>
                   <div className="flex flex-col gap-y-4">
-                    <article className="bg-gray px-7 py-6 rounded-xl font-bold">
+                    <article className="bg-[#414141] px-7 py-6 rounded-xl font-bold">
                       <h3 className="text-xl mb-4">安全について</h3>
                       <p className="text-[14px]">
                         掲載のトレーニングは身体への負荷が高い内容を含みます。持病・既往症のある方は開始前に医師へご相談ください。
                       </p>
                     </article>
-                    <article className="bg-gray px-7 py-6 rounded-xl font-bold">
+                    <article className="bg-[#414141] px-7 py-6 rounded-xl font-bold">
                       <h3 className="text-xl mb-4">免責事項</h3>
                       <p className="text-[14px]">
                         アプリの情報をもとにした怪我・体調不良について制作者は責任を負いかねます。重量・強度は必ずご自身のレベルに合わせてください。
                       </p>
                     </article>
-                    <article className="bg-gray px-7 py-6 rounded-xl font-bold">
+                    <article className="bg-[#414141] px-7 py-6 rounded-xl font-bold">
                       <h3 className="text-xl mb-4">コンテンツについて</h3>
                       <p className="text-[14px]">
                         参考動画は外部サービス（YouTube）のコンテンツです。掲載情報は認定コーチによる個別指導の代替ではありません。
                       </p>
                     </article>
                   </div>
-                  <label className="mb-10 flex items-center gap-3 cursor-pointer mt-4 justify-center">
+                  <label className="mb-2 flex items-center gap-3 cursor-pointer mt-4 justify-center">
                     <button
                       onClick={() => setCheck((prev) => !prev)}
                       type="button"
@@ -237,6 +235,13 @@ export default function OnboardingEquipment({
                     <span className="text-sm text-white">上記の内容を確認しました。</span>
                   </label>
                   <p className="text-center text-[12px]">＊チェックを入れると進めます</p>
+                  <Image
+                    className="pt-10 pb-6 mx-auto"
+                    width={140}
+                    height={39}
+                    src="/logo.svg"
+                    alt="走るキャラクター"
+                  />
                 </div>
               )}
             </motion.div>
@@ -265,7 +270,7 @@ export default function OnboardingEquipment({
                 >
                   はじめる
                 </button>
-                <span className="bg-white z-1 absolute w-full h-full rounded-2xl block right-[-4px] top-[4px]"></span>
+                <span className="bg-[#414141] z-1 absolute w-full h-full rounded-xl block right-[-4px] top-[4px]"></span>
               </div>
             )}
             {step > 0 && step < totalSteps - 1 && (
@@ -277,7 +282,7 @@ export default function OnboardingEquipment({
                   >
                     次へ
                   </button>
-                  <span className="bg-white z-1 absolute w-full h-full rounded-2xl block right-[-4px] top-[4px]"></span>
+                  <span className="bg-[#414141] z-1 absolute w-full h-full rounded-xl block right-[-4px] top-[4px]"></span>
                 </div>
                 {step >= 2 && (
                   <button className="block text-left text-[14px]" onClick={() => goToStep(step - 1)}>
@@ -300,7 +305,7 @@ export default function OnboardingEquipment({
                     同意してはじめる
                   </button>
                   {check && (
-                    <span className="bg-white z-1 absolute w-full h-full rounded-2xl block right-[-4px] top-[4px]"></span>
+                    <span className="bg-[#414141] z-1 absolute w-full h-full rounded-xl block right-[-4px] top-[4px]"></span>
                   )}
                 </div>
                 <button className="block text-left text-[14px]" onClick={() => goToStep(step - 1)}>

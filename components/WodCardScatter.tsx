@@ -68,7 +68,7 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
         /* 気分セレクター */
         <div className="">
           <div className="flex items-center justify-center pb-12">
-            <div className="bg-gray shadow-lg p-10 text-center rounded-3xl relative">
+            <div className="bg-[#262626] shadow-lg p-10 text-center rounded-3xl relative">
               <span className="bg-[#414141] absolute top-[10px] right-[-6px] rounded-3xl -z-10 w-full h-full"></span>
               <p className="text-3xl mb-12 font-gothic text-green">今日の気分は？</p>
               <div className="flex flex-col gap-4">
@@ -76,16 +76,16 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
                   <button
                     key={mood.id}
                     onClick={() => handleMoodSelect(mood.id)}
-                    className="text-base font-black px-4 py-4 rounded-xl border border-2 border-transparent hover:border-2 hover:border-[#F1FE7D] transition-all cursor-pointer"
+                    className="leading-none text-base bg-gray font-black px-4 py-3 rounded-xl border border-2 border-transparent hover:border-2 hover:border-[#F1FE7D] transition-all cursor-pointer"
                   >
                     {mood.label}
                   </button>
                 ))}
               </div>
-              <div className="mt-6 pt-6 border-t border-[#414141]">
+              <div className="mt-6 pt-6 border-t border-white">
                 <button
                   onClick={() => setShowBuilder(true)}
-                  className="text-base font-black px-4 py-4 rounded-xl border-2 border-green text-green hover:bg-green hover:text-black transition-all cursor-pointer w-full"
+                  className="text-base font-black px-4 py-3 rounded-xl bg-gray border-2 border-green text-white hover:bg-green hover:text-black transition-all cursor-pointer w-full"
                 >
                   自分でWODを作る
                 </button>
@@ -106,7 +106,10 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
         /* WODカード縦積み */
         <div>
           <div className="flex justify-end mb-3">
-            <button onClick={handleReset} className=" cursor-pointer text-green">
+            <button
+              onClick={handleReset}
+              className="cursor-pointer text-black bg-green text-[12px] leading-none font-black py-[6px] px-4 rounded-2xl"
+            >
               気分を変える
             </button>
           </div>

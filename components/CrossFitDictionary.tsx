@@ -111,7 +111,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
         <div className="mx-auto w-full px-6 py-6 pb-24 pt-40">
           <div className="relative w-full">
             {/* ヘッダー */}
-            <div className="mb-6 flex items-start justify-between">
+            <div className="mb-10 flex items-start justify-between">
               <div className="w-full">
                 <div className="flex justify-between w-full max-w-[375px] mx-auto fixed left-0 right-0 top-0 bg-black px-[16px] bg-[#262626] pt-14 pb-[14px] z-40">
                   <h1 className="text-4xl font-gothic flex gap-4 font-normal text-green">
@@ -138,8 +138,8 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
                   </div>
                 </div>
                 <div className="">
-                  <p className="text-[20px] mt-4 font-black">
-                    {activeSection == "種目辞典" ? " 種目名をタップして詳細を確認しよう" : "今日のメニューを選ぼう"}
+                  <p className="text-[20px] font-black">
+                    {activeSection == "種目辞典" ? "種目を選んで確認しよう" : "今日のメニューを選ぼう"}
                   </p>
                 </div>
               </div>
@@ -170,7 +170,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
             {activeSection === "種目辞典" && (
               <>
                 {/* 検索 */}
-                <div className="mb-10">
+                <div className="mb-4">
                   <SearchBar value={searchText} onChange={setSearchText} />
                 </div>
                 {/* フィルター */}
@@ -185,10 +185,10 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
                   />
                 </div>
                 {/* 種目カード一覧 */}
-                <div className="space-y-15 relative">
+                <div className="space-y-8 relative">
                   <SpriteAnimation
                     category={"start"}
-                    className="w-[min(calc(151_/_375_*_100vw),151px)] absolute bottom-[99.5%] right-0"
+                    className="w-[min(calc(151_/_375_*_100vw),151px)] absolute bottom-[99.9%] right-0"
                   />
                   {filteredMovements.length > 0 ? (
                     filteredMovements.map((movement) => (
