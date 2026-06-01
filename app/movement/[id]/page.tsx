@@ -84,14 +84,7 @@ export default async function MovementPage({ params }: Props) {
       </section>
       {/* 使う筋肉 */}
       <section className="mb-16">
-        <h2
-          className="text-2xl mb-4 font-gothic"
-          style={{
-            color: categoryColor,
-          }}
-        >
-          使う部位
-        </h2>
+        <h2 className="text-2xl mb-4 font-gothic font-normal">使う部位</h2>
         <div
           className="border px-6 py-4 rounded-[12px] border-3"
           style={{
@@ -124,14 +117,7 @@ export default async function MovementPage({ params }: Props) {
       </section>
       {/* 目的・効果 */}
       <section className="mb-16">
-        <h2
-          className="text-2xl mb-4 font-gothic"
-          style={{
-            color: categoryColor,
-          }}
-        >
-          効果
-        </h2>
+        <h2 className="text-2xl mb-4 font-gothic font-normal">効果</h2>
         <div
           className="border px-6 py-4 rounded-[12px] border-3"
           style={{
@@ -159,14 +145,7 @@ export default async function MovementPage({ params }: Props) {
 
       {/* やり方 */}
       <section className="mb-16">
-        <h2
-          className="text-2xl mb-4 font-gothic"
-          style={{
-            color: categoryColor,
-          }}
-        >
-          やり方
-        </h2>
+        <h2 className="text-2xl mb-4 font-gothic font-normal">やり方</h2>
         <div
           className="border px-6 py-4 rounded-[12px] border-3"
           style={{
@@ -193,14 +172,7 @@ export default async function MovementPage({ params }: Props) {
 
       {/* 注意点 */}
       <section className="mb-6">
-        <h2
-          className="text-2xl mb-4 font-gothic"
-          style={{
-            color: categoryColor,
-          }}
-        >
-          ここに注意
-        </h2>
+        <h2 className="text-2xl mb-4 font-gothic font-normal">ここに注意</h2>
         <ul className="space-y-3 px-5 py-6 bg-[#262626] rounded-[12px] border-3" style={{ borderColor: categoryColor }}>
           {movement.tips.map((tip, i) => (
             <li key={i} className="font-black  text-basic flex gap-2 list-none">

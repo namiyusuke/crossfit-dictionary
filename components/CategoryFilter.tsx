@@ -65,10 +65,10 @@ export default function CategoryFilter({
   return (
     <div className="space-y-2">
       {/* フィルタータグ */}
-      <div>
+      <div className="border-white border rounded-[14px] overflow-hidden">
         <button
           onClick={() => toggleSection("category")}
-          className="bg-white rounded-[12px] p-4 text-black font-black text-[14px] flex items-center justify-between w-full cursor-pointer"
+          className="bg-white overflow-hidden p-4 text-black font-black text-[14px] flex items-center justify-between w-full cursor-pointer"
         >
           <p>カテゴリ</p>
           <span>{openSections.has("category") ? "−" : "＋"}</span>
@@ -107,10 +107,10 @@ export default function CategoryFilter({
         </AnimatePresence>
       </div>
 
-      <div>
+      <div className="border-white border rounded-[14px] overflow-hidden">
         <button
           onClick={() => toggleSection("bodyPart")}
-          className="bg-white rounded-[12px] p-4 text-black font-black text-[14px] flex items-center justify-between w-full cursor-pointer"
+          className="bg-white p-4 text-black font-black text-[14px] flex items-center justify-between w-full cursor-pointer "
         >
           <p>部位</p>
           <span>{openSections.has("bodyPart") ? "−" : "＋"}</span>
@@ -148,10 +148,10 @@ export default function CategoryFilter({
         </AnimatePresence>
       </div>
 
-      <div>
+      <div className="border-white border rounded-[14px] overflow-hidden">
         <button
           onClick={() => toggleSection("effect")}
-          className="bg-white rounded-[12px] p-4 text-black font-black text-[14px] flex items-center justify-between w-full cursor-pointer"
+          className="bg-white p-4 text-black font-black text-[14px] flex items-center justify-between w-full cursor-pointer "
         >
           <p>効果</p>
           <span>{openSections.has("effect") ? "−" : "＋"}</span>

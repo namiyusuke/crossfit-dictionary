@@ -34,7 +34,7 @@ export default function ProgressRing({ progress, size = 240, strokeWidth = 8, co
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke={color}
+          stroke="#fff"
           strokeWidth={strokeWidth}
           strokeLinecap="round"
           strokeDasharray={circumference}
