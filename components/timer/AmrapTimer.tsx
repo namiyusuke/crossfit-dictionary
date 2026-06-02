@@ -67,9 +67,16 @@ export default function AmrapTimer({ wod, onComplete, onQuit }: AmrapTimerProps)
         <div className="flex-1 overflow-auto">
           {/* ヘッダー */}
           <div className="px-6 pt-36 pb-2 mb-6">
-            <div className="flex items-center gap-3 pb-2 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[4px] after:bg-[#fff]">
-              <span className="text-xs px-2 py-0.5 rounded-[10px] font-bold bg-green text-black">AMRAP</span>
-              <h2 className="font-gothic text-[20px]">{wod.name}</h2>
+            <div className="flex  justify-between relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[4px] after:rounded-2xl after:bg-[#fff]">
+              <div className="items-center gap-3 pb-2 relative">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs p-2 rounded-[10px] font-bold bg-green text-black h-max leading-none">
+                    AMRAP
+                  </span>
+                  <h2 className="font-gothic text-[20px]">{wod.name}</h2>
+                </div>
+              </div>
+              <div className="font-black">{totalMinutes}分</div>
             </div>
           </div>
           {/* プログレスリング + タイマー */}
@@ -83,7 +90,7 @@ export default function AmrapTimer({ wod, onComplete, onQuit }: AmrapTimerProps)
             <div className="">
               {/* ラウンドカウンター */}
               <div className="flex items-center justify-between mb-3 border border-[1px] border-green px-[24px] py-[12px] rounded-[16px]">
-                <span className="text-[14px]">ラウンド</span>
+                <span className="text-[14px] font-black">ラウンド</span>
                 <div className="flex items-center gap-4">
                   <button
                     type="button"
@@ -108,8 +115,8 @@ export default function AmrapTimer({ wod, onComplete, onQuit }: AmrapTimerProps)
                 </div>
               </div>
               {/* 端数Repsカウンター */}
-              <div className="flex items-center justify-between mb-3 border  border-[1px] border-green px-[24px] py-[12px] rounded-[16px] font-black">
-                <span className="text-[14px]">+ 端数 reps</span>
+              <div className="flex items-center justify-between border  border-[1px] border-green px-[24px] py-[12px] rounded-[16px] font-black">
+                <span className="text-[14px] font-black">+ 端数 reps</span>
                 <div className="flex items-center gap-4">
                   <button
                     type="button"
@@ -135,22 +142,22 @@ export default function AmrapTimer({ wod, onComplete, onQuit }: AmrapTimerProps)
               </div>
             </div>
           </div>
-          {/* ムーブメントリスト */}
-          <div className="px-6 pb-6">
-            <div className="flex flex-col flex-wrap gap-2">
-              {allMovements.map((mov, i) => (
-                <span
-                  key={i}
-                  className="px-4 py-3 font-black rounded-[12px] text-[12px] bg-[#414141] inline-block w-max"
-                >
-                  {mov.name} {mov.reps}
-                </span>
-              ))}
-            </div>
-          </div>
           {/* コントロール */}
-          <div className="px-6 pb-28">
+          <div className="px-6 pb-10">
             <TimerControls isPaused={isPaused} onToggle={toggle} onQuit={onQuit} formatColor={color} />
+          </div>
+          {/* ムーブメントリスト */}
+          <div className="px-6 mb-28">
+            <div className="rounded-[20px] bg-black px-8 py-7">
+              <div className="flex flex-col flex-wrap gap-2">
+                {allMovements.map((mov, i) => (
+                  <span key={i} className="font-black text-[12px] flex justify-between w-full">
+                    <span>{mov.name}</span>
+                    <span className="text-green">{mov.reps}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

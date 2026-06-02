@@ -7,6 +7,8 @@ import { parseDurationMinutes, getEmomSetForMinute, FORMAT_COLORS, formatTime } 
 import ProgressRing from "./ProgressRing";
 import TimerControls from "./TimerControls";
 import type { TimerResult } from "./CompletionScreen";
+import WodPageHeader from "@/app/wod/[id]/WodPageHeader";
+import GlobalMenuNav from "@/components/GlobalMenuNav";
 
 interface EmomTimerProps {
   wod: Wod;
@@ -113,81 +115,87 @@ export default function EmomTimer({ wod, onComplete, onQuit }: EmomTimerProps) {
   const progress = secondsInMinute / 60;
 
   return (
-    <div className="fixed inset-0 z-100 flex flex-col md:max-w-[375px] md:mx-auto z-20 bg-black min-h-screen">
-      <div className="flex-1 overflow-auto">
-        {/* ヘッダー */}
-        <div className="px-6 pt-6 pb-2 mb-6">
-          <div className="flex items-center gap-3 pb-2 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#553EEC]">
-            <span className="text-xs px-2 py-0.5 rounded-full font-bold text-white" style={{ backgroundColor: color }}>
-              EMOM
-            </span>
-            <h2 className="font-gothic text-[20px]">{wod.name}</h2>
-            <span className="font-mono text-sm ml-auto">
-              {currentMinute}/{totalMinutes}分
-            </span>
-          </div>
-        </div>
-
-        {/* メインタイマー */}
-        <div className="flex-1 flex flex-col items-center justify-center mb-[60px]">
-          <ProgressRing progress={progress} color={color} size={260}>
-            <div className="text-center">
-              <span
-                className={`font-mono text-5xl font-bold tabular-nums ${secondsInMinute <= 10 ? "text-red-500" : ""}`}
-              >
-                {formatTime(secondsInMinute)}
-              </span>
-              {currentSet.label && <p className="text-sm  mt-1">{currentSet.label}</p>}
+    <>
+      <WodPageHeader />
+      <div className="fixed inset-0 z-100 flex flex-col md:max-w-[375px] md:mx-auto z-20 bg-gray min-h-screen">
+        <div className="flex-1 overflow-auto">
+          <div className="pt-36 pb-28">
+            {/* ヘッダー */}
+            <div className="px-6  pb-2 mb-6">
+              <div className="flex items-center justify-between relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[4px] after:bg-[#fff] after:rounded-2xl">
+                <div className="items-center gap-3 pb-2 relative">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs p-2 rounded-[10px] font-bold bg-green text-black h-max leading-none">
+                      EMOM
+                    </span>
+                    <h2 className="font-gothic text-[20px]">{wod.name}</h2>
+                  </div>
+                </div>
+                <div className="font-black w-[20%]">
+                  {currentMinute}/{totalMinutes}分
+                </div>
+              </div>
             </div>
-          </ProgressRing>
-        </div>
-
-        {/* 現在のセット */}
-        <div className="px-6 pb-6">
-          {isRest ? (
-            <p className="text-center text-2xl font-gothic" style={{ color: "#2ECC71" }}>
-              REST
-            </p>
-          ) : (
-            <div className="flex flex-col flex-wrap gap-2">
-              {currentSet.movements.map((mov, i) => (
-                <span
-                  key={i}
-                  className="mx-auto px-4 py-4 leading-none rounded-[12px] font-black text-base border-[3px] border-[#553EEC] inline-block w-[204px]"
-                >
-                  {mov.name} {mov.reps}
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* 次のセット（プレビュー） */}
-        {nextSet && (
-          <div className="px-6 pb-6">
-            <p className="text-[12px] mb-2 font-black">NEXT</p>
-            <div className="flex flex-col flex-wrap gap-2">
-              {nextSet.movements.length === 0 ? (
-                <p className="text-sm">REST</p>
-              ) : (
-                nextSet.movements.map((mov, i) => (
+            {/* メインタイマー */}
+            <div className="flex-1 flex flex-col items-center justify-center pb-6">
+              <ProgressRing progress={progress} color={color} size={260}>
+                <div className="text-center">
                   <span
-                    key={i}
-                    className="mx-auto px-4 py-4 leading-none rounded-[12px] font-black text-[12px] border-[1px] border-[#553EEC] inline-block  w-[204px]"
+                    className={`font-mono text-5xl font-bold tabular-nums ${secondsInMinute <= 10 ? "text-red-500" : ""}`}
                   >
-                    {mov.name} {mov.reps}
+                    {formatTime(secondsInMinute)}
                   </span>
-                ))
+                  {currentSet.label && <p className="text-sm mt-1">{currentSet.label}</p>}
+                </div>
+              </ProgressRing>
+            </div>
+            {/* 現在のセット */}
+            <div className="px-6 pb-6">
+              {isRest ? (
+                <p className="text-center text-2xl font-gothic" style={{ color: "#2ECC71" }}>
+                  REST
+                </p>
+              ) : (
+                <div className="rounded-[20px] px-8 py-7 border border-green border-3">
+                  <div className="flex flex-col flex-wrap gap-2">
+                    {currentSet.movements.map((mov, i) => (
+                      <span key={i} className="font-black text-base flex justify-between w-full">
+                        <span>{mov.name}</span>
+                        <span>{mov.reps}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
               )}
             </div>
+            {/* 次のセット（プレビュー） */}
+            {nextSet && (
+              <div className="px-6 pb-6">
+                <p className="text-[12px] mb-2 font-black">NEXT</p>
+                {nextSet.movements.length === 0 ? (
+                  <p className="text-sm">REST</p>
+                ) : (
+                  <div className="rounded-[20px] px-8 py-7 border border-green border-3">
+                    <div className="flex flex-col flex-wrap gap-2">
+                      {nextSet.movements.map((mov, i) => (
+                        <span key={i} className="font-black text-base flex justify-between w-full">
+                          <span>{mov.name}</span>
+                          <span>{mov.reps}</span>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+            {/* コントロール */}
+            <div className="px-6 pb-10">
+              <TimerControls isPaused={isPaused} onToggle={toggle} onQuit={onQuit} formatColor={color} />
+            </div>
           </div>
-        )}
-
-        {/* コントロール */}
-        <div className="px-6 pb-8">
-          <TimerControls isPaused={isPaused} onToggle={toggle} onQuit={onQuit} formatColor={color} />
         </div>
       </div>
-    </div>
+      <GlobalMenuNav active="WOD" />
+    </>
   );
 }

@@ -45,13 +45,14 @@ export default function BackgroundDecoration() {
                     delay={1400}
                   />
                 </div>
-                <p className="bg-green rounded-[8px] text-center text-black py-2 px-3 font-black mb-3.5 leading-none">
+                {/* <p className="bg-green rounded-[8px] text-center text-black py-2 px-3 font-black mb-3.5 leading-none">
                   本気のやつらのための
                 </p>
                 <p className="text-center">
                   <span className="block font-gothic text-5xl mb-4">CrossFit</span>
                   <span className="font-gothic text-2xl">種目辞典</span>
-                </p>
+                </p> */}
+                <Image className="" width={256} height={72} src="/logo-opening.png" alt="ケトルべル" />
               </div>
             </div>
             <div className="absolute inset-0 flex items-center justify-center">

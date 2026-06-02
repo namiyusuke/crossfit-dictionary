@@ -56,22 +56,22 @@ export default function TimerControls({ isPaused, onToggle, onQuit, formatColor 
       {/* 中止確認ダイアログ */}
       {showConfirm && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70">
-          <div className="bg-black rounded-2xl p-6 mx-8 max-w-sm w-full">
-            <p className="text-lg font-bold mb-2">本当にやめますか？</p>
-            <p className="text-sm  mb-6">このワークアウトの記録は保存されません。</p>
+          <div className="bg-black rounded-2xl p-6 px-14 max-w-sm w-full">
+            <p className="text-[20px] font-black mb-4">本当にやめますか？</p>
+            <p className="text-sm  mb-6">
+              このワークアウトの記録は
+              <br />
+              保存されません。
+            </p>
             <div className="flex gap-3">
               <button
                 type="button"
                 onClick={() => setShowConfirm(false)}
-                className="flex-1 py-3 rounded-xl border border-border text-text-primary font-medium active:scale-95 transition-transform"
+                className="flex-1 py-3 rounded-xl border border-border border-green font-black "
               >
-                キャンセル
+                つづける
               </button>
-              <button
-                type="button"
-                onClick={onQuit}
-                className="flex-1 py-3 rounded-xl bg-[#DB6C66] text-white font-gothic font-normal"
-              >
+              <button type="button" onClick={onQuit} className="flex-1 py-3 rounded-xl bg-green text-black font-black">
                 やめる
               </button>
             </div>

@@ -34,7 +34,9 @@ export default async function MovementPage({ params }: Props) {
   return (
     <main className="min-h-screen px-4 py-8 pb-24 max-w-2xl mx-auto bg-gray">
       {/* 戻るボタン */}
-      <BackButton label="もどる" />
+      <div className="mb-5">
+        <BackButton label="戻る" />
+      </div>
       {/* ヘッダー */}
       <div className="mb-12">
         <div

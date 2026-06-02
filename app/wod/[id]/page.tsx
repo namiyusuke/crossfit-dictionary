@@ -44,7 +44,7 @@ export default async function WodPage({ params }: Props) {
   return (
     <>
       <WodPageHeader />
-      <div className="mx-auto px-4 py-6 bg-[#414141]">
+      <div className="mx-auto px-4 py-40 bg-[#414141]">
         <MoodBackLink className="mb-10 text-white text-[12px] block">＜　戻る</MoodBackLink>
         {/* ヘッダー */}
         {/* <div className="mb-6 flex items-start justify-between">
@@ -190,16 +190,14 @@ export default async function WodPage({ params }: Props) {
           <WodTimerLauncher wod={wod} />
         </div>
         <div className="text-right mt-9">
-          <div className="">
-            {/* 一覧に戻る */}
+          {/* <div className="">
             <MoodBackLink className="text-green font-black text-[14px]">WODトップに戻る</MoodBackLink>
           </div>
           <div className="mt-8">
-            {/* 一覧に戻る */}
             <Link href="/?section=WOD" className="text-green font-black text-[14px]">
               気分を変える
             </Link>
-          </div>
+          </div> */}
         </div>
         <GlobalMenuNav active="WOD" />
       </div>

@@ -5,6 +5,9 @@ import { motion, AnimatePresence } from "motion/react";
 import type { WodFormat } from "@/types/wod";
 import Link from "next/link";
 import SpriteAnimation from "@/app/movement/[id]/SpriteAnimation";
+import BackButton from "../BackButton";
+import GlobalMenuNav from "../GlobalMenuNav";
+import WodPageHeader from "@/app/wod/[id]/WodPageHeader";
 export interface TimerResult {
   format: WodFormat;
   wodName: string;
@@ -47,63 +50,67 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
   }, []);
 
   return (
-    <div className="fixed inset-0 pt-[100px] z-50 flex flex-col items-center bg-[#553EEC] px-6 overflow-y-auto  z-50 flex flex-col md:max-w-[375px] md:mx-auto z-20 min-h-screen">
-      {stars.map((star) => (
-        <motion.div
-          key={star.id}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: star.delay, duration: 0.5, ease: "easeOut" }}
-          className="absolute pointer-events-none"
-          style={{
-            top: star.top,
-            left: star.left,
-          }}
-        >
-          <Image width={22} height={25} src="/star.svg" alt="" />
-        </motion.div>
-      ))}
-      {/* COMPLETE! テキスト */}
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
-        className="text-center"
-      >
-        <div className="relative leading-normal">
-          <p className="font-gothic relative z-10 text-[40px] mb-1 text-green">COMPLETE</p>
-          <p className="font-gothic absolute z-0 text-[40px] top-[5px] mb-1 right-[-5px]  text-[#414141] whitespace-nowrap">
-            COMPLETE
-          </p>
+    <>
+      <WodPageHeader />
+      <div className="fixed inset-0 pt-[130px] z-50 flex flex-col items-center bg-[#553EEC] px-6 overflow-y-auto  z-50 flex flex-col md:max-w-[375px] md:mx-auto z-20 min-h-screen">
+        <div className="text-left w-full text-green  mb-8">
+          {/* 戻るボタン */}
+          <BackButton label="戻る" />
         </div>
-        <p className="font-gothic text-[20px] text-white leading-normal">おつかれさまでした</p>
-      </motion.div>
-      <div className="mt-[40px]">
-        <SpriteAnimation
-          category={"end"}
-          className="w-[min(calc(210_/_375_*_100vw),210px)]"
-          interval={1000}
-          delay={0}
-        />
-      </div>
-      <div className="text-right w-full text-green mt-[33px] mb-10">
-        <p>
-          <Link href="/">WODトップに戻る</Link>
-        </p>
-      </div>
-      {/* 結果モーダル */}
-      <AnimatePresence>
-        {showResultModal && (
+        {stars.map((star) => (
           <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 60 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="absolute bottom-0 left-0 right-0 rounded-t-2xl px-6 pt-8 pb-10"
-          ></motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+            key={star.id}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: star.delay, duration: 0.5, ease: "easeOut" }}
+            className="absolute pointer-events-none"
+            style={{
+              top: star.top,
+              left: star.left,
+            }}
+          >
+            <Image width={22} height={25} src="/star.svg" alt="" />
+          </motion.div>
+        ))}
+        {/* COMPLETE! テキスト */}
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="text-center"
+        >
+          <div className="relative leading-normal">
+            <p className="font-gothic relative z-10 text-[40px] mb-1 text-green">COMPLETE</p>
+            <p className="font-gothic absolute z-0 text-[40px] top-[5px] mb-1 right-[-5px]  text-[#414141] whitespace-nowrap">
+              COMPLETE
+            </p>
+          </div>
+          <p className="font-gothic text-[20px] text-white leading-normal">おつかれさまでした</p>
+        </motion.div>
+        <div className="mt-[10px]">
+          <SpriteAnimation
+            category={"end"}
+            className="w-[min(calc(200_/_375_*_100vw),200px)]"
+            interval={1000}
+            delay={0}
+          />
+        </div>
+
+        {/* 結果モーダル */}
+        <AnimatePresence>
+          {showResultModal && (
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 60 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="absolute bottom-0 left-0 right-0 rounded-t-2xl px-6 pt-8 pb-10"
+            ></motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+      <GlobalMenuNav active="WOD" />
+    </>
   );
 }
 
@@ -119,60 +126,66 @@ function CompletionScreenB({ result, formatColor, onClose }: CompletionScreenPro
   }, []);
 
   return (
-    <div className="fixed inset-0 pt-[100px] z-50 flex flex-col items-center bg-[#553EEC] px-6 overflow-y-auto  z-50 flex flex-col md:max-w-[375px] overflow-clip md:mx-auto z-20 min-h-screen">
-      {stars.map((star) => (
-        <motion.div
-          key={star.id}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: star.delay, duration: 0.5, ease: "easeOut" }}
-          className="absolute pointer-events-none"
-          style={{
-            top: star.top,
-            left: star.left,
-          }}
-        >
-          <Image width={22} height={25} src="/star.svg" alt="" />
-        </motion.div>
-      ))}
-      {/* COMPLETE! テキスト */}
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
-        className="text-center rotate-[10.41deg] relative font-normal"
-      >
-        <p className="font-gothic relative z-10 text-[130px] mb-6 text-green whitespace-nowrap">達成感</p>
-        <p className="font-gothic absolute z-0 text-[130px] top-[10px] right-[-10px] mb-6 text-[#414141] whitespace-nowrap">
-          達成感
-        </p>
-      </motion.div>
-      <div className="mt-[0px]">
-        <SpriteAnimation
-          category={"end"}
-          className="w-[min(calc(220_/_375_*_100vw),220px)]"
-          interval={1000}
-          delay={0}
-        />
-      </div>
-      <div className="text-right w-full text-green mt-[33px] mb-10">
-        <p>
-          <Link href="/">WODトップに戻る</Link>
-        </p>
-      </div>
-      {/* 結果モーダル */}
-      <AnimatePresence>
-        {showResultModal && (
+    <>
+      <WodPageHeader />
+      <div className="fixed inset-0 pt-[130px] z-50 flex flex-col items-center bg-[#553EEC] px-6 overflow-y-auto  z-50 flex flex-col md:max-w-[375px] overflow-clip md:mx-auto z-20 min-h-screen">
+        <div className="text-left w-full text-green mb-8">
+          {/* 戻るボタン */}
+          <BackButton label="戻る" />
+        </div>
+        {stars.map((star) => (
           <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 60 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="absolute bottom-0 left-0 right-0 rounded-t-2xl px-6 pt-8 pb-10"
-          ></motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+            key={star.id}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: star.delay, duration: 0.5, ease: "easeOut" }}
+            className="absolute pointer-events-none"
+            style={{
+              top: star.top,
+              left: star.left,
+            }}
+          >
+            <Image width={22} height={25} src="/star.svg" alt="" />
+          </motion.div>
+        ))}
+        {/* COMPLETE! テキスト */}
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="text-center rotate-[10.41deg] relative font-normal"
+        >
+          <p className="font-gothic relative z-10 text-[110px] mb-3 text-green whitespace-nowrap leading-none">
+            達成感
+          </p>
+          <p className="font-gothic absolute z-0 text-[110px] top-[10px] right-[-10px] mb-3 text-[#414141] whitespace-nowrap leading-none">
+            達成感
+          </p>
+        </motion.div>
+        <div className="mt-[0px]">
+          <SpriteAnimation
+            category={"end"}
+            className="w-[min(calc(200_/_375_*_100vw),200px)]"
+            interval={1000}
+            delay={0}
+          />
+        </div>
+
+        {/* 結果モーダル */}
+        <AnimatePresence>
+          {showResultModal && (
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 60 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="absolute bottom-0 left-0 right-0 rounded-t-2xl px-6 pt-8 pb-10"
+            ></motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+      <GlobalMenuNav active="WOD" />
+    </>
   );
 }
 
