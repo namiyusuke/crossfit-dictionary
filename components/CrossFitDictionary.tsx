@@ -108,8 +108,8 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
 
   return (
     <div className="">
-      <div className="">
-        <div className="mx-auto w-full px-6 py-6 pb-24 pt-40">
+      <div className="overflow-clip">
+        <div className="mx-auto w-full px-6 py-6 pb-24 pt-40 bg-[#414141] rounded-[24px] ">
           <div className="relative w-full">
             {/* ヘッダー */}
             <div className="mb-10 flex items-start justify-between">

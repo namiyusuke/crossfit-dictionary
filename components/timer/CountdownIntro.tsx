@@ -8,10 +8,7 @@ interface CountdownIntroProps {
   onComplete: () => void;
 }
 
-export default function CountdownIntro({
-  formatColor,
-  onComplete,
-}: CountdownIntroProps) {
+export default function CountdownIntro({ formatColor, onComplete }: CountdownIntroProps) {
   const [count, setCount] = useState(3);
 
   useEffect(() => {
@@ -25,7 +22,7 @@ export default function CountdownIntro({
   }, [count, onComplete]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background">
+    <div className="fixed z-5000 w-[375px] mx-auto inset-0 z-50 flex items-center justify-center bg-background">
       <AnimatePresence mode="wait">
         <motion.div
           key={count}

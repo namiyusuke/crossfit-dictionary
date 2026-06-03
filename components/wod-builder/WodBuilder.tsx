@@ -119,74 +119,82 @@ export default function WodBuilder({ movements, onClose }: WodBuilderProps) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-black overflow-y-auto md:max-w-[375px] md:mx-auto pb-24">
-      {/* ヘッダー */}
-      <div className="px-6 pt-6 pb-2 flex justify-between items-center">
-        <button onClick={step === 0 ? onClose : goBack} className="text-green text-sm cursor-pointer font-black">
-          {step === 0 ? "← 戻る" : "← 前へ"}
-        </button>
-        <p className="font-gothic text-green text-lg">WODを作る</p>
-        <button onClick={onClose} className="text-[#888] text-sm cursor-pointer">
-          閉じる
-        </button>
-      </div>
-
-      <BuilderProgressDots currentStep={step} totalSteps={TOTAL_STEPS} />
-
-      {/* ステップコンテンツ */}
-      <div className="px-6 py-8 pb-10">
-        <AnimatePresence mode="wait" custom={direction}>
-          <motion.div
-            key={step}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{ duration: 0.25 }}
-          >
-            {step === 0 && <StepFormatSelect selected={format} onSelect={setFormat} />}
-            {step === 1 && format && (
-              <StepDurationConfig
-                format={format}
-                duration={duration}
-                onDurationChange={setDuration}
-                rounds={rounds}
-                onRoundsChange={setRounds}
-                repScheme={repScheme}
-                onRepSchemeChange={setRepScheme}
-              />
-            )}
-            {step === 2 && (
-              <StepMovementPicker
-                movements={movements}
-                userEquipment={userEquipment ?? []}
-                selectedMovements={selectedMovements}
-                onMovementsChange={setSelectedMovements}
-                defaultReps={defaultReps}
-              />
-            )}
-            {step === 3 && builtWod && (
-              <StepPreview wod={builtWod} movements={movements} onLaunchTimer={handleLaunchTimer} />
-            )}
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* ナビゲーション（Step 4以外） */}
-      {step < 3 && (
-        <div className=" bottom-0 left-0 right-0 px-6 pb-8 pt-4 bg-gradient-to-t from-black to-transparent">
+    <div className="fixed inset-0 z-50 overflow-y-auto md:max-w-[375px] md:mx-auto pb-24 bg-gray">
+      <div className="pt-[166px] pb-20">
+        {/* ヘッダー */}
+        <div className="px-6 pb-2 justify-between items-center">
           <button
-            onClick={goNext}
-            disabled={!canProceed}
-            className={`w-full py-4 rounded-xl font-gothic text-lg transition-all cursor-pointer ${
-              canProceed ? "bg-button text-black" : "bg-[#333] text-[#666] cursor-not-allowed"
-            }`}
+            onClick={step === 0 ? onClose : goBack}
+            className="text-[12px] cursor-pointer font-black text-white mb-10"
           >
-            次へ
+            {step === 0 ? "<　戻る" : "<　前へ"}
           </button>
+          <p className="font-gothic text-white font-normal text-[24px] mb-6 ">WODを作る</p>
+          <div className="text-right">
+            <button
+              onClick={onClose}
+              className="text-black text-[12px] rounded-2xl cursor-pointer font-black  bg-white px-[18px] py-2 ml-auto"
+            >
+              閉じる
+            </button>
+          </div>
         </div>
-      )}
+
+        {/* ステップコンテンツ */}
+        <div className="px-6 py-8 pb-10">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={step}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.25 }}
+            >
+              {step === 0 && <StepFormatSelect selected={format} onSelect={setFormat} />}
+              {step === 1 && format && (
+                <StepDurationConfig
+                  format={format}
+                  duration={duration}
+                  onDurationChange={setDuration}
+                  rounds={rounds}
+                  onRoundsChange={setRounds}
+                  repScheme={repScheme}
+                  onRepSchemeChange={setRepScheme}
+                />
+              )}
+              {step === 2 && (
+                <StepMovementPicker
+                  movements={movements}
+                  userEquipment={userEquipment ?? []}
+                  selectedMovements={selectedMovements}
+                  onMovementsChange={setSelectedMovements}
+                  defaultReps={defaultReps}
+                />
+              )}
+              {step === 3 && builtWod && (
+                <StepPreview wod={builtWod} movements={movements} onLaunchTimer={handleLaunchTimer} />
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+        {/* ナビゲーション（Step 4以外） */}
+        {step < 3 && (
+          <div className=" bottom-0 left-0 right-0 px-6 pb-8 pt-4">
+            <button
+              onClick={goNext}
+              disabled={!canProceed}
+              className={`w-full py-4 rounded-xl font-gothic text-lg transition-all cursor-pointer ${
+                canProceed ? "bg-button text-black" : "bg-[#333] text-[#666] cursor-not-allowed"
+              }`}
+            >
+              次へ
+            </button>
+          </div>
+        )}
+        <BuilderProgressDots currentStep={step} totalSteps={TOTAL_STEPS} />
+      </div>
     </div>
   );
 }

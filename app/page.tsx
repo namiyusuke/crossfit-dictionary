@@ -8,8 +8,13 @@ export default async function Page() {
 
   return (
     <Suspense>
-      <div className="relative z-10 bg-[#414141]">
-        <CrossFitDictionary movements={movements} wods={wods} />
+      <div className="relative">
+        {/* <div className="inset-0 mx-auto w-[370px] w- fixed before:absolute before:-left-1.75  before:rounded-[24px] before:-right-1.75 before:inset-y-0 before:border before:border-[#939393] before:border-3 before:content-['']"></div> */}
+        <div className="">
+          <div className="relative z-10">
+            <CrossFitDictionary movements={movements} wods={wods} />
+          </div>
+        </div>
       </div>
     </Suspense>
   );

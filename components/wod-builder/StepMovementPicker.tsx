@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import type { Movement, Category, Equipment } from "@/types/movement";
 import { CATEGORY_COLORS, categoryLabels } from "@/types/movement";
-import { X } from "lucide-react";
+import { X, Check } from "lucide-react";
 
 export interface SelectedMovement {
   movement: Movement;
@@ -66,7 +66,7 @@ export default function StepMovementPicker({
 
   return (
     <div>
-      <p className="font-gothic text-2xl text-green mb-6">種目を選ぼう</p>
+      <p className="font-gothic text-[20px] text-white mb-4">3.種目を選ぼう</p>
 
       {/* 検索 */}
       <input
@@ -104,20 +104,31 @@ export default function StepMovementPicker({
       </div>
 
       {/* 種目一覧 */}
-      <div className="max-h-[240px] overflow-y-auto space-y-1 mb-6">
+      <div className="max-h-[240px] overflow-y-auto space-y-2 mb-6">
         {availableMovements.map((m) => {
           const selected = isSelected(m.id);
+          const color = CATEGORY_COLORS[m.category];
           return (
             <button
               key={m.id}
               onClick={() => toggleMovement(m)}
-              className={`w-full text-left px-4 py-3 rounded-xl flex items-center gap-3 transition-all cursor-pointer ${
-                selected ? "bg-button/20" : "hover:bg-[#333]"
+              className={`w-full text-left px-4 py-3 rounded-xl flex items-center gap-3 transition-all cursor-pointer border border-2 ${
+                selected ? "border-opacity-100" : "border-[#555] hover:border-[#777]"
               }`}
+              style={{
+                borderColor: selected ? "#F1FE7D" : undefined,
+              }}
             >
-              <span className="w-3 h-3 rounded-full shrink-0" style={{ background: CATEGORY_COLORS[m.category] }} />
               <span className="text-sm flex-1">{m.name}</span>
-              {selected && <span className="text-green text-xs font-black">選択中</span>}
+              <span
+                className="w-5 h-5 rounded shrink-0 flex items-center justify-center transition-all"
+                style={{
+                  background: selected ? "#F1FE7D" : "transparent",
+                  border: selected ? "none" : "2px solid #555",
+                }}
+              >
+                {selected && <Check size={14} className="text-black" strokeWidth={3} />}
+              </span>
             </button>
           );
         })}

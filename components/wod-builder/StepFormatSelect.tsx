@@ -29,7 +29,7 @@ interface StepFormatSelectProps {
 export default function StepFormatSelect({ selected, onSelect }: StepFormatSelectProps) {
   return (
     <div>
-      <p className="font-gothic text-2xl text-green mb-8">フォーマットを選ぼう</p>
+      <p className="font-gothic text-[20px] text-white mb-4">1.フォーマットを選ぼう</p>
       <div className="flex flex-col gap-4">
         {FORMATS.map((format) => {
           const isSelected = selected === format;
@@ -38,13 +38,17 @@ export default function StepFormatSelect({ selected, onSelect }: StepFormatSelec
             <button
               key={format}
               onClick={() => onSelect(format)}
-              className="text-left p-6 rounded-[16px] border-[3px] transition-all cursor-pointer"
+              className="text-left p-6 rounded-[16px] border-[3px] border-[#F1FE7D] transition-all cursor-pointer"
               style={{
-                borderColor: isSelected ? color : "#414141",
-                background: isSelected ? `${color}15` : "transparent",
+                background: isSelected ? "#262626" : "transparent",
               }}
             >
-              <p className="font-gothic text-xl mb-1" style={{ color }}>
+              <p
+                className="font-gothic text-xl mb-1 text-green"
+                style={{
+                  color: isSelected ? "#F1FE7D" : "#fff",
+                }}
+              >
                 {FORMAT_INFO[format].title}
               </p>
               <p className="text-xs text-[#999] mb-2">{FORMAT_INFO[format].subtitle}</p>

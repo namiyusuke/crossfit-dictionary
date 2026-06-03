@@ -56,7 +56,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-text-primary">
         <BackgroundDecoration />
-        <div className="w-full md:max-w-[375px] md:mx-auto relative z-100 bg-black min-h-screen">
+        <div className=" md:max-w-[375px] w-[375px] md:mx-auto relative z-100  min-h-screen">
           <AutoAnonymousLogin />
           <NuqsAdapter>{children}</NuqsAdapter>
         </div>

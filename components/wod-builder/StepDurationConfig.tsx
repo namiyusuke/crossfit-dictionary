@@ -41,7 +41,7 @@ export default function StepDurationConfig({
             >
               <Minus size={20} />
             </button>
-            <span className="font-gothic text-5xl" style={{ color }}>
+            <span className="font-gothic text-5xl text-black" style={{ WebkitTextStroke: "1px white" }}>
               {rounds}
             </span>
             <button
@@ -61,10 +61,10 @@ export default function StepDurationConfig({
               <button
                 key={scheme}
                 onClick={() => onRepSchemeChange(scheme === "なし" ? "" : scheme)}
-                className="px-5 py-3 rounded-[10px] text-[13px] font-black transition-all border cursor-pointer"
+                className="p-3 rounded-[10px] text-[13px] font-black transition-all border cursor-pointer"
                 style={{
-                  borderColor: (scheme === "なし" ? "" : scheme) === repScheme ? color : "#fff",
-                  background: (scheme === "なし" ? "" : scheme) === repScheme ? color : "transparent",
+                  borderColor: (scheme === "なし" ? "" : scheme) === repScheme ? "#F1FE7D" : "#fff",
+                  background: (scheme === "なし" ? "" : scheme) === repScheme ? "#F1FE7D" : "transparent",
                   color: (scheme === "なし" ? "" : scheme) === repScheme ? "#000" : "#fff",
                 }}
               >
@@ -82,10 +82,10 @@ export default function StepDurationConfig({
               <button
                 key={min}
                 onClick={() => onDurationChange(min)}
-                className="px-5 py-3 rounded-[10px] text-[13px] font-black transition-all border cursor-pointer"
+                className="p-3 rounded-[10px] text-[13px] font-black transition-all border cursor-pointer"
                 style={{
-                  borderColor: duration === min ? color : "#fff",
-                  background: duration === min ? color : "transparent",
+                  borderColor: duration === min ? "#F1FE7D" : "#fff",
+                  background: duration === min ? "#F1FE7D" : "transparent",
                   color: duration === min ? "#000" : "#fff",
                 }}
               >
@@ -101,16 +101,16 @@ export default function StepDurationConfig({
   // AMRAP / EMOM
   return (
     <div>
-      <p className="font-gothic text-2xl text-green mb-8">時間を設定</p>
+      <p className="font-gothic text-[20px] text-white mb-4">2.時間を設定しよう</p>
       <div className="flex flex-wrap gap-3">
         {DURATION_PRESETS.map((min) => (
           <button
             key={min}
             onClick={() => onDurationChange(min)}
-            className="px-5 py-3 rounded-[10px] text-[13px] font-black transition-all border cursor-pointer"
+            className="p-3 rounded-[12px] text-[13px] font-black transition-all border cursor-pointer leading-none"
             style={{
-              borderColor: duration === min ? color : "#fff",
-              background: duration === min ? color : "transparent",
+              borderColor: duration === min ? "#F1FE7D" : "#fff",
+              background: duration === min ? "#F1FE7D" : "transparent",
               color: duration === min ? "#000" : "#fff",
             }}
           >
@@ -119,10 +119,10 @@ export default function StepDurationConfig({
         ))}
       </div>
       <div className="mt-10 text-center">
-        <span className="font-gothic text-5xl" style={{ color }}>
+        <span className="font-gothic text-[64px] text-black" style={{ WebkitTextStroke: "1px white" }}>
           {duration}
         </span>
-        <span className="text-xl ml-2">分</span>
+        <span className="text-[32px] ml-2 font-gothic">分</span>
       </div>
     </div>
   );

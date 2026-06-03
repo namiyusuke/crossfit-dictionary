@@ -65,7 +65,7 @@ export default function CategoryFilter({
   return (
     <div className="space-y-2">
       {/* フィルタータグ */}
-      <div className="border-white border rounded-[14px] overflow-hidden">
+      <div className="border-white rounded-[14px] border-2 overflow-hidden">
         <button
           onClick={() => toggleSection("category")}
           className="bg-white overflow-hidden p-4 text-black font-black text-[14px] flex items-center justify-between w-full cursor-pointer"
@@ -90,7 +90,7 @@ export default function CategoryFilter({
                     <button
                       key={cat}
                       onClick={() => onCategoryChange(isActive ? null : cat)}
-                      className="shrink-0 px-5 py-3 rounded-[10px] text-[13px] font-black transition-all border cursor-pointer"
+                      className="shrink-0 px-5 py-3 rounded-[10px] text-[13px] font-black transition-all border  cursor-pointer"
                       style={{
                         backgroundColor: isActive ? color : "transparent",
                         borderColor: isActive ? "transparent" : "white",
@@ -107,7 +107,7 @@ export default function CategoryFilter({
         </AnimatePresence>
       </div>
 
-      <div className="border-white border rounded-[14px] overflow-hidden">
+      <div className="border-white rounded-[14px] border-2 overflow-hidden">
         <button
           onClick={() => toggleSection("bodyPart")}
           className="bg-white p-4 text-black font-black text-[14px] flex items-center justify-between w-full cursor-pointer "
@@ -148,7 +148,7 @@ export default function CategoryFilter({
         </AnimatePresence>
       </div>
 
-      <div className="border-white border rounded-[14px] overflow-hidden">
+      <div className="border-white rounded-[14px] border-2 overflow-hidden">
         <button
           onClick={() => toggleSection("effect")}
           className="bg-white p-4 text-black font-black text-[14px] flex items-center justify-between w-full cursor-pointer "
