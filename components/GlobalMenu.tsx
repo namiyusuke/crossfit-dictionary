@@ -38,19 +38,22 @@ export default function GlobalMenu({ active, onChange }: GlobalMenuProps) {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-1000 md:max-w-[375px]  md:mx-auto overflow-clip">
       <div className="flex">
-        {menuItems.map(({ key, label, icon: Icon }) => {
+        {menuItems.map(({ key, label, icon: Icon }, index) => {
           const isActive = active === key;
           const color = isActive ? "#F1FE7D" : "white";
+          const alignment = index === 0 ? "items-end pr-10" : "items-start pl-10";
           return (
             <button
               key={key}
               onClick={() => onChange(key)}
-              className={`bg-black flex-1 flex flex-col items-center justify-center py-[22px] cursor-pointer ${
+              className={`bg-black flex-1 flex flex-col py-[22px] cursor-pointer ${alignment} ${
                 isActive ? "text-[#F1FE7D]" : "text-white"
               }`}
             >
-              <Icon color={color} />
-              <span className={`text-[14px] mt-1 ${isActive ? "font-bold" : ""}`}>{label}</span>
+              <span className="text-center flex flex-col items-center">
+                <Icon color={color} />
+                <span className={`text-[14px] mt-1 ${isActive ? "font-bold" : ""}`}>{label}</span>
+              </span>
             </button>
           );
         })}

@@ -37,7 +37,7 @@ export default function BackgroundDecoration() {
           <div className="relative">
             <div className="flex absolute inset-0 mb-[10%] items-center flex-col justify-center m-auto h-full">
               <div className="relative">
-                <div className="absolute bottom-[96%] mx-auto left-0 right-0 ">
+                <div className="absolute bottom-[96%] mx-auto left-0 right-[-70px] ">
                   <SpriteAnimation
                     category={"bg02"}
                     className="w-[min(calc(174_/_1440_*_100vw),174px)] mx-auto left-0 right-0 "
