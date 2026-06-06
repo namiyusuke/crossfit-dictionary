@@ -54,11 +54,13 @@ export default function RootLayout({
         "font-sans",
       )}
     >
-      <body className="min-h-full flex flex-col bg-background text-text-primary">
-        <BackgroundDecoration />
-        <div className=" md:max-w-[375px] w-[375px] md:mx-auto relative z-100  min-h-screen">
-          <AutoAnonymousLogin />
-          <NuqsAdapter>{children}</NuqsAdapter>
+      <body className="min-h-full flex flex-col bg-background text-text-primary ">
+        <div className="">
+          <BackgroundDecoration />
+          <div className=" md:max-w-[375px] w-[375px] md:mx-auto relative z-100  min-h-screen">
+            <AutoAnonymousLogin />
+            <NuqsAdapter>{children}</NuqsAdapter>
+          </div>
         </div>
       </body>
     </html>
