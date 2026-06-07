@@ -83,6 +83,14 @@ export default function EmomTimer({ wod, onComplete, onQuit }: EmomTimerProps) {
     vibrate,
   ]);
 
+  // タイマー表示中は背面ページのスクロールを無効化（二重スクロール防止）
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
   // 開始
   useEffect(() => {
     startTimeRef.current = Date.now();

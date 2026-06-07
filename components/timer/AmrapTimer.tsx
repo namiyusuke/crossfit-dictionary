@@ -50,6 +50,14 @@ export default function AmrapTimer({ wod, onComplete, onQuit }: AmrapTimerProps)
     },
   });
 
+  // タイマー表示中は背面ページのスクロールを無効化（二重スクロール防止）
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
   useEffect(() => {
     start();
   }, [start]);
@@ -147,7 +155,7 @@ export default function AmrapTimer({ wod, onComplete, onQuit }: AmrapTimerProps)
             <TimerControls isPaused={isPaused} onToggle={toggle} onQuit={onQuit} formatColor={color} />
           </div>
           {/* ムーブメントリスト */}
-          <div className="px-6 mb-28">
+          <div className="px-6 mb-40">
             <div className="rounded-[20px] bg-black px-8 py-7">
               <div className="flex flex-col flex-wrap gap-2">
                 {allMovements.map((mov, i) => (
