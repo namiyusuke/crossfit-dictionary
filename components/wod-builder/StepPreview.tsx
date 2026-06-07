@@ -76,7 +76,7 @@ export default function StepPreview({ wod, movements, onLaunchTimer }: StepPrevi
           >
             きょうはこれをやる！
           </button>
-          <span className="bg-white -z-10 absolute w-full h-full rounded-2xl block right-[-4px] top-[4px]" />
+          {/* <span className="bg-white -z-10 absolute w-full h-full rounded-2xl block right-[-4px] top-[4px]" /> */}
         </div>
       </div>
     </div>

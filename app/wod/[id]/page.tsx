@@ -152,7 +152,7 @@ export default async function WodPage({ params }: Props) {
               .filter((mov) => mov.rx)
               .map((mov, i) => (
                 <div key={i} className="flex text-base leading-[1.4] font-bold l">
-                  <span>{mov.name}</span>：<span className="">{mov.rx}</span>
+                  <span className="w-32 block min-w-32">{mov.name}</span>：<span className="block w-max">{mov.rx}</span>
                 </div>
               ))}
           </div>

@@ -146,7 +146,7 @@ export default function ForTimeTimer({ wod, onComplete, onQuit }: ForTimeTimerPr
             <button
               type="button"
               onClick={handleFinish}
-              className="py-4 leading-none w-full max-w-[300px] rounded-[12px]  text-black text-base bg-green"
+              className="py-4 leading-none w-full  rounded-[12px]  text-black text-base bg-green"
             >
               完了
             </button>

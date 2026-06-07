@@ -51,7 +51,7 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
 
   return (
     <>
-      <WodPageHeader />
+      {/* <WodPageHeader /> */}
       {/* フレーム枠 */}
       <div className="inset-0 pointer-events-none mx-auto w-[375px] fixed z-3000 before:absolute before:left-0 md:before:rounded-[24px] before:right-0 before:inset-y-0 before:border before:border-[#939393] before:border-3 before:content-[''] hidden md:block"></div>
       {/* 角丸マスク（4隅のみ） */}
@@ -116,7 +116,11 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
             delay={0}
           />
         </div>
-
+        <p className="text-right w-full mt-8">
+          <Link className="text-green font-black" href="/?section=WOD">
+            WODトップに戻る
+          </Link>
+        </p>
         {/* 結果モーダル */}
         <AnimatePresence>
           {showResultModal && (
@@ -130,7 +134,8 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
           )}
         </AnimatePresence>
       </div>
-      <GlobalMenuNav active="WOD" />
+
+      {/* <GlobalMenuNav active="WOD" /> */}
     </>
   );
 }
@@ -148,7 +153,7 @@ function CompletionScreenB({ result, formatColor, onClose }: CompletionScreenPro
 
   return (
     <>
-      <WodPageHeader />
+      {/* <WodPageHeader /> */}
       {/* フレーム枠 */}
       <div className="inset-0 pointer-events-none mx-auto w-[375px] fixed z-3000 before:absolute before:left-0 md:before:rounded-[24px] before:right-0 before:inset-y-0 before:border before:border-[#939393] before:border-3 before:content-[''] hidden md:block"></div>
       {/* 角丸マスク（4隅のみ） */}
@@ -212,7 +217,11 @@ function CompletionScreenB({ result, formatColor, onClose }: CompletionScreenPro
             delay={0}
           />
         </div>
-
+        <p className="text-right w-full mt-8">
+          <Link className="text-green font-black" href="/?section=WOD">
+            WODトップに戻る
+          </Link>
+        </p>
         {/* 結果モーダル */}
         <AnimatePresence>
           {showResultModal && (
@@ -226,7 +235,8 @@ function CompletionScreenB({ result, formatColor, onClose }: CompletionScreenPro
           )}
         </AnimatePresence>
       </div>
-      <GlobalMenuNav active="WOD" />
+
+      {/* <GlobalMenuNav active="WOD" /> */}
     </>
   );
 }
