@@ -203,7 +203,7 @@ export default async function WodPage({ params }: Props) {
           <Image className="mx-auto" width={240} height={334} src={`/${wod.format}.png`} alt="走るキャラクター" />
         </div>
         {/* ワンポイントアドバイス */}
-        <div className="mt-4 rounded-lg p-4 bg-[#262626]">
+        <div className="mt-4 rounded-lg p-4 bg-[#262626] leading-[1.8]">
           <p className="">{wod.tip}</p>
         </div>
         {/* きょうはこれをやる！ */}

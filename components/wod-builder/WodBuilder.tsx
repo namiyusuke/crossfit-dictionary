@@ -127,15 +127,15 @@ export default function WodBuilder({ movements, onClose }: WodBuilderProps) {
             onClick={step === 0 ? onClose : goBack}
             className="text-[12px] cursor-pointer font-black text-white mb-10"
           >
-            {step === 0 ? "<　戻る" : "<　前へ"}
+            {"<　戻る"}
           </button>
-          <p className="font-gothic text-white font-normal text-[24px] mb-6 ">WODを作る</p>
+          <p className="font-gothic text-white font-normal text-[24px] mb-6 ">WODを組む</p>
           <div className="text-right">
             <button
               onClick={onClose}
               className="text-black text-[12px] rounded-2xl cursor-pointer font-black  bg-white px-[18px] py-2 ml-auto"
             >
-              閉じる
+              やめる
             </button>
           </div>
         </div>

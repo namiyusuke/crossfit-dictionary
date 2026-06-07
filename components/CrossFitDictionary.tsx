@@ -1,11 +1,10 @@
 "use client";
-
 import { useState, useMemo } from "react";
 import { Movement, Category, PrimaryEffect, BodyPart, Equipment } from "@/types/movement";
 import { Wod } from "@/types/wod";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useQueryState, parseAsStringLiteral } from "nuqs";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import SearchBar from "./SearchBar";
 import CategoryFilter from "./CategoryFilter";
 import MovementCard from "./MovementCard";
@@ -26,6 +25,7 @@ interface CrossFitDictionaryProps {
 
 export default function CrossFitDictionary({ movements, wods }: CrossFitDictionaryProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [activeSection, setActiveSection] = useQueryState(
     "section",
     parseAsStringLiteral(sections).withDefault("種目辞典").withOptions({ history: "push" }),
@@ -85,7 +85,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
     setUserEquipment(selected);
   };
 
-  const [showEquipmentSettings, setShowEquipmentSettings] = useState(false);
+  const [showEquipmentSettings, setShowEquipmentSettings] = useState(searchParams.get("equipment") === "true");
   const [showWodModal, setShowWodModal] = useState(false);
 
   // オンボーディング未完了の場合
@@ -96,6 +96,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
         onComplete={(selected) => {
           handleOnboardingComplete(selected);
           setShowEquipmentSettings(false);
+          router.push("/");
         }}
         {...(showEquipmentSettings ? { initialStep: 2, initialSelected: userEquipment ?? [] } : {})}
       />
@@ -170,7 +171,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
                 <div className="space-y-8 relative">
                   <SpriteAnimation
                     category={"start"}
-                    className="w-[min(calc(151_/_375_*_100vw),151px)] mx-auto absolute bottom-[99.9%] left-0 right-0"
+                    className="w-[min(calc(151_/_375_*_100vw),151px)] absolute bottom-[99.9%] left-0 right-0 mx-auto"
                   />
                   {filteredMovements.length > 0 ? (
                     filteredMovements.map((movement) => (

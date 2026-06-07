@@ -2,35 +2,19 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { Equipment } from "@/types/movement";
 import Header from "@/components/Header";
-import OnboardingEquipment from "@/components/OnboardingEquipment";
+import { useRouter } from "next/navigation";
 
 export default function WodPageHeader() {
+  const router = useRouter();
   const [showWodModal, setShowWodModal] = useState(false);
-  const [showEquipmentSettings, setShowEquipmentSettings] = useState(false);
-  const [userEquipment, setUserEquipment] = useLocalStorage<Equipment[] | null>("crossfit-user-equipment", null);
-
-  if (showEquipmentSettings) {
-    return (
-      <OnboardingEquipment
-        initialStep={2}
-        initialSelected={userEquipment ?? []}
-        onComplete={(selected) => {
-          setUserEquipment(selected);
-          setShowEquipmentSettings(false);
-        }}
-      />
-    );
-  }
 
   return (
     <>
       <Header
         activeSection="WOD"
         onShowWodModal={() => setShowWodModal(true)}
-        onShowEquipmentSettings={() => setShowEquipmentSettings(true)}
+        onShowEquipmentSettings={() => router.push("/?equipment=true")}
       />
 
       <AnimatePresence>

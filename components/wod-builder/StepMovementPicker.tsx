@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import type { Movement, Category, Equipment } from "@/types/movement";
 import { CATEGORY_COLORS, categoryLabels } from "@/types/movement";
-import { X, Check } from "lucide-react";
+import { X, Check, Minus, Plus } from "lucide-react";
 
 export interface SelectedMovement {
   movement: Movement;
@@ -60,6 +60,16 @@ export default function StepMovementPicker({
     onMovementsChange(selectedMovements.map((sm) => (sm.movement.id === movementId ? { ...sm, reps } : sm)));
   };
 
+  const adjustReps = (movementId: string, delta: number) => {
+    const sm = selectedMovements.find((s) => s.movement.id === movementId);
+    if (!sm) return;
+    const match = sm.reps.match(/^(\d+)(.*)/);
+    const current = match ? parseInt(match[1], 10) : 0;
+    const suffix = match ? match[2] : "";
+    const next = Math.max(0, current + delta);
+    updateReps(movementId, `${next}${suffix}`);
+  };
+
   const removeMovement = (movementId: string) => {
     onMovementsChange(selectedMovements.filter((sm) => sm.movement.id !== movementId));
   };
@@ -104,7 +114,7 @@ export default function StepMovementPicker({
       </div>
 
       {/* 種目一覧 */}
-      <div className="max-h-[240px] overflow-y-auto space-y-2 mb-6">
+      <div className="max-h-[240px] overflow-y-auto space-y-4 mb-6">
         {availableMovements.map((m) => {
           const selected = isSelected(m.id);
           const color = CATEGORY_COLORS[m.category];
@@ -147,13 +157,27 @@ export default function StepMovementPicker({
                 >
                   {sm.movement.name}
                 </span>
-                <input
-                  type="text"
-                  value={sm.reps}
-                  onChange={(e) => updateReps(sm.movement.id, e.target.value)}
-                  placeholder="10回"
-                  className="flex-1 px-3 py-2 rounded-lg bg-[#414141] text-white text-sm outline-none placeholder-[#888] min-w-0"
-                />
+                <div className="flex-1 flex items-center gap-1 min-w-0">
+                  <button
+                    onClick={() => adjustReps(sm.movement.id, -1)}
+                    className="w-8 h-8 rounded-lg bg-[#414141] text-white flex items-center justify-center shrink-0 cursor-pointer active:bg-[#555]"
+                  >
+                    <Minus size={14} />
+                  </button>
+                  <input
+                    type="text"
+                    value={sm.reps}
+                    onChange={(e) => updateReps(sm.movement.id, e.target.value)}
+                    placeholder="10回"
+                    className="flex-1 px-1 py-2 rounded-lg bg-[#414141] text-white text-sm text-center outline-none placeholder-[#888] min-w-0"
+                  />
+                  <button
+                    onClick={() => adjustReps(sm.movement.id, 1)}
+                    className="w-8 h-8 rounded-lg bg-[#414141] text-white flex items-center justify-center shrink-0 cursor-pointer active:bg-[#555]"
+                  >
+                    <Plus size={14} />
+                  </button>
+                </div>
                 <button onClick={() => removeMovement(sm.movement.id)} className="text-[#888] cursor-pointer shrink-0">
                   <X size={16} />
                 </button>

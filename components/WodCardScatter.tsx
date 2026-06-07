@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Wod } from "@/types/wod";
 import { MOODS } from "@/data/wods";
 import type { WodFormat } from "@/types/wod";
@@ -40,6 +41,7 @@ interface WodCardScatterProps {
 }
 
 export default function WodCardScatter({ wods, movements }: WodCardScatterProps) {
+  const router = useRouter();
   const [selectedMood, setSelectedMood] = useQueryState("mood", {
     history: "push",
     scroll: false,
@@ -136,7 +138,7 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
                         <span className="block absolute bg-gray bottom-0 mt-[8px] top-[0px] right-[-8px] -z-10 rounded-[16px] h-[101%] w-[101%]"></span>
                         <div className="pt-9 px-8">
                           <p className="text-6xl font-gothic text-green mb-4">0{index + 1}</p>
-                          <div className="flex gap-2 mb-4">
+                          <div className="flex gap-2 mb-4 items-center">
                             <span className="text-[14px] px-2 py-2 rounded-[10px] font-regular text-white border border-white flex gap-2.5">
                               <span>{wod.format}</span>
                               <span
@@ -181,8 +183,13 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
                                 return (
                                   <div key={j} className="flex justify-between text-[14px] ">
                                     <span
-                                      className="py-2 px-3 rounded-xl font-black"
+                                      className="py-2 px-3 rounded-xl font-black cursor-pointer"
                                       style={movColor ? { background: movColor, color: "#fff" } : undefined}
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        router.push(`/movement/${movement?.id}`);
+                                      }}
                                     >
                                       {mov.name}
                                     </span>
