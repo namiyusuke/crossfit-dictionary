@@ -36,7 +36,7 @@ interface GlobalMenuProps {
 
 export default function GlobalMenu({ active, onChange }: GlobalMenuProps) {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-1000 md:max-w-[375px]  md:mx-auto overflow-clip">
+    <nav className="fixed bottom-0 left-0 right-0 z-100 md:max-w-[375px]  md:mx-auto overflow-clip">
       <div className="flex">
         {menuItems.map(({ key, label, icon: Icon }, index) => {
           const isActive = active === key;

@@ -32,7 +32,28 @@ export default async function MovementPage({ params }: Props) {
   const categoryColor = CATEGORY_COLORS[movement.category];
   const categoryShadow = CATEGORY_SHADOW[movement.category];
   return (
-    <main className="min-h-screen px-4 py-8 pb-[170px] max-w-2xl mx-auto bg-gray">
+    <main className="min-h-screen px-4 py-8 pb-[170px] max-w-2xl mx-auto bg-gray relative">
+      {/* フレーム枠 */}
+      <div className="inset-0 pointer-events-none mx-auto w-[375px] fixed z-3000 before:absolute before:left-0 md:before:rounded-[24px] before:right-0 before:inset-y-0 before:border before:border-[#939393] before:border-3 before:content-[''] hidden md:block"></div>
+      {/* 角丸マスク（4隅のみ） */}
+      <div className="fixed inset-0 pointer-events-none mx-auto w-[375px] z-20 hidden md:block rounded-[24px]">
+        <div
+          className="absolute top-0 left-0 w-6 h-6"
+          style={{ background: "radial-gradient(circle at 100% 100%, transparent 23px, #262626 24px)" }}
+        />
+        <div
+          className="absolute top-0 right-0 w-6 h-6"
+          style={{ background: "radial-gradient(circle at 0% 100%, transparent 23px, #262626 24px)" }}
+        />
+        <div
+          className="absolute bottom-0 left-0 w-6 h-6"
+          style={{ background: "radial-gradient(circle at 100% 0%, transparent 23px, #262626 24px)" }}
+        />
+        <div
+          className="absolute bottom-0 right-0 w-6 h-6"
+          style={{ background: "radial-gradient(circle at 0% 0%, transparent 23px, #262626 24px)" }}
+        />
+      </div>
       {/* 戻るボタン */}
       <div className="mb-5">
         <BackButton label="戻る" />
@@ -157,14 +178,7 @@ export default async function MovementPage({ params }: Props) {
           <ol className="space-y-5">
             {movement.steps.map((step, i) => (
               <li key={i} className="text-basic font-black flex gap-4 items-center">
-                <span
-                  className="font-gothic w-[22px] text-2xl"
-                  style={{
-                    color: categoryColor,
-                  }}
-                >
-                  {i + 1}
-                </span>
+                <span className="font-gothic w-[22px] text-2xl text-white">{i + 1}</span>
                 {step}
               </li>
             ))}

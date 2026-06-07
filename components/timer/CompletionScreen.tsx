@@ -52,6 +52,15 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
   return (
     <>
       <WodPageHeader />
+      {/* フレーム枠 */}
+      <div className="inset-0 pointer-events-none mx-auto w-[375px] fixed z-3000 before:absolute before:left-0 md:before:rounded-[24px] before:right-0 before:inset-y-0 before:border before:border-[#939393] before:border-3 before:content-[''] hidden md:block"></div>
+      {/* 角丸マスク（4隅のみ） */}
+      <div className="fixed inset-0 pointer-events-none mx-auto w-[375px] z-2000 hidden md:block rounded-[24px]">
+        <div className="absolute top-0 left-0 w-6 h-6" style={{ background: "radial-gradient(circle at 100% 100%, transparent 23px, #262626 24px)" }} />
+        <div className="absolute top-0 right-0 w-6 h-6" style={{ background: "radial-gradient(circle at 0% 100%, transparent 23px, #262626 24px)" }} />
+        <div className="absolute bottom-0 left-0 w-6 h-6" style={{ background: "radial-gradient(circle at 100% 0%, transparent 23px, #262626 24px)" }} />
+        <div className="absolute bottom-0 right-0 w-6 h-6" style={{ background: "radial-gradient(circle at 0% 0%, transparent 23px, #262626 24px)" }} />
+      </div>
       <div className="fixed inset-0 pt-[130px] z-50 flex flex-col items-center bg-[#553EEC] px-6 overflow-y-auto  z-50 flex flex-col md:max-w-[375px] md:mx-auto z-20 min-h-screen">
         <div className="text-left w-full text-green  mb-8">
           {/* 戻るボタン */}
@@ -128,6 +137,15 @@ function CompletionScreenB({ result, formatColor, onClose }: CompletionScreenPro
   return (
     <>
       <WodPageHeader />
+      {/* フレーム枠 */}
+      <div className="inset-0 pointer-events-none mx-auto w-[375px] fixed z-3000 before:absolute before:left-0 md:before:rounded-[24px] before:right-0 before:inset-y-0 before:border before:border-[#939393] before:border-3 before:content-[''] hidden md:block"></div>
+      {/* 角丸マスク（4隅のみ） */}
+      <div className="fixed inset-0 pointer-events-none mx-auto w-[375px] z-2000 hidden md:block rounded-[24px]">
+        <div className="absolute top-0 left-0 w-6 h-6" style={{ background: "radial-gradient(circle at 100% 100%, transparent 23px, #262626 24px)" }} />
+        <div className="absolute top-0 right-0 w-6 h-6" style={{ background: "radial-gradient(circle at 0% 100%, transparent 23px, #262626 24px)" }} />
+        <div className="absolute bottom-0 left-0 w-6 h-6" style={{ background: "radial-gradient(circle at 100% 0%, transparent 23px, #262626 24px)" }} />
+        <div className="absolute bottom-0 right-0 w-6 h-6" style={{ background: "radial-gradient(circle at 0% 0%, transparent 23px, #262626 24px)" }} />
+      </div>
       <div className="fixed inset-0 pt-[130px] z-50 flex flex-col items-center bg-[#553EEC] px-6 overflow-y-auto  z-50 flex flex-col md:max-w-[375px] overflow-clip md:mx-auto z-20 min-h-screen">
         <div className="text-left w-full text-green mb-8">
           {/* 戻るボタン */}

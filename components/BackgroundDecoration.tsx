@@ -5,7 +5,9 @@ export default function BackgroundDecoration() {
     <>
       <div
         className="hidden md:block min-h-screen z-1 fixed inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/bg.png')" }}
+        style={{
+          background: "linear-gradient(180deg, #262626 0%, rgba(38, 38, 38, 0) 30.29%, rgba(38, 38, 38, 0) 70.19%, #262626 100%), url('/bg.png') center/cover no-repeat",
+        }}
       ></div>
       <div className="hidden md:block fixed z-20 top-[80px] w-full overflow-hidden font-gothic text-[100px] leading-none">
         <div className="bg-[#414141] py-10 bg-center bg-repeat ">

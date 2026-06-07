@@ -44,6 +44,27 @@ export default async function WodPage({ params }: Props) {
   return (
     <>
       <WodPageHeader />
+      {/* フレーム枠 */}
+      <div className="inset-0 pointer-events-none mx-auto w-[375px] fixed z-3000 before:absolute before:left-0 md:before:rounded-[24px] before:right-0 before:inset-y-0 before:border before:border-[#939393] before:border-3 before:content-[''] hidden md:block"></div>
+      {/* 角丸マスク（4隅のみ） */}
+      <div className="fixed inset-0 pointer-events-none mx-auto w-[375px] z-2000 hidden md:block rounded-[24px]">
+        <div
+          className="absolute top-0 left-0 w-6 h-6"
+          style={{ background: "radial-gradient(circle at 100% 100%, transparent 23px, #262626 24px)" }}
+        />
+        <div
+          className="absolute top-0 right-0 w-6 h-6"
+          style={{ background: "radial-gradient(circle at 0% 100%, transparent 23px, #262626 24px)" }}
+        />
+        <div
+          className="absolute bottom-0 left-0 w-6 h-6"
+          style={{ background: "radial-gradient(circle at 100% 0%, transparent 23px, #262626 24px)" }}
+        />
+        <div
+          className="absolute bottom-0 right-0 w-6 h-6"
+          style={{ background: "radial-gradient(circle at 0% 0%, transparent 23px, #262626 24px)" }}
+        />
+      </div>
       <div className="mx-auto px-4 py-40 pb-[170px] bg-[#414141] ">
         <MoodBackLink className="mb-10 text-white text-[12px] block">＜　戻る</MoodBackLink>
         {/* ヘッダー */}
@@ -65,11 +86,11 @@ export default async function WodPage({ params }: Props) {
       </div> */}
 
         <div className="mb-6">
-          <p className="font-gothic text-2xl mb-4">選んだWOD</p>
+          <p className="font-gothic text-base mb-4">選んだWOD</p>
           {/* 気分バッジ */}
           <div className="flex flex-wrap gap-2">
             {matchingMoods.map((mood) => (
-              <span key={mood.id} className="px-2 py-0.5 rounded-[10px] bg-white text-black font-black">
+              <span key={mood.id} className="px-2 py-0.5 rounded-[10px] bg-white text-black font-black text-[15px]">
                 {mood.label}
               </span>
             ))}
