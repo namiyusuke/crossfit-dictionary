@@ -32,7 +32,7 @@ export default async function MovementPage({ params }: Props) {
   const categoryColor = CATEGORY_COLORS[movement.category];
   const categoryShadow = CATEGORY_SHADOW[movement.category];
   return (
-    <main className="min-h-screen px-4 py-8 pb-24 max-w-2xl mx-auto bg-gray">
+    <main className="min-h-screen px-4 py-8 pb-[170px] max-w-2xl mx-auto bg-gray">
       {/* 戻るボタン */}
       <div className="mb-5">
         <BackButton label="戻る" />
@@ -85,8 +85,8 @@ export default async function MovementPage({ params }: Props) {
         </div>
       </section>
       {/* 使う筋肉 */}
-      <section className="mb-16">
-        <h2 className="text-2xl mb-4 font-gothic font-normal">使う部位</h2>
+      <section className="mb-12">
+        <h2 className="text-2xl mb-3 font-gothic font-normal leading-none">使う部位</h2>
         <div
           className="border px-6 py-4 rounded-[12px] border-3"
           style={{
@@ -118,15 +118,15 @@ export default async function MovementPage({ params }: Props) {
         </div>
       </section>
       {/* 目的・効果 */}
-      <section className="mb-16">
-        <h2 className="text-2xl mb-4 font-gothic font-normal">効果</h2>
+      <section className="mb-12">
+        <h2 className="text-2xl mb-3 font-gothic font-normal leading-none">効果</h2>
         <div
           className="border px-6 py-4 rounded-[12px] border-3"
           style={{
             borderColor: categoryColor,
           }}
         >
-          <p className="text-[13px]  mb-4">{movement.purpose}</p>
+          <p className="text-base  mb-4">{movement.purpose}</p>
           <div className="flex flex-wrap gap-4">
             {/* {movement.primaryEffect.map((effect) => (
               <span
@@ -146,8 +146,8 @@ export default async function MovementPage({ params }: Props) {
       </section>
 
       {/* やり方 */}
-      <section className="mb-16">
-        <h2 className="text-2xl mb-4 font-gothic font-normal">やり方</h2>
+      <section className="mb-12">
+        <h2 className="text-2xl mb-3 font-gothic font-normal leading-none">やり方</h2>
         <div
           className="border px-6 py-4 rounded-[12px] border-3"
           style={{
@@ -174,8 +174,8 @@ export default async function MovementPage({ params }: Props) {
 
       {/* 注意点 */}
       <section className="mb-6">
-        <h2 className="text-2xl mb-4 font-gothic font-normal">ここに注意</h2>
-        <ul className="space-y-3 px-5 py-6 bg-[#262626] rounded-[12px] border-3" style={{ borderColor: categoryColor }}>
+        <h2 className="text-2xl mb-3 font-gothic font-normal leading-none">ここに注意</h2>
+        <ul className="space-y-3 px-5 py-6 bg-[#262626] rounded-[12px] border-2" style={{ borderColor: categoryColor }}>
           {movement.tips.map((tip, i) => (
             <li key={i} className="font-black  text-basic flex gap-2 list-none">
               {tip}

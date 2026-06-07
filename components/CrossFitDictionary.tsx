@@ -109,7 +109,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
   return (
     <div className="">
       <div className="overflow-clip">
-        <div className="mx-auto w-full px-6 py-6 pb-24 pt-40 bg-[#414141] rounded-[24px] ">
+        <div className="mx-auto w-full px-6 py-6 pb-[170px] pt-40 bg-[#414141] rounded-[24px] ">
           <div className="relative w-full">
             {/* ヘッダー */}
             <div className="mb-10 flex items-start justify-between">
@@ -170,7 +170,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
                 <div className="space-y-8 relative">
                   <SpriteAnimation
                     category={"start"}
-                    className="w-[min(calc(151_/_375_*_100vw),151px)] absolute bottom-[99.9%] right-0"
+                    className="w-[min(calc(151_/_375_*_100vw),151px)] mx-auto absolute bottom-[99.9%] left-0 right-0"
                   />
                   {filteredMovements.length > 0 ? (
                     filteredMovements.map((movement) => (
