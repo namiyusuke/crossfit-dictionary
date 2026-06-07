@@ -14,41 +14,36 @@ export default function StepPreview({ wod, movements, onLaunchTimer }: StepPrevi
 
   return (
     <div>
-      <p className="font-gothic text-2xl text-green mb-8">プレビュー</p>
-
-      {/* フォーマット & 時間 */}
-      <div className="flex gap-2 mb-6 flex-wrap">
-        <span className="px-3 py-1.5 rounded-[10px] text-sm font-black text-white" style={{ background: color }}>
-          {wod.format}
-        </span>
-        <span className="px-3 py-1.5 rounded-[10px] text-sm font-black bg-white text-black">{wod.duration}</span>
-        {wod.rounds && (
-          <span className="px-3 py-1.5 rounded-[10px] text-sm font-black bg-white text-black">{wod.rounds}R</span>
-        )}
-        {wod.repScheme && (
-          <span className="px-3 py-1.5 rounded-[10px] text-sm font-black bg-white text-black">{wod.repScheme}</span>
-        )}
-      </div>
-
+      <p className="font-gothic text-2xl text-white mb-10">5.プレビューで確認しよう</p>
       {/* 種目リスト */}
-      <div className="bg-gray rounded-2xl p-6 mb-8">
-        <p className="text-sm font-black mb-4 text-[#999]">種目リスト</p>
+      <div className="bg-gray rounded-2xl mb-15">
+        <p className="text-[24px] font-gothic font-regular mb-4 text-white">種目リスト</p>
+        {/* フォーマット & 時間 */}
+        <div className="flex gap-2 mb-6 flex-wrap">
+          <span className="px-3 py-1.5 rounded-[10px] text-base font-black text-black bg-green">{wod.format}</span>
+          <span className="px-3 py-1.5 rounded-[10px] text-sm font-black bg-white text-black">{wod.duration}</span>
+          {wod.rounds && (
+            <span className="px-3 py-1.5 rounded-[10px] text-sm font-black bg-white text-black">{wod.rounds}R</span>
+          )}
+          {wod.repScheme && (
+            <span className="px-3 py-1.5 rounded-[10px] text-sm font-black bg-white text-black">{wod.repScheme}</span>
+          )}
+        </div>
         <div className="space-y-4">
           {wod.sets.flatMap((set) =>
             set.movements.map((mov, j) => {
               const movement = movements.find((m) => m.id === mov.movementId);
               const movColor = movement ? CATEGORY_COLORS[movement.category] : "#666";
               return (
-                <div key={j} className="flex items-center gap-4">
-                  <span className="font-gothic text-3xl text-green">{`0${j + 1}`}</span>
+                <div key={j} className="flex gap-6 border border-white p-6 border-2 rounded-[14px]">
+                  <span
+                    className={`font-gothic font-normal text-[48px] text-[#262626] [text-stroke:2px_white] [-webkit-text-stroke:2px_white] leading-none`}
+                  >{`0${j + 1}`}</span>
                   <div className="flex-1">
-                    <span
-                      className="inline-block px-3 py-1.5 rounded-xl text-xs font-black text-white mb-1"
-                      style={{ background: movColor }}
-                    >
+                    <span className="inline-block rounded-xl font-gothic text-[24px] font-black text-white mb-1 leading-[1.2]">
                       {mov.name}
                     </span>
-                    <p className="text-sm text-[#ccc]">{mov.reps}</p>
+                    <p className="text-[24px] font-gothic text-green">{mov.reps}</p>
                   </div>
                 </div>
               );
@@ -58,7 +53,7 @@ export default function StepPreview({ wod, movements, onLaunchTimer }: StepPrevi
       </div>
 
       {/* 対象部位 & 効果 */}
-      <div className="flex flex-wrap gap-2 mb-10">
+      {/* <div className="flex flex-wrap gap-2 mb-10">
         {wod.targetBodyPart.map((part) => (
           <span key={part} className="px-2 py-1 rounded-[10px] text-xs border border-[#666]">
             {part}
@@ -69,7 +64,7 @@ export default function StepPreview({ wod, movements, onLaunchTimer }: StepPrevi
             {effect}
           </span>
         ))}
-      </div>
+      </div> */}
 
       {/* タイマー起動ボタン */}
       <div className="text-center">

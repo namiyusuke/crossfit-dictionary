@@ -129,7 +129,7 @@ export default function WodBuilder({ movements, onClose }: WodBuilderProps) {
           >
             {"<　戻る"}
           </button>
-          <p className="font-gothic text-white font-normal text-[24px] mb-6 ">WODを組む</p>
+          <p className="font-gothic text-white font-normal text-[24px] mb-6 ">自分でWODを組む</p>
           <div className="text-right">
             <button
               onClick={onClose}
