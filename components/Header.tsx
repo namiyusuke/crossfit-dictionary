@@ -6,7 +6,7 @@ interface HeaderProps {
 
 export default function Header({ activeSection, onShowWodModal, onShowEquipmentSettings }: HeaderProps) {
   return (
-    <div className="flex justify-between w-full max-w-[375px] mx-auto fixed left-0 right-0 top-0 bg-black px-[16px] bg-[#262626] pt-14 pb-[14px] z-1000 rounded-tl-[24px] rounded-tr-[24px] overflow-clip">
+    <div className="flex justify-between w-full md:max-w-[375px] mx-auto fixed left-0 right-0 top-0 bg-black px-[16px] bg-[#262626] pt-14 pb-[14px] z-1000 md:rounded-tl-[24px] md:rounded-tr-[24px] overflow-clip">
       <h1 className="text-4xl font-gothic flex gap-4 font-normal text-green">
         <span>{activeSection}</span>
         {activeSection == "WOD" && (
