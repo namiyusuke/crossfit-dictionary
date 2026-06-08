@@ -105,6 +105,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
 
   const handleMenuChange = (key: MenuKey) => {
     handleSectionChange(key);
+    window.scrollTo(0, 0);
   };
 
   return (

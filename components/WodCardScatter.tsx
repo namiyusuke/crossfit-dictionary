@@ -58,6 +58,7 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
 
   const handleMoodSelect = (moodId: string) => {
     setSelectedMood(moodId);
+    window.scrollTo(0, 0);
   };
 
   const handleReset = () => {
@@ -217,7 +218,7 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
       )}
 
       {/* WODビルダー */}
-      {showBuilder && <WodBuilder movements={movements} onClose={() => setShowBuilder(false)} />}
+      {showBuilder && <WodBuilder movements={movements} onClose={() => { setShowBuilder(false); window.scrollTo(0, 0); }} />}
 
       {/* フォーマット説明モーダル */}
       <AnimatePresence>

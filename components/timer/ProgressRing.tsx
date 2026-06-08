@@ -24,7 +24,7 @@ export default function ProgressRing({ progress, size = 240, strokeWidth = 8, co
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="#F1FE7D"
+          stroke="#DB6C66"
           strokeWidth={strokeWidth}
           className="text-border"
         />

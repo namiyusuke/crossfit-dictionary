@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import type { Wod, WodFormat } from "@/types/wod";
 import type { Movement, Equipment } from "@/types/movement";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
@@ -32,6 +32,7 @@ interface WodBuilderProps {
 }
 
 export default function WodBuilder({ movements, onClose }: WodBuilderProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [step, setStep] = useState(0);
   const [direction, setDirection] = useState(1);
 
@@ -46,14 +47,18 @@ export default function WodBuilder({ movements, onClose }: WodBuilderProps) {
   const [showTimer, setShowTimer] = useState(false);
   const [userEquipment] = useLocalStorage<Equipment[]>("crossfit-user-equipment", []);
 
+  const scrollToTop = () => containerRef.current?.scrollTo(0, 0);
+
   const goNext = () => {
     setDirection(1);
     setStep((s) => Math.min(TOTAL_STEPS - 1, s + 1));
+    scrollToTop();
   };
 
   const goBack = () => {
     setDirection(-1);
     setStep((s) => Math.max(0, s - 1));
+    scrollToTop();
   };
 
   const canProceed = useMemo(() => {
@@ -116,7 +121,7 @@ export default function WodBuilder({ movements, onClose }: WodBuilderProps) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto md:max-w-[375px] md:mx-auto pb-24 bg-gray">
+    <div ref={containerRef} className="fixed inset-0 z-50 overflow-y-auto md:max-w-[375px] md:mx-auto pb-24 bg-gray">
       <div className="pt-[166px] pb-20">
         {/* ヘッダー */}
         <div className="px-6 pb-2 justify-between items-center">
