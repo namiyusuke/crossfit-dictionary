@@ -65,7 +65,7 @@ export default async function WodPage({ params }: Props) {
           style={{ background: "radial-gradient(circle at 0% 0%, transparent 23px, #262626 24px)" }}
         />
       </div>
-      <div className="mx-auto px-4 py-40 pb-[170px] bg-[#414141] ">
+      <div className="mx-auto px-4 py-40 pb-[170px] bg-[#414141] overflow-clip">
         <MoodBackLink className="mb-10 text-white text-[12px] block">＜　戻る</MoodBackLink>
         {/* ヘッダー */}
         {/* <div className="mb-6 flex items-start justify-between">
