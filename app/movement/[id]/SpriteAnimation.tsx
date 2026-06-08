@@ -3,17 +3,17 @@
 import { useState, useEffect, useMemo } from "react";
 
 const framesByCategory: Record<string, string[]> = {
-  W: ["/red01.png", "/red02.png"],
-  M: ["/green01.png", "/green02.png"],
-  G: ["/blue01.png", "/blue02.png"],
-  wod: ["/cream01.png", "/cream02.png"],
-  bg01: ["/bg-char01-01.png", "/bg-char01-02.png"],
-  bg02: ["/bg-char02-01.png", "/bg-char02-02.png"],
-  bg03: ["/bg-char03-01.png", "/bg-char03-02.png"],
-  bg04: ["/bg-char04-01.png", "/bg-char04-02.png"],
-  bg05: ["/bg-char05-01.png", "/bg-char05-02.png"],
-  start: ["/crossFitDictionary-char01.png", "/crossFitDictionary-char01-move.png"],
-  end: ["/protein01.png", "/protein02.png"],
+  W: ["/red01.webp", "/red02.webp"],
+  M: ["/green01.webp", "/green02.webp"],
+  G: ["/blue01.webp", "/blue02.webp"],
+  wod: ["/cream01.webp", "/cream02.webp"],
+  bg01: ["/bg-char01-01.webp", "/bg-char01-02.webp"],
+  bg02: ["/bg-char02-01.webp", "/bg-char02-02.webp"],
+  bg03: ["/bg-char03-01.webp", "/bg-char03-02.webp"],
+  bg04: ["/bg-char04-01.webp", "/bg-char04-02.webp"],
+  bg05: ["/bg-char05-01.webp", "/bg-char05-02.webp"],
+  start: ["/crossFitDictionary-char01.webp", "/crossFitDictionary-char01-move.webp"],
+  end: ["/protein01.webp", "/protein02.webp"],
 };
 
 export default function SpriteAnimation({

@@ -200,7 +200,7 @@ export default async function WodPage({ params }: Props) {
         {/* 画像 */}
         <div className="pt-32 pb-10 my-10 bg-[#414141] relative">
           <ScrollComment text={comment[wod.format]} />
-          <Image className="mx-auto" width={240} height={334} src={`/${wod.format}.png`} alt="走るキャラクター" />
+          <Image className="mx-auto" width={240} height={334} src={`/${wod.format}.webp`} alt="走るキャラクター" />
         </div>
         {/* ワンポイントアドバイス */}
         <div className="mt-4 rounded-lg p-4 bg-[#262626] leading-[1.8]">

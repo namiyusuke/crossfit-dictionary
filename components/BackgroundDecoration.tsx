@@ -6,12 +6,12 @@ export default function BackgroundDecoration() {
       <div
         className="hidden md:block min-h-screen z-1 fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          background: "linear-gradient(180deg, #262626 0%, rgba(38, 38, 38, 0) 30.29%, rgba(38, 38, 38, 0) 70.19%, #262626 100%), url('/bg.png') center/cover no-repeat",
+          background: "linear-gradient(180deg, #262626 0%, rgba(38, 38, 38, 0) 30.29%, rgba(38, 38, 38, 0) 70.19%, #262626 100%), url('/bg.webp') center/cover no-repeat",
         }}
       ></div>
       <div className="hidden md:block fixed z-20 top-[80px] w-full overflow-hidden font-gothic text-[100px] leading-none">
         <div className="bg-[#414141] py-10 bg-center bg-repeat ">
-          <div className="bg-contain absolute inset-0" style={{ backgroundImage: "url('/noise-bg.png')" }}></div>
+          <div className="bg-contain absolute inset-0" style={{ backgroundImage: "url('/noise-bg.webp')" }}></div>
           <div className="flex gap-6 w-max animate-marquee">
             {[...Array(2)].map((_, i) => (
               <div key={i} className="flex gap-6 items-center shrink-0 leading-none">
@@ -54,7 +54,7 @@ export default function BackgroundDecoration() {
                   <span className="block font-gothic text-5xl mb-4">CrossFit</span>
                   <span className="font-gothic text-2xl">種目辞典</span>
                 </p> */}
-                <Image className="" width={256} height={72} src="/logo-opening.png" alt="ケトルべル" />
+                <Image className="" width={256} height={72} src="/logo-opening.webp" alt="ケトルべル" priority />
               </div>
             </div>
             <div className="absolute inset-0 flex items-center justify-center">
@@ -78,7 +78,7 @@ export default function BackgroundDecoration() {
                 className="absolute translate-x-[120px] translate-y-[356px] "
                 width={60}
                 height={77}
-                src="/kettlebell.png"
+                src="/kettlebell.webp"
                 alt="ケトルべル"
               />
             </div>
@@ -101,13 +101,13 @@ export default function BackgroundDecoration() {
                   interval={1400}
                   delay={600}
                 /> */}
-                <Image className="animate-rotate" alt="バー" src="/bg-char04-02.png" width={160} height={168} />
+                <Image className="animate-rotate" alt="バー" src="/bg-char04-02.webp" width={160} height={168} />
               </div>
               <Image
                 className="absolute z-0 translate-x-[180px] translate-y-[356px] "
                 width={221}
                 height={164}
-                src="/dumbbell.png"
+                src="/dumbbell.webp"
                 alt="バー"
               />
             </div>

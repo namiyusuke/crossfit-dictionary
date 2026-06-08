@@ -100,7 +100,7 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
               className="mx-auto animate-flip-x"
               width={180}
               height={271}
-              src="/yellow01.png"
+              src="/yellow01.webp"
               alt="走るキャラクター"
             />
           </div>
@@ -210,7 +210,7 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
                   <span className="block text-6xl mb-2">追い込んで</span>
                   <span className="block text-2xl text-right mr-10">いこうぜ！？</span>
                 </p>
-                <Image src="/WOD-char01.png" alt="バーベルを持ち上げるキャラクター" width={652} height={460} />
+                <Image src="/WOD-char01.webp" alt="バーベルを持ち上げるキャラクター" width={652} height={460} />
               </div>
             </div>
           )}

@@ -64,7 +64,7 @@ export default function OnboardingEquipment({
               {step === 0 && (
                 <div className="text-center mb-16">
                   <div className="text-5xl mb-6 max-w-[273px]">
-                    <Image width={414} height={537} src="/onboarding-char01.png" alt="走るキャラクター" />
+                    <Image width={414} height={537} src="/onboarding-char01.webp" alt="走るキャラクター" priority />
                   </div>
                   {/* <h1 className="text-xs mb-3 px-3 py-2 rounded-lg bg-button w-max mx-auto text-black">
                     本気のやつらのための
@@ -256,7 +256,7 @@ export default function OnboardingEquipment({
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <Image width={276} height={418} src="/onboarding-char02.png" alt="走るキャラクター" />
+                <Image width={276} height={418} src="/onboarding-char02.webp" alt="走るキャラクター" />
               </motion.div>
             )}
           </AnimatePresence>
