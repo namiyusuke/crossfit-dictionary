@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import type { Wod } from "@/types/wod";
-import { useTimerSound } from "@/hooks/useTimerSound";
 import { parseDurationMinutes, getEmomSetForMinute, FORMAT_COLORS, formatTime } from "@/lib/timer-utils";
 import ProgressRing from "./ProgressRing";
 import TimerControls from "./TimerControls";
@@ -19,8 +18,6 @@ interface EmomTimerProps {
 export default function EmomTimer({ wod, onComplete, onQuit }: EmomTimerProps) {
   const color = FORMAT_COLORS.EMOM;
   const totalMinutes = parseDurationMinutes(wod.duration);
-  const { playCountdownBeep, playMinuteChangeBeep, playCompleteBeep, vibrate } = useTimerSound();
-
   const [currentMinute, setCurrentMinute] = useState(1);
   const [secondsInMinute, setSecondsInMinute] = useState(60);
   const [isPaused, setIsPaused] = useState(false);
@@ -47,8 +44,6 @@ export default function EmomTimer({ wod, onComplete, onQuit }: EmomTimerProps) {
     if (minute > totalMinutes && !completedRef.current) {
       completedRef.current = true;
       clearTimer();
-      playCompleteBeep();
-      vibrate([200, 100, 200]);
       onComplete({
         format: "EMOM",
         wodName: wod.name,
@@ -56,17 +51,6 @@ export default function EmomTimer({ wod, onComplete, onQuit }: EmomTimerProps) {
         completedMinutes: totalMinutes,
       });
       return;
-    }
-
-    // 分の切り替え検知
-    if (minute !== currentMinute && minute <= totalMinutes) {
-      playMinuteChangeBeep();
-      vibrate(150);
-    }
-
-    // 残り3秒のビープ
-    if (secInMin <= 3 && secInMin > 0) {
-      playCountdownBeep();
     }
 
     setCurrentMinute(Math.min(minute, totalMinutes));
@@ -77,10 +61,6 @@ export default function EmomTimer({ wod, onComplete, onQuit }: EmomTimerProps) {
     clearTimer,
     onComplete,
     wod.name,
-    playCountdownBeep,
-    playMinuteChangeBeep,
-    playCompleteBeep,
-    vibrate,
   ]);
 
   // タイマー表示中は背面ページのスクロールを無効化（二重スクロール防止）

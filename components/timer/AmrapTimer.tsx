@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import type { Wod } from "@/types/wod";
 import { useTimer } from "@/hooks/useTimer";
-import { useTimerSound } from "@/hooks/useTimerSound";
 import { parseDurationMinutes, FORMAT_COLORS } from "@/lib/timer-utils";
 import TimerDisplay from "./TimerDisplay";
 import ProgressRing from "./ProgressRing";
@@ -23,23 +22,13 @@ export default function AmrapTimer({ wod, onComplete, onQuit }: AmrapTimerProps)
   const color = FORMAT_COLORS.AMRAP;
   const totalMinutes = parseDurationMinutes(wod.duration);
   const totalSeconds = totalMinutes * 60;
-  const { playCountdownBeep, playCompleteBeep, vibrate } = useTimerSound();
-
   const [roundCount, setRoundCount] = useState(0);
   const [extraReps, setExtraReps] = useState(0);
 
   const { seconds, isPaused, toggle, start } = useTimer({
     mode: "countdown",
     totalSeconds,
-    onTick: (remaining) => {
-      if (remaining <= 3 && remaining > 0) {
-        playCountdownBeep();
-        vibrate(100);
-      }
-    },
     onComplete: () => {
-      playCompleteBeep();
-      vibrate([200, 100, 200]);
       onComplete({
         format: "AMRAP",
         wodName: wod.name,

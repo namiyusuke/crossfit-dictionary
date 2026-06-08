@@ -4,7 +4,6 @@ import { useState, useMemo } from "react";
 import type { Wod, WodFormat } from "@/types/wod";
 import type { Movement, Equipment } from "@/types/movement";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { useTimerSound } from "@/hooks/useTimerSound";
 import { AnimatePresence, motion } from "framer-motion";
 import WodTimerOverlay from "@/components/timer/WodTimerOverlay";
 import BuilderProgressDots from "./BuilderProgressDots";
@@ -45,7 +44,6 @@ export default function WodBuilder({ movements, onClose }: WodBuilderProps) {
 
   // Timer
   const [showTimer, setShowTimer] = useState(false);
-  const { initAudio } = useTimerSound();
   const [userEquipment] = useLocalStorage<Equipment[]>("crossfit-user-equipment", []);
 
   const goNext = () => {
@@ -108,7 +106,6 @@ export default function WodBuilder({ movements, onClose }: WodBuilderProps) {
 
   const handleLaunchTimer = () => {
     if (!builtWod) return;
-    initAudio();
     setShowTimer(true);
   };
 

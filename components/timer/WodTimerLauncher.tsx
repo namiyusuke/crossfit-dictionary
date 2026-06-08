@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import type { Wod } from "@/types/wod";
-import { useTimerSound } from "@/hooks/useTimerSound";
 import WodTimerOverlay from "./WodTimerOverlay";
 
 interface WodTimerLauncherProps {
@@ -11,10 +10,8 @@ interface WodTimerLauncherProps {
 
 export default function WodTimerLauncher({ wod }: WodTimerLauncherProps) {
   const [isTimerOpen, setIsTimerOpen] = useState(false);
-  const { initAudio } = useTimerSound();
 
   const handleClick = () => {
-    initAudio(); // iOS Safari: ユーザーインタラクション時にAudioContextを初期化
     setIsTimerOpen(true);
   };
 

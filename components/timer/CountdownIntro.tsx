@@ -32,7 +32,7 @@ export default function CountdownIntro({ formatColor, onComplete }: CountdownInt
           transition={{ duration: 0.35 }}
           className="font-gothic"
           style={{
-            color: formatColor,
+            color: "#DB6C66",
             fontSize: count === 0 ? "6rem" : "8rem",
             lineHeight: 1,
           }}

@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import type { Wod } from "@/types/wod";
 import { useTimer } from "@/hooks/useTimer";
-import { useTimerSound } from "@/hooks/useTimerSound";
 import { FORMAT_COLORS } from "@/lib/timer-utils";
 import TimerDisplay from "./TimerDisplay";
 import TimerControls from "./TimerControls";
@@ -20,7 +19,6 @@ interface ForTimeTimerProps {
 
 export default function ForTimeTimer({ wod, onComplete, onQuit }: ForTimeTimerProps) {
   const color = FORMAT_COLORS.ForTime;
-  const { vibrate } = useTimerSound();
   const totalRounds = wod.rounds ?? 1;
   const [currentRound, setCurrentRound] = useState(1);
   const totalMovements = wod.sets.reduce((acc, set) => acc + set.movements.length, 0);
@@ -28,9 +26,6 @@ export default function ForTimeTimer({ wod, onComplete, onQuit }: ForTimeTimerPr
 
   const { seconds, isPaused, toggle, start } = useTimer({
     mode: "countup",
-    onTick: (elapsed) => {
-      if (elapsed > 0 && elapsed % 60 === 0) vibrate();
-    },
   });
 
   // タイマー表示中は背面ページのスクロールを無効化（二重スクロール防止）

@@ -75,8 +75,11 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
       </div>
       <div className="fixed inset-0 pt-[130px] z-50 flex flex-col items-center bg-[#553EEC] px-6 overflow-y-auto  z-50 flex flex-col md:max-w-[375px] md:mx-auto z-20 min-h-screen">
         <div className="text-left w-full text-green  mb-8">
-          {/* 戻るボタン */}
-          <BackButton label="戻る" />
+          <p>
+            <Link className="text-green font-black" href="/?section=WOD">
+              WODトップに戻る
+            </Link>
+          </p>
         </div>
         {stars.map((star) => (
           <motion.div
@@ -116,11 +119,6 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
             delay={0}
           />
         </div>
-        <p className="text-right w-full mt-8">
-          <Link className="text-green font-black" href="/?section=WOD">
-            WODトップに戻る
-          </Link>
-        </p>
         {/* 結果モーダル */}
         <AnimatePresence>
           {showResultModal && (
@@ -178,7 +176,11 @@ function CompletionScreenB({ result, formatColor, onClose }: CompletionScreenPro
       <div className="fixed inset-0 pt-[130px] z-50 flex flex-col items-center bg-[#553EEC] px-6 overflow-y-auto  z-50 flex flex-col md:max-w-[375px] overflow-clip md:mx-auto z-20 min-h-screen">
         <div className="text-left w-full text-green mb-8">
           {/* 戻るボタン */}
-          <BackButton label="戻る" />
+          <p>
+            <Link className="text-green font-black" href="/?section=WOD">
+              WODトップに戻る
+            </Link>
+          </p>
         </div>
         {stars.map((star) => (
           <motion.div
@@ -202,7 +204,7 @@ function CompletionScreenB({ result, formatColor, onClose }: CompletionScreenPro
           transition={{ duration: 0.4, ease: "easeOut" }}
           className="text-center rotate-[10.41deg] relative font-normal"
         >
-          <p className="font-gothic relative z-10 text-[110px] mb-3 text-green whitespace-nowrap leading-none">
+          <p className="font-gothic relative z-10 text-[110px] mb-3 text-green whitespace-nowrap leading-none pointer-events-none">
             達成感
           </p>
           <p className="font-gothic absolute z-0 text-[110px] top-[10px] right-[-10px] mb-3 text-[#414141] whitespace-nowrap leading-none">
@@ -217,11 +219,6 @@ function CompletionScreenB({ result, formatColor, onClose }: CompletionScreenPro
             delay={0}
           />
         </div>
-        <p className="text-right w-full mt-8">
-          <Link className="text-green font-black" href="/?section=WOD">
-            WODトップに戻る
-          </Link>
-        </p>
         {/* 結果モーダル */}
         <AnimatePresence>
           {showResultModal && (
