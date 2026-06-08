@@ -1,3 +1,4 @@
+
 interface HeaderProps {
   activeSection: string;
   onShowWodModal: () => void;
@@ -6,7 +7,7 @@ interface HeaderProps {
 
 export default function Header({ activeSection, onShowWodModal, onShowEquipmentSettings }: HeaderProps) {
   return (
-    <div className="flex justify-between w-full md:max-w-[375px] mx-auto fixed left-0 right-0 top-0 bg-black px-[16px] bg-[#262626] pt-14 pb-[14px] z-1000 md:rounded-tl-[24px] md:rounded-tr-[24px] overflow-clip">
+    <div className="flex justify-between w-full md:max-w-[375px] mx-auto fixed left-0 right-0 top-0 bg-black px-[16px] bg-[#262626] pt-14 pb-[14px] z-1000 md:rounded-tl-[24px] md:rounded-tr-[24px] overflow-clip items-end">
       <h1 className="text-4xl font-gothic flex gap-4 font-normal text-green">
         <span>{activeSection}</span>
         {activeSection == "WOD" && (
@@ -21,10 +22,18 @@ export default function Header({ activeSection, onShowWodModal, onShowEquipmentS
           </span>
         )}
       </h1>
-      <div className="text-right">
+      <div className="text-right flex flex-col items-end gap-2">
+        {activeSection == "種目辞典" && (
+          <a
+            href="mailto:attcraft.nk@gmail.com"
+            className="text-xs rounded-[16px] bg-white font-black text-black px-4 py-2  transition-colors cursor-pointer leading-none"
+          >
+            お問い合わせ
+          </a>
+        )}
         <button
           onClick={onShowEquipmentSettings}
-          className="text-xs rounded-[16px] bg-white font-black text-black px-4 py-2  transition-colors cursor-pointer"
+          className="text-xs rounded-[16px] bg-white font-black text-black px-4 py-2  transition-colors cursor-pointer w-max leading-none"
         >
           設備変更
         </button>
