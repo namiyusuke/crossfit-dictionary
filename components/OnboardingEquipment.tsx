@@ -80,7 +80,7 @@ export default function OnboardingEquipment({
               {/* Step 2: できること */}
               {step === 1 && (
                 <div className="text-center mb-52">
-                  <h1 className="text-2xl font-bold mb-10 font-gothic text-white">できること</h1>
+                  <h1 className="text-2xl font-normal mb-10 font-gothic text-white">できること</h1>
                   <div className="space-y-4 text-left">
                     <div className="flex items-start gap-3 px-10 py-6 rounded-lg border-[5px] bg-[#414141] border-[#F1FE7D]">
                       <div>
@@ -121,7 +121,7 @@ export default function OnboardingEquipment({
                               />
                             </svg>
                           </span>
-                          <p className="font-medium text-text-primary font-gothic">
+                          <p className="font-normal text-text-primary font-gothic">
                             WOD
                             <br />
                             テンプレート
@@ -137,7 +137,7 @@ export default function OnboardingEquipment({
               {step === 2 && (
                 <div>
                   <div className="text-center mb-6">
-                    <h1 className="text-4xl font-bold text-text-primary mb-6 font-gothic">使える設備は？</h1>
+                    <h1 className="text-4xl font-normal mb-6 font-gothic">使える設備は？</h1>
                     <p className="text-left">チェックした設備に合わせて、種目・メニューを表示します。</p>
                   </div>
                   <div className="flex flex-col gap-y-2 mb-11">
@@ -192,7 +192,7 @@ export default function OnboardingEquipment({
               {step === 3 && (
                 <div className="mb-3">
                   <div className="text-center mb-8">
-                    <h1 className="text-4xl font-bold text-text-primary mb-6 font-gothic">ご確認ください</h1>
+                    <h1 className="text-4xl font-normal mb-6 font-gothic">ご確認ください</h1>
                   </div>
                   <div className="flex flex-col gap-y-4">
                     <article className="bg-[#414141] px-7 py-6 rounded-xl font-bold">
