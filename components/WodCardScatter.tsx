@@ -205,20 +205,81 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
                   );
                 })}
               </div>
-              <div className="mt-20">
-                <p className="font-gothic text-green rotate-[-5deg] mb-11  w-max mx-auto">
-                  <span className="block text-6xl mb-2">追い込んで</span>
-                  <span className="block text-2xl text-right mr-10">いこうぜ！？</span>
-                </p>
-                <Image src="/WOD-char01.webp" alt="バーベルを持ち上げるキャラクター" width={652} height={460} />
-              </div>
+              {selectedMood == "light" && (
+                <div className="mt-20">
+                  <p className="font-gothic text-green rotate-[-5deg] mb-11  w-max mx-auto font-normal">
+                    <span className="block text-6xl mb-2">さくっと？</span>
+                    <span className="block text-2xl text-right mr-10">それいいのか？</span>
+                  </p>
+                  <Image
+                    className="mx-auto"
+                    src="/WOD-char02.webp"
+                    alt="バーベルを持ち上げるキャラクター"
+                    width={170}
+                    height={230}
+                  />
+                </div>
+              )}
+              {selectedMood == "hard" && (
+                <div className="mt-20">
+                  <p className="font-gothic text-green rotate-[-5deg] mb-11 w-max mx-auto font-normal">
+                    <span className="block text-6xl mb-2">追い込んで</span>
+                    <span className="block text-2xl text-right mr-10">いこうぜ！？</span>
+                  </p>
+                  <Image
+                    className="mx-auto"
+                    src="/WOD-char01.webp"
+                    alt="バーベルを持ち上げるキャラクター"
+                    width={326}
+                    height={230}
+                  />
+                </div>
+              )}
+              {selectedMood == "cardio" && (
+                <div className="mt-20">
+                  <p className="font-gothic text-green rotate-[-5deg] mb-11 w-max mx-auto font-normal">
+                    <span className="block text-4xl ml-10">きざむぜ</span>
+                    <span className="block text-5xl mb-2">血液のビート！</span>
+                  </p>
+                  <Image
+                    className="mx-auto"
+                    src="/WOD-char03.webp"
+                    alt="バーベルを持ち上げるキャラクター"
+                    width={163}
+                    height={230}
+                  />
+                </div>
+              )}
+              {selectedMood == "strength" && (
+                <div className="mt-20">
+                  <p className="font-gothic text-green rotate-[-5deg] mb-11 w-max mx-auto font-normal">
+                    <span className="block text-4xl ">マッスルマッスル！</span>
+                    <span className="block text-5xl mb-2">マッチョマン！</span>
+                  </p>
+                  <Image
+                    className="mx-auto"
+                    src="/WOD-char04.webp"
+                    alt="バーベルを持ち上げるキャラクター"
+                    width={189}
+                    height={230}
+                  />
+                </div>
+              )}
             </div>
           )}
         </div>
       )}
 
       {/* WODビルダー */}
-      {showBuilder && <WodBuilder movements={movements} onClose={() => { setShowBuilder(false); window.scrollTo(0, 0); }} />}
+      {showBuilder && (
+        <WodBuilder
+          movements={movements}
+          onClose={() => {
+            setShowBuilder(false);
+            window.scrollTo(0, 0);
+          }}
+        />
+      )}
 
       {/* フォーマット説明モーダル */}
       <AnimatePresence>

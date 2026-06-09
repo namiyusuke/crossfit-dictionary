@@ -80,7 +80,7 @@ export default function OnboardingEquipment({
               {/* Step 2: できること */}
               {step === 1 && (
                 <div className="text-center mb-52">
-                  <h1 className="text-2xl font-normal mb-10 font-gothic text-white">できること</h1>
+                  <h1 className="text-4xl font-normal mb-10 font-gothic text-white">できること</h1>
                   <div className="space-y-4 text-left">
                     <div className="flex items-start gap-3 px-10 py-6 rounded-lg border-[5px] bg-[#414141] border-[#F1FE7D]">
                       <div>
@@ -104,10 +104,10 @@ export default function OnboardingEquipment({
                         <p className="">38種目のやり方・ポイントを確認</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3 px-10 py-6 rounded-lg border-[5px] bg-[#414141] border-[#F1FE7D]">
+                    <div className="flex items-stfart gap-3 px-10 py-6 rounded-lg border-[5px] bg-[#414141] border-[#F1FE7D]">
                       <div>
                         <div className="flex gap-x-2 text-2xl mb-4">
-                          <span className="text-xl items-center">
+                          <span className="text-xl items-center mt-1">
                             <svg
                               width="28"
                               height="28"

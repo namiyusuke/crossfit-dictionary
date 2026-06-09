@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-
+import Image from "next/image";
 const framesByCategory: Record<string, string[]> = {
   W: ["/red01.webp", "/red02.webp"],
   M: ["/green01.webp", "/green02.webp"],
@@ -46,7 +46,48 @@ export default function SpriteAnimation({
   }, [frames, interval, delay]);
 
   return (
-    <div className={className ?? "flex justify-center items-end h-48"}>
+    <div className={className ?? "flex justify-center items-end h-48 relative"}>
+      <span className="absolute top-8 left-14 -rotate-140">
+        <span className="block animate-sweat-x">
+          <Image className="animate-sweat-y" width={21} height={28} src="/water.webp" alt="汗" />
+        </span>
+      </span>
+      <span className="absolute top-20 left-10 -rotate-160">
+        <span className="block animate-sweat-x" style={{ animationDelay: "0.4s" }}>
+          <Image
+            className="animate-sweat-y"
+            style={{ animationDelay: "0.4s" }}
+            width={21}
+            height={28}
+            src="/water.webp"
+            alt="汗"
+          />
+        </span>
+      </span>
+      <span className="absolute top-8 right-11 rotate-150">
+        <span className="block animate-sweat-x" style={{ animationDelay: "0.2s" }}>
+          <Image
+            className="animate-sweat-y"
+            style={{ animationDelay: "0.2s" }}
+            width={21}
+            height={28}
+            src="/water.webp"
+            alt="汗"
+          />
+        </span>
+      </span>
+      <span className="absolute top-20 right-10 rotate-160">
+        <span className="block animate-sweat-x" style={{ animationDelay: "0.6s" }}>
+          <Image
+            className="animate-sweat-y"
+            style={{ animationDelay: "0.6s" }}
+            width={21}
+            height={28}
+            src="/water.webp"
+            alt="汗"
+          />
+        </span>
+      </span>
       <div className="relative w-full h-full">
         {frames.map((src, i) => (
           <img
