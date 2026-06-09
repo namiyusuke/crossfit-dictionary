@@ -33,6 +33,7 @@ async function seed() {
       difficulty: m.difficulty,
       scaling: m.scaling,
       videoId: m.videoId,
+      videoSource: m.videoSource ?? null,
       roadmap: m.roadmap,
     };
     await db

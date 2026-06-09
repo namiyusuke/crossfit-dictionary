@@ -24,6 +24,7 @@ function mapRowToMovement(row: MovementRow): Movement {
     difficulty: row.difficulty,
     scaling: row.scaling,
     videoId: row.videoId,
+    videoSource: row.videoSource ?? undefined,
     roadmap: row.roadmap ?? null,
   };
 }
@@ -57,6 +58,7 @@ export async function createMovement(data: Movement) {
     difficulty: data.difficulty,
     scaling: data.scaling,
     videoId: data.videoId,
+    videoSource: data.videoSource ?? null,
     roadmap: data.roadmap,
   });
 }
@@ -81,6 +83,7 @@ export async function updateMovement(id: string, data: Omit<Movement, "id">) {
       difficulty: data.difficulty,
       scaling: data.scaling,
       videoId: data.videoId,
+      videoSource: data.videoSource ?? null,
       roadmap: data.roadmap,
       updatedAt: new Date(),
     })

@@ -85,6 +85,7 @@ export interface Movement {
   difficulty: number;
   scaling: string;
   videoId: string;
+  videoSource?: string;
   roadmap: Roadmap | null;
 }
 

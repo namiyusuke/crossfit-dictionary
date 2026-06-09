@@ -104,6 +104,9 @@ export default async function MovementPage({ params }: Props) {
             allowFullScreen
           />
         </div>
+        {movement.videoSource && (
+          <p className="text-[11px] text-right mt-1 text-gray-400">出典：{movement.videoSource}</p>
+        )}
       </section>
       {/* 使う筋肉 */}
       <section className="mb-12">

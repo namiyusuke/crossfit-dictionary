@@ -20,6 +20,7 @@ export const movements = sqliteTable("movements", {
   scaling: text("scaling").notNull(),
   movementPattern: text("movement_pattern", { mode: "json" }).notNull().$type<string[]>(),
   videoId: text("video_id").notNull(),
+  videoSource: text("video_source"),
   roadmap: text("roadmap", { mode: "json" }).$type<Roadmap | null>(),
   createdAt: integer("created_at", { mode: "timestamp_ms" })
     .default(sql`(cast(unixepoch('subsecond') * 1000 as integer))`)

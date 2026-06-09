@@ -45,6 +45,7 @@ export default function MovementForm({ initialData, action }: MovementFormProps)
   const [category, setCategory] = useState<Category>(initialData?.category ?? "W");
   const [difficulty, setDifficulty] = useState(initialData?.difficulty ?? 1);
   const [videoId, setVideoId] = useState(initialData?.videoId ?? "");
+  const [videoSource, setVideoSource] = useState(initialData?.videoSource ?? "");
   const [scaling, setScaling] = useState(initialData?.scaling ?? "");
   const [oneLiner, setOneLiner] = useState(initialData?.oneLiner ?? "");
   const [purpose, setPurpose] = useState(initialData?.purpose ?? "");
@@ -94,6 +95,7 @@ export default function MovementForm({ initialData, action }: MovementFormProps)
       difficulty,
       scaling,
       videoId,
+      videoSource: videoSource || undefined,
       roadmap: hasRoadmap
         ? { goal: roadmapGoal, timeEstimate: roadmapTime, prerequisites, drills }
         : null,
@@ -187,6 +189,15 @@ export default function MovementForm({ initialData, action }: MovementFormProps)
               className="bg-[#1a1a1a] border-[#333] text-white"
             />
           </div>
+        </div>
+        <div>
+          <Label>動画の出典</Label>
+          <Input
+            value={videoSource}
+            onChange={(e) => setVideoSource(e.target.value)}
+            placeholder="例: クロスフィット公式チャンネル"
+            className="bg-[#1a1a1a] border-[#333] text-white"
+          />
         </div>
         <div>
           <Label>スケーリング</Label>
