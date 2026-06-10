@@ -206,7 +206,7 @@ export default async function MovementPage({ params }: Props) {
         <h2 className="text-sm font-semibold text-text-primary mb-2">スケーリング</h2>
         <p className="text-sm ">{movement.scaling}</p>
       </section> */}
-      <SpriteAnimation category={movement.category} />
+      <SpriteAnimation category={movement.category} showSweat />
       <GlobalMenuNav active="種目辞典" />
     </main>
   );

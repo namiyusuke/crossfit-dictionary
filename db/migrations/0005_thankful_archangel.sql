@@ -1,0 +1,1 @@
+ALTER TABLE `movements` ADD `video_source` text;
