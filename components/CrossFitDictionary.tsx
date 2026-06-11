@@ -172,7 +172,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
                 <div className="space-y-8 relative">
                   <SpriteAnimation
                     category={"start"}
-                    className="w-[min(calc(151_/_375_*_100vw),151px)] absolute bottom-[99.9%] left-0 right-0 mx-auto"
+                    className="h-[min(calc(250_/_375_*_100vw),250px)] absolute bottom-[99.9%] left-0 right-0 mx-auto"
                   />
                   {filteredMovements.length > 0 ? (
                     filteredMovements.map((movement) => (

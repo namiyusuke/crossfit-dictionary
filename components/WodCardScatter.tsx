@@ -98,8 +98,8 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
           <div className="text-center">
             <Image
               className="mx-auto animate-flip-x"
-              width={180}
-              height={271}
+              width={153}
+              height={230}
               src="/yellow01.webp"
               alt="走るキャラクター"
             />
@@ -208,8 +208,14 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
               {selectedMood == "light" && (
                 <div className="mt-20">
                   <p className="font-gothic text-green rotate-[-5deg] mb-11  w-max mx-auto font-normal">
-                    <span className="block text-6xl mb-2">さくっと？</span>
-                    <span className="block text-2xl text-right mr-10">それいいのか？</span>
+                    <span className="block text-6xl mb-2 relative">
+                      <span className="relative z-1">さくっと？</span>
+                      <span className="top-2 z-0 absolute text-black left-0 right-0 ">さくっと？</span>
+                    </span>
+                    <span className="block text-2xl text-right mr-10">
+                      <span className="relative z-1">それいいのか？</span>
+                      <span className="top-2 z-0 absolute text-black left-0 right-0 ">それいいのか？</span>
+                    </span>
                   </p>
                   <Image
                     className="mx-auto"
@@ -223,8 +229,14 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
               {selectedMood == "hard" && (
                 <div className="mt-20">
                   <p className="font-gothic text-green rotate-[-5deg] mb-11 w-max mx-auto font-normal">
-                    <span className="block text-6xl mb-2">追い込んで</span>
-                    <span className="block text-2xl text-right mr-10">いこうぜ！？</span>
+                    <span className="block text-6xl mb-2 relative">
+                      <span className="relative z-1">追い込んで</span>
+                      <span className="top-2 z-0 absolute text-black left-0 right-0 ">追い込んで</span>
+                    </span>
+                    <span className="block text-2xl text-right mr-10 relative">
+                      <span className="relative z-1">いこうぜ！？</span>
+                      <span className="top-2 z-0 absolute text-black left-0 right-0 ">いこうぜ！？</span>
+                    </span>
                   </p>
                   <Image
                     className="mx-auto"
@@ -238,8 +250,14 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
               {selectedMood == "cardio" && (
                 <div className="mt-20">
                   <p className="font-gothic text-green rotate-[-5deg] mb-11 w-max mx-auto font-normal">
-                    <span className="block text-4xl ml-10">きざむぜ</span>
-                    <span className="block text-5xl mb-2">血液のビート！</span>
+                    <span className="block text-4xl ml-10 relative">
+                      <span className="relative z-1">きざむぜ</span>
+                      <span className="top-2 z-0 absolute text-black left-0 right-0 ">きざむぜ</span>
+                    </span>
+                    <span className="block text-5xl mb-2 relative">
+                      <span className="relative z-1">血液のビート！</span>
+                      <span className="top-2 z-0 absolute text-black left-0 right-0">血液のビート！</span>
+                    </span>
                   </p>
                   <Image
                     className="mx-auto"
@@ -253,8 +271,16 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
               {selectedMood == "strength" && (
                 <div className="mt-20">
                   <p className="font-gothic text-green rotate-[-5deg] mb-11 w-max mx-auto font-normal">
-                    <span className="block text-4xl ">マッスルマッスル！</span>
-                    <span className="block text-5xl mb-2">マッチョマン！</span>
+                    <span className="block text-4xl relative">
+                      <span className="relative z-1">マッスルマッスル！</span>
+                      <span className="top-2 z-0 font-gothic absolute text-black left-0 right-0">
+                        マッスルマッスル！
+                      </span>
+                    </span>
+                    <span className="block text-5xl mb-2 relative">
+                      <span className="relative z-1">マッチョマン！</span>
+                      <span className="top-2 z-0 font-gothic absolute text-black left-0 right-0">マッチョマン！</span>
+                    </span>
                   </p>
                   <Image
                     className="mx-auto"

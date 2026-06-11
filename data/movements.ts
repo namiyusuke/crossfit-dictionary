@@ -31,6 +31,7 @@ export const movements: Movement[] = [
     difficulty: 4,
     scaling: "ハングクリーン → パワークリーン → ダンベルC&J",
     videoId: "PjY1rH4_MOA",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "バーベルでのフルクリーン＆ジャークを正しいフォームで行う",
       prerequisites: [
@@ -74,6 +75,7 @@ export const movements: Movement[] = [
     difficulty: 5,
     scaling: "パワースナッチ → ハングスナッチ → ダンベルスナッチ",
     videoId: "9xQp2sldyts",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "フルスナッチを正しいフォームで行う",
       prerequisites: [
@@ -116,6 +118,7 @@ export const movements: Movement[] = [
     difficulty: 2,
     scaling: "軽い重量 → スモウデッドリフト → ルーマニアンデッドリフト",
     videoId: "op9kVnSso6Q",
+    videoSource: "CrossFit",
     roadmap: null,
   },
   {
@@ -146,6 +149,7 @@ export const movements: Movement[] = [
     difficulty: 3,
     scaling: "エアスクワット → ゴブレットスクワット → フロントスクワット",
     videoId: "m4ytaCJZpl0",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "バーベルでのフロントスクワットをフルレンジで行う",
       prerequisites: [
@@ -188,6 +192,7 @@ export const movements: Movement[] = [
     difficulty: 2,
     scaling: "ダンベルプレス → プッシュプレス → ショルダープレス（ストリクト）",
     videoId: "2yjwXTZQDDI",
+    videoSource: "ScottHermanFitness",
     roadmap: null,
   },
   {
@@ -218,6 +223,7 @@ export const movements: Movement[] = [
     difficulty: 3,
     scaling: "フロントスクワット＋プッシュプレス分離 → ダンベルスラスター → バーベルスラスター",
     videoId: "L219ltL15zk",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "バーベルスラスターを正しいフォームで連続実施",
       prerequisites: [
@@ -260,6 +266,7 @@ export const movements: Movement[] = [
     difficulty: 2,
     scaling: "軽いケトルベル → ロシアンスイング → アメリカンスイング",
     videoId: "YSxHifyI6s8",
+    videoSource: "Men's Health",
     roadmap: null,
   },
   {
@@ -290,6 +297,7 @@ export const movements: Movement[] = [
     difficulty: 3,
     scaling: "重量なし → 軽量ケトルベル → ハーフTGU → フルTGU",
     videoId: "0bWRPC49-KI",
+    videoSource: "StrongFirst",
     roadmap: {
       goal: "フルTGUを左右安定して行う",
       prerequisites: [
@@ -332,6 +340,7 @@ export const movements: Movement[] = [
     difficulty: 2,
     scaling: "軽いボール → ターゲット高さを下げる → 標準",
     videoId: "fpUD0mcFp_0",
+    videoSource: "CrossFit",
     roadmap: null,
   },
 
@@ -364,6 +373,7 @@ export const movements: Movement[] = [
     difficulty: 3,
     scaling: "デッドハング → バンドアシスト → ネガティブ → ストリクトプルアップ",
     videoId: "eGo4IYlbE5g",
+    videoSource: "Calisthenicmovement",
     roadmap: {
       goal: "ストリクトプルアップを連続で行う",
       prerequisites: [
@@ -406,6 +416,7 @@ export const movements: Movement[] = [
     difficulty: 4,
     scaling: "ニーレイズ → ニーズ・トゥ・エルボー → トゥーズ・トゥ・バー",
     videoId: "_03pCKOv4l4",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "キッピング・トゥーズ・トゥ・バーを連続で行う",
       prerequisites: [
@@ -448,6 +459,7 @@ export const movements: Movement[] = [
     difficulty: 5,
     scaling: "壁倒立キープ → パイクプッシュアップ → ネガティブHSPU → フルHSPU",
     videoId: "SwTEKKU2RSU",
+    videoSource: "WODprep",
     roadmap: {
       goal: "壁倒立からのハンドスタンド・プッシュアップを連続で行う",
       prerequisites: [
@@ -490,6 +502,7 @@ export const movements: Movement[] = [
     difficulty: 5,
     scaling: "プルアップ → チェストトゥバー → ジャンプマッスルアップ → マッスルアップ",
     videoId: "Al2P0nR2lB8",
+    videoSource: "Rogue Fitness",
     roadmap: {
       goal: "バーマッスルアップを1回以上成功させる",
       prerequisites: [
@@ -533,6 +546,7 @@ export const movements: Movement[] = [
     difficulty: 2,
     scaling: "低いボックス → ステップアップ → ボックスジャンプ",
     videoId: "52r_Ul5k03g",
+    videoSource: "CrossFit",
     roadmap: null,
   },
   {
@@ -563,6 +577,7 @@ export const movements: Movement[] = [
     difficulty: 2,
     scaling: "ステップバックバーピー → ノープッシュアップバーピー → フルバーピー",
     videoId: "dZgVxmf6jkA",
+    videoSource: "BowFlex",
     roadmap: null,
   },
   {
@@ -593,6 +608,7 @@ export const movements: Movement[] = [
     difficulty: 1,
     scaling: "椅子に座る → ボックススクワット → エアスクワット",
     videoId: "C_VtOYc6j5c",
+    videoSource: "CrossFit",
     roadmap: null,
   },
   {
@@ -623,6 +639,7 @@ export const movements: Movement[] = [
     difficulty: 1,
     scaling: "壁プッシュアップ → 膝つきプッシュアップ → フルプッシュアップ",
     videoId: "IODxDxX7oi4",
+    videoSource: "Calisthenicmovement",
     roadmap: null,
   },
   {
@@ -653,6 +670,7 @@ export const movements: Movement[] = [
     difficulty: 1,
     scaling: "クランチ → アブマットシットアップ → GHDシットアップ",
     videoId: "1fbU_MkV7NE",
+    videoSource: "LIVESTRONG",
     roadmap: null,
   },
 
@@ -685,6 +703,7 @@ export const movements: Movement[] = [
     difficulty: 1,
     scaling: "ペースを落とす → ダンパー設定を下げる",
     videoId: "zQ82RYIFLN8",
+    videoSource: "Concept2 Australia",
     roadmap: null,
   },
   {
@@ -715,6 +734,7 @@ export const movements: Movement[] = [
     difficulty: 3,
     scaling: "シングルアンダー → シングル＋ダブル交互 → 連続ダブルアンダー",
     videoId: "gnjSkO1gR8U",
+    videoSource: "WODprep",
     roadmap: {
       goal: "連続ダブルアンダーを20回以上",
       prerequisites: [
@@ -759,6 +779,7 @@ export const movements: Movement[] = [
     difficulty: 4,
     scaling: "PVCオーバーヘッドスクワット → 空バー → 軽量バーベル",
     videoId: "pn8mqlG0nkE",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "バーベルでのオーバーヘッドスクワットをフルレンジで行う",
       prerequisites: [
@@ -801,6 +822,7 @@ export const movements: Movement[] = [
     difficulty: 2,
     scaling: "ショルダープレス → ダンベルプッシュプレス → バーベルプッシュプレス",
     videoId: "iaBVSJm78ko",
+    videoSource: "CrossFit",
     roadmap: null,
   },
   {
@@ -831,6 +853,7 @@ export const movements: Movement[] = [
     difficulty: 3,
     scaling: "ベンチディップ → バンドアシストディップ → バーディップ → リングディップ",
     videoId: "o2qX3Zb5mvg",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "バーディップを連続で行う",
       prerequisites: [
@@ -873,6 +896,7 @@ export const movements: Movement[] = [
     difficulty: 3,
     scaling: "デッドハング → バンドアシスト → ネガティブ → ストリクトプルアップ",
     videoId: "HRV5YKKaeVw",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "ストリクトプルアップを連続で行う",
       prerequisites: [
@@ -915,6 +939,7 @@ export const movements: Movement[] = [
     difficulty: 4,
     scaling: "ストリクトプルアップ → バンドアシストC2B → ストリクトC2B",
     videoId: "xf69XHAs5w8",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "ストリクトチェスト・トゥ・バーを連続で行う",
       prerequisites: [
@@ -958,6 +983,7 @@ export const movements: Movement[] = [
     difficulty: 2,
     scaling: "エアスクワット → ゴブレットスクワット → バックスクワット",
     videoId: "QmZAiBqPvZw",
+    videoSource: "CrossFit",
     roadmap: null,
   },
   {
@@ -988,6 +1014,7 @@ export const movements: Movement[] = [
     difficulty: 4,
     scaling: "ボックスピストル（台に座る） → バンドアシスト → フルピストル",
     videoId: "keSzg7MaoVQ",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "補助なしのピストルを左右で行う",
       prerequisites: [
@@ -1030,6 +1057,7 @@ export const movements: Movement[] = [
     difficulty: 1,
     scaling: "ステーショナリーランジ → ウォーキングランジ → 荷重ランジ",
     videoId: "L8fvypPrzzs",
+    videoSource: "CrossFit",
     roadmap: null,
   },
 
@@ -1062,6 +1090,7 @@ export const movements: Movement[] = [
     difficulty: 2,
     scaling: "軽い重量 → ケトルベルSDHP → バーベルSDHP",
     videoId: "gh55vVlwlQg",
+    videoSource: "CrossFit",
     roadmap: null,
   },
   {
@@ -1092,6 +1121,7 @@ export const movements: Movement[] = [
     difficulty: 2,
     scaling: "PVCグッドモーニング → 空バー → 軽量バーベル",
     videoId: "KxYxHr1lkx4",
+    videoSource: "CrossFit",
     roadmap: null,
   },
   {
@@ -1122,6 +1152,7 @@ export const movements: Movement[] = [
     difficulty: 1,
     scaling: "立ち気味の角度 → 水平に近い角度 → 足を上げる",
     videoId: "sEAOZc77wk8",
+    videoSource: "CrossFit",
     roadmap: null,
   },
 
@@ -1154,6 +1185,7 @@ export const movements: Movement[] = [
     difficulty: 4,
     scaling: "ハングパワークリーン → パワークリーン → スクワットクリーン",
     videoId: "KwYJTpQ_x5A",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "床からのパワークリーンを正しいフォームで行う",
       prerequisites: [
@@ -1196,6 +1228,7 @@ export const movements: Movement[] = [
     difficulty: 3,
     scaling: "ハングパワークリーン（高い位置） → ミッドサイ → パワークリーン",
     videoId: "_iUFG1-H7d0",
+    videoSource: "CrossFit",
     roadmap: null,
   },
   {
@@ -1226,6 +1259,7 @@ export const movements: Movement[] = [
     difficulty: 3,
     scaling: "ショルダープレス → プッシュプレス → プッシュジャーク",
     videoId: "VrHNJXoSyXw",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "プッシュジャークを正しいフォームで行う",
       prerequisites: [
@@ -1268,6 +1302,7 @@ export const movements: Movement[] = [
     difficulty: 4,
     scaling: "プッシュプレス → プッシュジャーク → スプリットジャーク",
     videoId: "GUDkOtraHHY",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "スプリットジャークを正しいフォームで行う",
       prerequisites: [
@@ -1312,6 +1347,7 @@ export const movements: Movement[] = [
     difficulty: 3,
     scaling: "ラインプル（床から立つ） → 部分登り → フルロープクライム",
     videoId: "zBoTgBpkn7o",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "ロープを登り切る",
       prerequisites: [
@@ -1354,6 +1390,7 @@ export const movements: Movement[] = [
     difficulty: 3,
     scaling: "インクライン腕立て → 部分ウォールウォーク → フルウォールウォーク",
     videoId: "NK_OcHEm8yM",
+    videoSource: "CrossFit",
     roadmap: null,
   },
   {
@@ -1384,6 +1421,7 @@ export const movements: Movement[] = [
     difficulty: 5,
     scaling: "壁倒立キープ → ウォールウォーク → 自立倒立キープ → ハンドスタンドウォーク",
     videoId: "FdgJ9jZIT-Q",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "自立した状態でハンドスタンドウォークを行う",
       prerequisites: [
@@ -1426,6 +1464,7 @@ export const movements: Movement[] = [
     difficulty: 3,
     scaling: "タックホールド → 片脚伸ばし → フルLシット",
     videoId: "_HbccxgnCg0",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "フルLシットを規定時間保持する",
       prerequisites: [
@@ -1470,6 +1509,7 @@ export const movements: Movement[] = [
     difficulty: 1,
     scaling: "軽い重量 → 重い重量 → 長い距離",
     videoId: "p5MNNosenJc",
+    videoSource: "CrossFit",
     roadmap: null,
   },
   {
@@ -1500,6 +1540,7 @@ export const movements: Movement[] = [
     difficulty: 1,
     scaling: "低い台 → 高い台 → 荷重ステップアップ",
     videoId: "5qjqDHOUh-A",
+    videoSource: "CrossFit",
     roadmap: null,
   },
   {
@@ -1530,6 +1571,7 @@ export const movements: Movement[] = [
     difficulty: 1,
     scaling: "軽いボール → 重いボール → 高レップ",
     videoId: "k9W6g9LvXDI",
+    videoSource: "CrossFit",
     roadmap: null,
   },
 
@@ -1561,6 +1603,7 @@ export const movements: Movement[] = [
     difficulty: 3,
     scaling: "ハングパワースナッチ → パワースナッチ → スクワットスナッチ",
     videoId: "3mlhF3dptAo",
+    videoSource: "CrossFit",
     roadmap: null,
   },
   {
@@ -1591,6 +1634,7 @@ export const movements: Movement[] = [
     difficulty: 2,
     scaling: "ダンベルショルダープレス → ダンベルプッシュプレス → ダンベルプッシュジャーク",
     videoId: "4tCaD42ghlc",
+    videoSource: "CrossFit",
     roadmap: null,
   },
   {
@@ -1621,6 +1665,7 @@ export const movements: Movement[] = [
     difficulty: 2,
     scaling: "ゴブレットスクワット → ダンベルフロントスクワット → バーベルフロントスクワット",
     videoId: "B86Zj72LwzA",
+    videoSource: "CrossFit",
     roadmap: null,
   },
   {
@@ -1651,6 +1696,7 @@ export const movements: Movement[] = [
     difficulty: 4,
     scaling: "PVCオーバーヘッドスクワット → 軽量ダンベル → ダンベルOHS",
     videoId: "azumEfnk-GI",
+    videoSource: "CrossFit",
     roadmap: {
       goal: "ダンベルオーバーヘッドスクワットを左右安定して行う",
       prerequisites: [
@@ -1692,6 +1738,7 @@ export const movements: Movement[] = [
     difficulty: 3,
     scaling: "ダンベルフロントスクワット＋プレス分離 → 軽量ダンベルスラスター → ダンベルスラスター",
     videoId: "u3wKkZjE8QM",
+    videoSource: "CrossFit",
     roadmap: null,
   },
   {
@@ -1722,6 +1769,7 @@ export const movements: Movement[] = [
     difficulty: 1,
     scaling: "軽い重量 → ダンベルデッドリフト → ダンベルRDL",
     videoId: "JNpUNRPQkAk",
+    videoSource: "CrossFit",
     roadmap: null,
   },
 ];
