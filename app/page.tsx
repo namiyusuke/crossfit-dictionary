@@ -2,12 +2,14 @@ import { Suspense } from "react";
 import { getAllMovements } from "@/lib/data/movements";
 import { getAllWods } from "@/lib/data/wods";
 import CrossFitDictionary from "@/components/CrossFitDictionary";
+import IntroAnimation from "@/components/IntroAnimation";
 
 export default async function Page() {
   const [movements, wods] = await Promise.all([getAllMovements(), getAllWods()]);
 
   return (
     <Suspense>
+      <IntroAnimation />
       <div className="relative">
         {/* フレーム枠 */}
         <div className="inset-0 pointer-events-none mx-auto w-[375px] fixed z-30 before:absolute before:left-0 md:before:rounded-[24px] before:right-0 before:inset-y-0 before:border before:border-[#939393] before:border-3 before:content-[''] hidden md:block"></div>
