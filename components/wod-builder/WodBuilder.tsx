@@ -4,7 +4,7 @@ import { useState, useMemo, useRef } from "react";
 import type { Wod, WodFormat } from "@/types/wod";
 import type { Movement, Equipment } from "@/types/movement";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "motion/react";
 import WodTimerOverlay from "@/components/timer/WodTimerOverlay";
 import BuilderProgressDots from "./BuilderProgressDots";
 import StepFormatSelect from "./StepFormatSelect";
@@ -145,7 +145,7 @@ export default function WodBuilder({ movements, onClose }: WodBuilderProps) {
         {/* ステップコンテンツ */}
         <div className="px-6 py-8 pb-10">
           <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
+            <m.div
               key={step}
               custom={direction}
               variants={slideVariants}
@@ -178,7 +178,7 @@ export default function WodBuilder({ movements, onClose }: WodBuilderProps) {
               {step === 3 && builtWod && (
                 <StepPreview wod={builtWod} movements={movements} onLaunchTimer={handleLaunchTimer} />
               )}
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         </div>
         {/* ナビゲーション（Step 4以外） */}

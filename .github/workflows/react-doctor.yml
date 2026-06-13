@@ -1,0 +1,29 @@
+name: React Doctor
+
+# 👉 Scan every pull request automatically.
+#    `--scope changed` only reports issues the PR newly introduces, so existing
+#    issues can be paid down incrementally without blocking unrelated PRs.
+on:
+  pull_request:
+
+jobs:
+  react-doctor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # full history so `--scope changed` can diff against the base branch
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies & tooling
+        run: |
+          npm install -g pnpm
+          pnpm install
+      - name: Run React Doctor on changed code
+        # Fails the check only on NEW error-severity issues in this PR.
+        # To also block on newly-introduced warnings, add: --blocking warning
+        run: npx react-doctor@latest --scope changed --base "origin/${{ github.event.pull_request.base.ref }}" --blocking error

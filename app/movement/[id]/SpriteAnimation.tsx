@@ -32,8 +32,15 @@ export default function SpriteAnimation({
   const [frame, setFrame] = useState(0);
   const frames = useMemo(() => framesByCategory[category] ?? framesByCategory.W, [category]);
 
-  useEffect(() => {
+  // category が変わったらフレームを先頭に戻す。effect 経由ではなくレンダー中に
+  // 調整することで、古いフレームが一瞬見える余分な再レンダーを避ける。
+  const [prevCategory, setPrevCategory] = useState(category);
+  if (category !== prevCategory) {
+    setPrevCategory(category);
     setFrame(0);
+  }
+
+  useEffect(() => {
     let intervalId: ReturnType<typeof setInterval>;
     const timeoutId = setTimeout(() => {
       setFrame((prev) => (prev + 1) % frames.length);

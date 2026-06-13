@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 
 interface CountdownIntroProps {
   formatColor: string;
@@ -24,7 +24,7 @@ export default function CountdownIntro({ formatColor, onComplete }: CountdownInt
   return (
     <div className="fixed z-5000 w-[375px] mx-auto inset-0 z-50 flex items-center justify-center bg-background">
       <AnimatePresence mode="wait">
-        <motion.div
+        <m.div
           key={count}
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -38,7 +38,7 @@ export default function CountdownIntro({ formatColor, onComplete }: CountdownInt
           }}
         >
           {count === 0 ? "GO!" : count}
-        </motion.div>
+        </m.div>
       </AnimatePresence>
     </div>
   );

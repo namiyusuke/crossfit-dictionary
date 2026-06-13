@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import type { WodFormat } from "@/types/wod";
 import Link from "next/link";
 import SpriteAnimation from "@/app/movement/[id]/SpriteAnimation";
@@ -23,25 +23,19 @@ interface CompletionScreenProps {
   onClose: () => void;
 }
 
-const STAR_COUNT = 5;
-
-function generateStars() {
-  return Array.from({ length: STAR_COUNT }, (_, i) => {
-    // 左端(0~20%)か右端(80~100%)にランダム配置して中央を避ける
-    const left = Math.random() < 0.5 ? Math.random() * 20 : 80 + Math.random() * 20;
-    return {
-      id: i,
-      top: `${Math.random() * 90}%`,
-      left: `${left}%`,
-      delay: Math.random() * 1.5,
-    };
-  });
-}
+// 星を一個ずつ手動で調整する場合は、ここの値を直接編集してください。
+// top / left は画面に対する位置（%）、delay は出現タイミング（秒）。
+const STARS = [
+  { id: 1, top: "10%", left: "15%", delay: 0 },
+  { id: 2, top: "20%", left: "75%", delay: 0.3 },
+  { id: 3, top: "45%", left: "85%", delay: 0.6 },
+  { id: 4, top: "60%", left: "10%", delay: 0.9 },
+  { id: 5, top: "65%", left: "80%", delay: 1.2 },
+];
 
 function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenProps) {
   const [showResultModal, setShowResultModal] = useState(false);
-  const stars = useMemo(() => generateStars(), []);
-
+  const stars = STARS;
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowResultModal(true);
@@ -82,9 +76,9 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
           </p>
         </div>
         {stars.map((star) => (
-          <motion.div
+          <m.div
             key={star.id}
-            initial={{ opacity: 0, scale: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: star.delay, duration: 0.5, ease: "easeOut" }}
             className="absolute pointer-events-none"
@@ -94,10 +88,10 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
             }}
           >
             <Image width={22} height={25} src="/star.svg" alt="" />
-          </motion.div>
+          </m.div>
         ))}
         {/* COMPLETE! テキスト */}
-        <motion.div
+        <m.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
@@ -110,7 +104,7 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
             </p>
           </div>
           <p className="font-gothic text-[20px] text-white leading-normal">おつかれさまでした</p>
-        </motion.div>
+        </m.div>
         <div className="mt-[10px]">
           <SpriteAnimation
             category={"end"}
@@ -122,13 +116,13 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
         {/* 結果モーダル */}
         <AnimatePresence>
           {showResultModal && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 60 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
               className="absolute bottom-0 left-0 right-0 rounded-t-2xl px-6 pt-8 pb-10"
-            ></motion.div>
+            ></m.div>
           )}
         </AnimatePresence>
       </div>
@@ -140,7 +134,7 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
 
 function CompletionScreenB({ result, formatColor, onClose }: CompletionScreenProps) {
   const [showResultModal, setShowResultModal] = useState(false);
-  const stars = useMemo(() => generateStars(), []);
+  const stars = STARS;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -183,9 +177,9 @@ function CompletionScreenB({ result, formatColor, onClose }: CompletionScreenPro
           </p>
         </div>
         {stars.map((star) => (
-          <motion.div
+          <m.div
             key={star.id}
-            initial={{ opacity: 0, scale: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: star.delay, duration: 0.5, ease: "easeOut" }}
             className="absolute pointer-events-none"
@@ -195,10 +189,10 @@ function CompletionScreenB({ result, formatColor, onClose }: CompletionScreenPro
             }}
           >
             <Image width={22} height={25} src="/star.svg" alt="" />
-          </motion.div>
+          </m.div>
         ))}
         {/* COMPLETE! テキスト */}
-        <motion.div
+        <m.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
@@ -210,7 +204,7 @@ function CompletionScreenB({ result, formatColor, onClose }: CompletionScreenPro
           <p className="font-gothic absolute z-0 text-[110px] top-[10px] right-[-10px] mb-3 text-[#414141] whitespace-nowrap leading-none">
             達成感
           </p>
-        </motion.div>
+        </m.div>
         <div className="mt-[0px]">
           <SpriteAnimation
             category={"end"}
@@ -222,13 +216,13 @@ function CompletionScreenB({ result, formatColor, onClose }: CompletionScreenPro
         {/* 結果モーダル */}
         <AnimatePresence>
           {showResultModal && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 60 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
               className="absolute bottom-0 left-0 right-0 rounded-t-2xl px-6 pt-8 pb-10"
-            ></motion.div>
+            ></m.div>
           )}
         </AnimatePresence>
       </div>

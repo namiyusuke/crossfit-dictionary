@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "motion/react";
 import Header from "@/components/Header";
 import { useRouter } from "next/navigation";
 
@@ -19,7 +19,7 @@ export default function WodPageHeader() {
 
       <AnimatePresence>
         {showWodModal && (
-          <motion.div
+          <m.div
             className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center px-6"
             onClick={() => setShowWodModal(false)}
             initial={{ opacity: 0 }}
@@ -27,12 +27,12 @@ export default function WodPageHeader() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <motion.div
+            <m.div
               className="bg-gray rounded-2xl p-8 max-w-sm w-full relative"
               onClick={(e) => e.stopPropagation()}
-              initial={{ scale: 0, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
+              exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
             >
               <button
@@ -45,8 +45,8 @@ export default function WodPageHeader() {
               <p className="text-sm leading-6">
                 その日のトレーニングメニューのこと。気分や目的に合わせておすすめのWODを提案します。AMRAP・EMOM・ForTimeの3つのフォーマットがあり、それぞれ異なるアプローチでトレーニングを楽しめます。
               </p>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

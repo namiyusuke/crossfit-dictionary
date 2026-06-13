@@ -4,6 +4,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* 2回目以降の訪問ではintroオーバーレイを描画前に隠し、ちらつきを防ぐ */
+.intro-played #intro-overlay {
+  display: none !important;
+}
+
 :root {
   --card-bg: #ffffff;
   --text-primary: #ffffff;
@@ -261,5 +266,18 @@ body {
   }
   html {
     @apply font-sans;
+  }
+}
+
+/* OS の「視差効果を減らす」設定時は CSS アニメーション/トランジションを無効化 (WCAG 2.3.3)。
+   motion ライブラリ側は layout.tsx の MotionConfig reducedMotion="user" で対応。 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

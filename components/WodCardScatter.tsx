@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useQueryState } from "nuqs";
 import { CATEGORY_COLORS } from "@/types/movement";
 import type { Movement } from "@/types/movement";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "motion/react";
 import WodBuilder from "./wod-builder/WodBuilder";
 
 const FORMAT_COLORS: Record<WodFormat, string> = {
@@ -310,7 +310,7 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
       {/* フォーマット説明モーダル */}
       <AnimatePresence>
         {formatModal && (
-          <motion.div
+          <m.div
             className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center px-6"
             onClick={() => setFormatModal(null)}
             initial={{ opacity: 0 }}
@@ -318,12 +318,12 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <motion.div
+            <m.div
               className="bg-gray rounded-2xl p-8 max-w-sm w-full relative"
               onClick={(e) => e.stopPropagation()}
-              initial={{ scale: 0, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
+              exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
             >
               <button
@@ -334,8 +334,8 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
               </button>
               <p className="text-lg font-gothic mb-4 text-green">{FORMAT_DESCRIPTIONS[formatModal].title}</p>
               <p className="text-sm leading-6">{FORMAT_DESCRIPTIONS[formatModal].description}</p>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

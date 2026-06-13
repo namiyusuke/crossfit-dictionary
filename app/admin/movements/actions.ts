@@ -3,8 +3,10 @@
 import { createMovement, updateMovement, deleteMovement } from "@/lib/data/movements";
 import { revalidatePath } from "next/cache";
 import type { Movement } from "@/types/movement";
+import { isAdmin } from "@/lib/admin-auth";
 
 export async function createMovementAction(jsonData: string): Promise<{ error?: string }> {
+  if (!(await isAdmin())) return { error: "権限がありません" };
   try {
     const data: Movement = JSON.parse(jsonData);
     await createMovement(data);
@@ -17,6 +19,7 @@ export async function createMovementAction(jsonData: string): Promise<{ error?: 
 }
 
 export async function updateMovementAction(jsonData: string): Promise<{ error?: string }> {
+  if (!(await isAdmin())) return { error: "権限がありません" };
   try {
     const data: Movement = JSON.parse(jsonData);
     const { id, ...rest } = data;
@@ -31,6 +34,7 @@ export async function updateMovementAction(jsonData: string): Promise<{ error?: 
 }
 
 export async function deleteMovementAction(id: string): Promise<{ error?: string }> {
+  if (!(await isAdmin())) return { error: "権限がありません" };
   try {
     await deleteMovement(id);
     revalidatePath("/admin/movements");

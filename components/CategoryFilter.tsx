@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import {
   Category,
   categoryLabels,
@@ -75,7 +75,7 @@ export default function CategoryFilter({
         </button>
         <AnimatePresence>
           {openSections.has("category") && (
-            <motion.div
+            <m.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -102,7 +102,7 @@ export default function CategoryFilter({
                   );
                 })}
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>
@@ -117,7 +117,7 @@ export default function CategoryFilter({
         </button>
         <AnimatePresence>
           {openSections.has("bodyPart") && (
-            <motion.div
+            <m.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -143,7 +143,7 @@ export default function CategoryFilter({
                   );
                 })}
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>
@@ -158,7 +158,7 @@ export default function CategoryFilter({
         </button>
         <AnimatePresence>
           {openSections.has("effect") && (
-            <motion.div
+            <m.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -184,7 +184,7 @@ export default function CategoryFilter({
                   );
                 })}
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>

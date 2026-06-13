@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Equipment, ALL_EQUIPMENT } from "@/types/movement";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "motion/react";
 
 const slideVariants = {
   enter: (direction: number) => ({
@@ -51,7 +51,7 @@ export default function OnboardingEquipment({
       <div className="min-h-screen flex items-start justify-center  px-8 py-10 bg-[#262626]">
         <div className="w-full max-w-md relative ">
           <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
+            <m.div
               key={step}
               custom={direction}
               variants={slideVariants}
@@ -244,12 +244,12 @@ export default function OnboardingEquipment({
                   />
                 </div>
               )}
-            </motion.div>
+            </m.div>
           </AnimatePresence>
           {/* Step 2 キャラクター（アニメーション外で固定配置） */}
           <AnimatePresence>
             {step === 1 && (
-              <motion.div
+              <m.div
                 className="max-w-[138px] absolute bottom-[82px] right-0"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -257,7 +257,7 @@ export default function OnboardingEquipment({
                 transition={{ duration: 0.3 }}
               >
                 <Image width={276} height={418} src="/onboarding-char02.webp" alt="走るキャラクター" />
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
           {/* ナビゲーションボタン */}

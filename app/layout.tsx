@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import AutoAnonymousLogin from "@/components/AutoAnonymousLogin";
 import BackgroundDecoration from "@/components/BackgroundDecoration";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { MotionConfig, LazyMotion, domAnimation } from "motion/react";
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
@@ -45,6 +46,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
+      suppressHydrationWarning
       className={cn(
         "h-full",
         "antialiased",
@@ -54,12 +56,27 @@ export default function RootLayout({
         "font-sans",
       )}
     >
+      {/* 2回目以降はパース時にCSSでintroを隠し、描画前にちらつきを防ぐ */}
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(sessionStorage.getItem("intro-played"))document.documentElement.classList.add("intro-played")}catch(_){}`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-text-primary ">
         <div className="">
           <BackgroundDecoration />
-          <div className=" md:max-w-[375px] md:mx-auto relative z-100  min-h-screen">
+          <div className=" md:max-w-[375px] md:mx-auto relative z-100 bg-gray min-h-screen">
             <AutoAnonymousLogin />
-            <NuqsAdapter>{children}</NuqsAdapter>
+            {/* LazyMotion + domAnimation で motion の全機能バンドル(約30kb)を遅延ロードし、
+                各コンポーネントは軽量な `m` を使う。reducedMotion="user" は OS の
+                「視差効果を減らす」設定に全 motion を追従させる (WCAG 2.3.3)。 */}
+            <LazyMotion features={domAnimation}>
+              <MotionConfig reducedMotion="user">
+                <NuqsAdapter>{children}</NuqsAdapter>
+              </MotionConfig>
+            </LazyMotion>
           </div>
         </div>
       </body>

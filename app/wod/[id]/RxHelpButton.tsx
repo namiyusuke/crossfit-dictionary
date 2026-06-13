@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "motion/react";
 
 export default function RxHelpButton() {
   const [showModal, setShowModal] = useState(false);
@@ -20,7 +20,7 @@ export default function RxHelpButton() {
 
       <AnimatePresence>
         {showModal && (
-          <motion.div
+          <m.div
             className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center px-6"
             onClick={() => setShowModal(false)}
             initial={{ opacity: 0 }}
@@ -28,12 +28,12 @@ export default function RxHelpButton() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <motion.div
+            <m.div
               className="bg-gray rounded-2xl p-8 max-w-sm w-full relative"
               onClick={(e) => e.stopPropagation()}
-              initial={{ scale: 0, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
+              exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
             >
               <button
@@ -46,8 +46,8 @@ export default function RxHelpButton() {
               <p className="text-sm leading-6 font-noto">
                 「処方通り」という意味で、WODの規定重量・規定動作のこと。RXをクリアできれば、そのWODを正式に完遂したことになります。まずはスケーリング（軽い重量や簡易動作）から始めて、RXを目指しましょう。
               </p>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

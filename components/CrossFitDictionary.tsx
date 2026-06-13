@@ -11,7 +11,7 @@ import MovementCard from "./MovementCard";
 import WodCardScatter from "./WodCardScatter";
 import OnboardingEquipment from "./OnboardingEquipment";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "motion/react";
 import SpriteAnimation from "@/app/movement/[id]/SpriteAnimation";
 import GlobalMenu, { MenuKey } from "./GlobalMenu";
 import Header from "./Header";
@@ -48,7 +48,10 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const [selectedBodyParts, setSelectedBodyParts] = useState<BodyPart[]>([]);
   const [selectedEffects, setSelectedEffects] = useState<PrimaryEffect[]>([]);
-  const [userEquipment, setUserEquipment] = useLocalStorage<Equipment[] | null>("crossfit-user-equipment", null);
+  const [userEquipment, setUserEquipment, isEquipmentHydrated] = useLocalStorage<Equipment[] | null>(
+    "crossfit-user-equipment",
+    null,
+  );
 
   const filteredMovements = useMemo(() => {
     // category順にソート
@@ -87,6 +90,11 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
 
   const [showEquipmentSettings, setShowEquipmentSettings] = useState(searchParams.get("equipment") === "true");
   const [showWodModal, setShowWodModal] = useState(false);
+
+  // localStorage の読み込みが終わるまでは判定せず、オンボーディングのフラッシュを防ぐ
+  if (!isEquipmentHydrated) {
+    return null;
+  }
 
   // オンボーディング未完了の場合
   if (userEquipment === null || showEquipmentSettings) {
@@ -158,7 +166,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
                   <SearchBar value={searchText} onChange={setSearchText} />
                 </div>
                 {/* フィルター */}
-                <div className="mb-100">
+                <div className="mb-80">
                   <CategoryFilter
                     selectedCategory={selectedCategory}
                     onCategoryChange={setSelectedCategory}
@@ -204,7 +212,7 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
       {/* WOD説明モーダル */}
       <AnimatePresence>
         {showWodModal && (
-          <motion.div
+          <m.div
             className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center px-6"
             onClick={() => setShowWodModal(false)}
             initial={{ opacity: 0 }}
@@ -212,12 +220,12 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <motion.div
+            <m.div
               className="bg-gray rounded-2xl p-8 max-w-sm w-full relative"
               onClick={(e) => e.stopPropagation()}
-              initial={{ scale: 0, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
+              exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
             >
               <button
@@ -230,8 +238,8 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
               <p className="text-sm leading-6">
                 その日のトレーニングメニューのこと。気分や目的に合わせておすすめのWODを提案します。AMRAP・EMOM・ForTimeの3つのフォーマットがあり、それぞれ異なるアプローチでトレーニングを楽しめます。
               </p>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>
