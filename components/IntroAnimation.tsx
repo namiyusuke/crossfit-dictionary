@@ -32,6 +32,15 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
           <m.div
             id="intro-overlay"
             className="fixed inset-0 z-[200] flex cursor-pointer flex-col items-center justify-center bg-background"
+            // Tailwind CSS のロード前(next dev の FOUC や CSS 遅延)でも最初のペイントから
+            // 本体を覆えるよう、位置・全画面・背景・重なりはインラインでも指定する。
+            // 背景は CSS ロード後は --background を使い、未ロード時のみ #0a0a0a にフォールバック。
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 200,
+              backgroundColor: "var(--background, #0a0a0a)",
+            }}
             onClick={() => setShow(false)}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
