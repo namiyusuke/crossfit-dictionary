@@ -1,26 +1,24 @@
 "use client";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { m, AnimatePresence } from "motion/react";
 
 interface IntroAnimationProps {
   onComplete?: () => void;
 }
 
-// paint 前に同期実行したいが、SSR では useLayoutEffect が警告を出すため切り替える
-const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
-
 export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
-  // null = sessionStorage 判定前。判定が終わるまで何も描画せず、リロード時のフラッシュを防ぐ
-  const [show, setShow] = useState<boolean | null>(null);
+  // 初期値 true。SSR/初回ペイントの時点でオーバーレイ(#intro-overlay)を描画して
+  // 本体を覆い、本体が一瞬見えるちらつきを防ぐ。
+  // 2回目以降の訪問は <html class="intro-played"> + globals.css の display:none で
+  // ペイント前に隠れるため、ここは常に true で初期化してよい(hydration も一致する)。
+  const [show, setShow] = useState(true);
 
-  // useLayoutEffect で paint 前に show を確定させ、ページ本体が一瞬見えるちらつきを防ぐ
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     if (sessionStorage.getItem("intro-played")) {
       setShow(false);
       return;
     }
     sessionStorage.setItem("intro-played", "1");
-    setShow(true);
     const timer = setTimeout(() => setShow(false), 2800);
     return () => clearTimeout(timer);
   }, []);
