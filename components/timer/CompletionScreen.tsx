@@ -70,8 +70,8 @@ function CompletionScreenA({ result, formatColor, onClose }: CompletionScreenPro
       <div className="fixed inset-0 pt-[130px] z-50 flex flex-col items-center bg-[#553EEC] px-6 overflow-y-auto  z-50 flex flex-col md:max-w-[375px] md:mx-auto z-20 min-h-screen">
         <div className="text-left w-full text-green  mb-8">
           <p>
-            <Link className="text-green font-black" href="/?section=WOD">
-              WODトップに戻る
+            <Link className="text-white font-black" href="/?section=WOD">
+              ＜ WODトップに戻る
             </Link>
           </p>
         </div>

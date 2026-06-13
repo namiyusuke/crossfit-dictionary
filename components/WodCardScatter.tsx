@@ -212,7 +212,7 @@ export default function WodCardScatter({ wods, movements }: WodCardScatterProps)
                       <span className="relative z-1">さくっと？</span>
                       <span className="top-2 z-0 absolute text-black left-0 right-0 ">さくっと？</span>
                     </span>
-                    <span className="block text-2xl text-right mr-10">
+                    <span className="block text-2xl text-right mr-10 relative">
                       <span className="relative z-1">それいいのか？</span>
                       <span className="top-2 z-0 absolute text-black left-0 right-0 ">それいいのか？</span>
                     </span>
