@@ -1,16 +1,20 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { m, AnimatePresence } from "motion/react";
 
 interface IntroAnimationProps {
   onComplete?: () => void;
 }
 
+// paint 前に同期実行したいが、SSR では useLayoutEffect が警告を出すため切り替える
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
   // null = sessionStorage 判定前。判定が終わるまで何も描画せず、リロード時のフラッシュを防ぐ
   const [show, setShow] = useState<boolean | null>(null);
 
-  useEffect(() => {
+  // useLayoutEffect で paint 前に show を確定させ、ページ本体が一瞬見えるちらつきを防ぐ
+  useIsomorphicLayoutEffect(() => {
     if (sessionStorage.getItem("intro-played")) {
       setShow(false);
       return;
