@@ -6,7 +6,8 @@ export default function BackgroundDecoration() {
       <div
         className="hidden md:block min-h-screen z-1 fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          background: "linear-gradient(180deg, #262626 0%, rgba(38, 38, 38, 0) 30.29%, rgba(38, 38, 38, 0) 70.19%, #262626 100%), url('/bg.webp') center/cover no-repeat",
+          background:
+            "linear-gradient(180deg, #262626 0%, rgba(38, 38, 38, 0) 30.29%, rgba(38, 38, 38, 0) 70.19%, #262626 100%), url('/bg.webp') center/cover no-repeat",
         }}
       ></div>
       <div className="hidden md:block fixed z-20 top-[80px] w-full overflow-hidden font-gothic text-[100px] leading-none">
@@ -39,14 +40,6 @@ export default function BackgroundDecoration() {
           <div className="relative">
             <div className="flex absolute inset-0 mb-[10%] items-center flex-col justify-center m-auto h-full">
               <div className="relative">
-                <div className="absolute bottom-[96%] mx-auto left-0 right-[-70px] ">
-                  <SpriteAnimation
-                    category={"bg02"}
-                    className="w-[min(calc(174_/_1440_*_100vw),174px)] mx-auto left-0 right-0 "
-                    interval={1200}
-                    delay={1400}
-                  />
-                </div>
                 {/* <p className="bg-green rounded-[8px] text-center text-black py-2 px-3 font-black mb-3.5 leading-none">
                   本気のやつらのための
                 </p>
@@ -58,26 +51,34 @@ export default function BackgroundDecoration() {
               </div>
             </div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="absolute translate-x-[-100px] translate-y-[216px] ">
+              <div className="absolute translate-x-[140px] translate-y-[216px] ">
                 <SpriteAnimation
                   category={"bg01"}
-                  className="w-[min(calc(174_/_1440_*_100vw),174px)]"
+                  className="w-[min(calc(80_/_1440_*_100vw),80px)]"
                   interval={1000}
                   delay={0}
                 />
               </div>
-              <div className="absolute translate-x-[200px] translate-y-[216px] ">
+              <div className="absolute translate-x-[-120px] translate-y-[200px] ">
+                <SpriteAnimation
+                  category={"bg03"}
+                  className="w-[min(calc(280_/_1440_*_100vw),280px)]"
+                  interval={1100}
+                  delay={1200}
+                />
+              </div>
+              {/* <div className="absolute translate-x-[200px] translate-y-[216px] ">
                 <SpriteAnimation
                   category={"bg05"}
                   className="w-[min(calc(130_/_1440_*_100vw),130px)]"
                   interval={1200}
                   delay={10}
                 />
-              </div>
+              </div> */}
               <Image
-                className="absolute translate-x-[120px] translate-y-[356px] "
-                width={60}
-                height={77}
+                className="absolute translate-x-[40px] translate-y-[266px] "
+                width={39}
+                height={50}
                 src="/kettlebell.webp"
                 alt="ケトルべル"
               />
@@ -86,30 +87,33 @@ export default function BackgroundDecoration() {
           <div className=""></div>
           <div className="relative">
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="absolute translate-x-[-120px] translate-y-[100px] ">
-                <SpriteAnimation
-                  category={"bg03"}
-                  className="w-[min(calc(240_/_1440_*_100vw),240px)]"
-                  interval={1100}
-                  delay={1200}
-                />
-              </div>
-              <div className="absolute z-1 translate-x-[120px] translate-y-[236px] ">
-                {/* <SpriteAnimation
-                  category={"bg04"}
-                  className="w-[min(calc(180_/_1440_*_100vw),180px)]"
-                  interval={1400}
-                  delay={600}
-                /> */}
+              <div className="absolute z-1 translate-x-[150px] translate-y-[276px] scale-x-[-1]">
                 <Image className="animate-rotate" alt="バー" src="/bg-char04-02.webp" width={160} height={168} />
               </div>
               <Image
-                className="absolute z-0 translate-x-[180px] translate-y-[356px] "
-                width={221}
-                height={164}
+                className="absolute z-0 translate-x-[180px] translate-y-[376px]"
+                width={180}
+                height={114}
                 src="/dumbbell.webp"
                 alt="バー"
               />
+            </div>
+            <div className="absolute flex justify-center items-center inset-0 font-black">
+              <p className="space-y-7 max-w-[346px] leading-[1.8]">
+                <span className="block">
+                  <span className="text-[calc(40/1440*100vw)]">CrossFit</span>
+                  <span className="text-[calc(24/1440*100vw)]">とは、</span>
+                </span>
+                <span className="block text-[min(calc(14/1440*100vw),14px)]">
+                  ウェイトリフティング・体操・有酸素運動を高強度で 組み合わせたフィットネスプログラム。
+                </span>
+                <span className="block text-[min(calc(14/1440*100vw),14px)]">
+                  有酸素と無酸素の両方、つまり複数のエネルギー系を またいで全身をバランスよく鍛える。
+                </span>
+                <span className="block text-[min(calc(14/1440*100vw),14px)]">
+                  WOD（その日のメニュー）を仲間と一緒にこなすスタイルが基本で、タイムや回数を記録して成長を測れるのも特徴。
+                </span>
+              </p>
             </div>
           </div>
         </div>
