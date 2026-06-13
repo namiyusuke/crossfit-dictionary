@@ -47,6 +47,9 @@ export default function RootLayout({
     <html
       lang="ja"
       suppressHydrationWarning
+      // CSS ロード前(next dev の FOUC や CSS 遅延)に既定の白背景が一瞬見える
+      // 「白フラッシュ」を防ぐため、背景色は CSS に依存しないインラインでも指定する。
+      style={{ backgroundColor: "#0a0a0a" }}
       className={cn(
         "h-full",
         "antialiased",
