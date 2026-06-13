@@ -15,18 +15,22 @@ jobs:
         with:
           # full history so `--scope changed` can diff against the base branch
           fetch-depth: 0
+      # Pin pnpm via the official action so it wins on PATH over the runner's
+      # pre-installed pnpm. `npm install -g pnpm@8` did NOT win, so CI kept using
+      # pnpm 10 and failed with ERR_PNPM_IGNORED_BUILDS. 8.15.7 matches local +
+      # the lockfile format.
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8.15.7
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Install dependencies & tooling
-        run: |
-          # Pin pnpm to the project's version (lockfile is v8-format).
-          # The unpinned latest (pnpm 10) fails CI on unapproved build scripts
-          # (ERR_PNPM_IGNORED_BUILDS); React Doctor is static analysis and needs
-          # no native builds, so --ignore-scripts keeps install fast and clean.
-          npm install -g pnpm@8.15.7
-          pnpm install --ignore-scripts
+          cache: pnpm
+      - name: Install dependencies
+        # React Doctor is static analysis and needs no native builds.
+        run: pnpm install --ignore-scripts
       - name: Run React Doctor on changed code
         # Fails the check only on NEW error-severity issues in this PR.
         # To also block on newly-introduced warnings, add: --blocking warning
