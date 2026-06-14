@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { m, AnimatePresence } from "motion/react";
+import { m } from "motion/react";
 
 interface IntroAnimationProps {
   onComplete?: () => void;
@@ -12,6 +12,8 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
   // 2回目以降の訪問は <html class="intro-played"> + globals.css の display:none で
   // ペイント前に隠れるため、ここは常に true で初期化してよい(hydration も一致する)。
   const [show, setShow] = useState(true);
+  // フェードアウト中フラグ。opacity を CSS トランジションで 0 にしていく。
+  const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
     if (sessionStorage.getItem("intro-played")) {
@@ -19,32 +21,41 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
       return;
     }
     sessionStorage.setItem("intro-played", "1");
-    const timer = setTimeout(() => setShow(false), 2800);
+    const timer = setTimeout(() => setExiting(true), 2800);
     return () => clearTimeout(timer);
   }, []);
 
   if (!show) return null;
 
+  // 覆い本体は motion 非依存の素の <div>。LazyMotion(domAnimation) の遅延チャンクや
+  // AnimatePresence のハイドレーション完了を待たずに、SSR の最初のペイントから
+  // 本体を覆い続ける。フェードアウトは CSS トランジションで行うため、ここでも
+  // motion のチャンク到着に依存しない(本番でのちらつきを根絶)。
   return (
-    <>
-      <AnimatePresence onExitComplete={onComplete}>
-        {show && (
-          <m.div
-            id="intro-overlay"
-            className="fixed inset-0 z-[200] flex cursor-pointer flex-col items-center justify-center bg-background"
-            // Tailwind CSS のロード前(next dev の FOUC や CSS 遅延)でも最初のペイントから
-            // 本体を覆えるよう、位置・全画面・背景・重なりはインラインでも指定する。
-            // 背景は CSS ロード後は --background を使い、未ロード時のみ #0a0a0a にフォールバック。
-            style={{
-              position: "fixed",
-              inset: 0,
-              zIndex: 200,
-              backgroundColor: "var(--background, #0a0a0a)",
-            }}
-            onClick={() => setShow(false)}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-          >
+    <div
+        id="intro-overlay"
+        className="fixed inset-0 z-[200] flex cursor-pointer flex-col items-center justify-center bg-background"
+        // Tailwind CSS のロード前(next dev の FOUC や CSS 遅延)でも最初のペイントから
+        // 本体を覆えるよう、位置・全画面・背景・重なりはインラインでも指定する。
+        // 背景は CSS ロード後は --background を使い、未ロード時のみ #0a0a0a にフォールバック。
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 200,
+          backgroundColor: "var(--background, #0a0a0a)",
+          opacity: exiting ? 0 : 1,
+          transition: "opacity 0.6s ease-in-out",
+        }}
+        onClick={() => setExiting(true)}
+        onTransitionEnd={(e) => {
+          // 卵/ロゴ(子要素)の transition がバブリングしても誤発火しないよう、
+          // 覆い自身の opacity 遷移が終わったときだけアンマウントする。
+          if (e.target === e.currentTarget && e.propertyName === "opacity" && exiting) {
+            setShow(false);
+            onComplete?.();
+          }
+        }}
+      >
           {/* キャラクター（落下 → ぽよん着地 → 小ジャンプ） */}
           <div className="relative">
             <svg
@@ -134,9 +145,6 @@ export default function IntroAnimation({ onComplete }: IntroAnimationProps) {
               </m.g>
             </svg>
           </div>
-          </m.div>
-        )}
-      </AnimatePresence>
-    </>
+    </div>
   );
 }

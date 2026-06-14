@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import AutoAnonymousLogin from "@/components/AutoAnonymousLogin";
 import BackgroundDecoration from "@/components/BackgroundDecoration";
+import IntroAnimation from "@/components/IntroAnimation";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { MotionConfig, LazyMotion, domAnimation } from "motion/react";
 
@@ -77,6 +78,11 @@ export default function RootLayout({
                 「視差効果を減らす」設定に全 motion を追従させる (WCAG 2.3.3)。 */}
             <LazyMotion features={domAnimation}>
               <MotionConfig reducedMotion="user">
+                {/* イントロの覆いは nuqs(useSearchParams) を含む page の <Suspense> の外で描画する。
+                    page 側に置くと、その Suspense が静的プリレンダー時に
+                    BAILOUT_TO_CLIENT_SIDE_RENDERING でクライアント送りになり、覆いが
+                    初期HTMLに出ず「本体が先に見えてからイントロが被る」ちらつきになるため。 */}
+                <IntroAnimation />
                 <NuqsAdapter>{children}</NuqsAdapter>
               </MotionConfig>
             </LazyMotion>
