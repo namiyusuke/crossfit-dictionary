@@ -124,7 +124,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-text-primary ">
         <div className="">
           <BackgroundDecoration />
-          <div className=" md:max-w-[375px] md:mx-auto relative z-100 bg-gray min-h-screen">
+          <div className=" lg:max-w-[375px] lg:mx-auto relative z-100 bg-gray min-h-screen">
             <AutoAnonymousLogin />
             {/* LazyMotion + domAnimation で motion の全機能バンドル(約30kb)を遅延ロードし、
                 各コンポーネントは軽量な `m` を使う。reducedMotion="user" は OS の
