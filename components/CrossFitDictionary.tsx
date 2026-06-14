@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Movement, Category, PrimaryEffect, BodyPart, Equipment } from "@/types/movement";
 import { Wod } from "@/types/wod";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
@@ -90,6 +90,16 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
 
   const [showEquipmentSettings, setShowEquipmentSettings] = useState(searchParams.get("equipment") === "true");
   const [showWodModal, setShowWodModal] = useState(false);
+
+  // equipment=true パラメータは一度状態に取り込んだら URL から取り除く。
+  // これを残したままだとリロード時に毎回設備設定画面へ戻ってしまうため。
+  useEffect(() => {
+    if (searchParams.get("equipment") === "true") {
+      router.replace("/");
+    }
+    // 初回マウント時のみ実行
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // localStorage の読み込みが終わるまでは判定せず、オンボーディングのフラッシュを防ぐ
   if (!isEquipmentHydrated) {
