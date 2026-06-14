@@ -22,8 +22,28 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const wod = await getWodById(id);
+  if (!wod) {
+    return { title: "WODが見つかりません" };
+  }
+  const title = `${wod.name}（${wod.format}・${wod.level}）`;
+  const description =
+    wod.goal || `${wod.format}形式・${wod.level}向けのWOD（目安 ${wod.duration}）。`;
+  const url = `/wod/${wod.id}`;
   return {
-    title: wod?.name,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      title,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 export default async function WodPage({ params }: Props) {

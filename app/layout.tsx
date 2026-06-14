@@ -28,14 +28,67 @@ const orbitron = Orbitron({
   display: "swap",
 });
 
+// 本番ドメイン。プレビュー環境などでは NEXT_PUBLIC_SITE_URL で上書きできる。
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://wodex.attcraft.com";
+const siteName = "CrossFit 種目辞典";
+const siteDescription =
+  "クロスフィット初心者向けの種目辞典。種目の動き・ポイント・達成ロードマップや、気分で選べるWODを日本語で直感的に確認できます。";
+
 export const metadata: Metadata = {
-  title: "CrossFit 種目辞典 | 初心者向けクロスフィット種目ガイド",
-  description:
-    "クロスフィット初心者向けの種目辞典。20種目の動き・ポイント・達成ロードマップを日本語で直感的に理解できます。",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${siteName} | 初心者向けクロスフィット種目ガイド`,
+    // 子ページ(種目・WOD詳細)の title に自動で付与される接尾辞
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  applicationName: siteName,
+  keywords: [
+    "クロスフィット",
+    "CrossFit",
+    "種目",
+    "辞典",
+    "WOD",
+    "初心者",
+    "トレーニング",
+    "ワークアウト",
+    "AMRAP",
+    "EMOM",
+    "For Time",
+  ],
+  authors: [{ name: siteName }],
+  creator: siteName,
+  publisher: siteName,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "CrossFit 種目辞典",
-    description: "クロスフィット初心者向けの種目辞典。種目名をタップするだけで動き・ポイント・達成ロードマップを確認。",
     type: "website",
+    locale: "ja_JP",
+    url: "/",
+    siteName,
+    title: siteName,
+    description: siteDescription,
+    // app/opengraph-image.png が自動で OG 画像として使われる
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteName,
+    description: siteDescription,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  formatDetection: {
+    telephone: false,
   },
 };
 

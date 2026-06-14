@@ -19,8 +19,27 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const movement = await getMovementById(id);
+  if (!movement) {
+    return { title: "種目が見つかりません" };
+  }
+  const title = `${movement.name}（${movement.nameEn}）`;
+  const description = movement.oneLiner || movement.purpose;
+  const url = `/movement/${movement.id}`;
   return {
-    title: movement?.name,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      title,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 export default async function MovementPage({ params }: Props) {
