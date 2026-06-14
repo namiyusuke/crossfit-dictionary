@@ -181,7 +181,7 @@ export default function OnboardingEquipment({
                         setSelected([...ALL_EQUIPMENT]);
                         goToStep(step + 1);
                       }}
-                      className="w-max m-auto p-2 font-bold text-center text-sm rounded-xl border-1 border-white cursor-pointer hover:opacity-80 transition-opacity"
+                      className="w-max m-auto p-2 font-bold text-center text-sm rounded-xl border-1 border-white cursor-pointer hover:opacity-80 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       スキップ（全項目を表示）
                     </button>
@@ -275,15 +275,27 @@ export default function OnboardingEquipment({
             )}
             {step > 0 && step < totalSteps - 1 && (
               <>
-                <div className="relative">
-                  <button
-                    onClick={() => goToStep(step + 1)}
-                    className="z-10 relative w-full flex-1 py-3 rounded-xl bg-button text-background font-bold text-base transition-opacity hover:opacity-90 cursor-pointer"
-                  >
-                    次へ
-                  </button>
-                  <span className="bg-[#414141] z-1 absolute w-full h-full rounded-xl block right-[-4px] top-[4px]"></span>
-                </div>
+                {(() => {
+                  const disabled = step === 2 && selected.length === 0;
+                  return (
+                    <div className="relative">
+                      <button
+                        onClick={() => goToStep(step + 1)}
+                        disabled={disabled}
+                        className={`z-10 relative w-full flex-1 py-3 rounded-xl font-bold text-base transition-opacity ${
+                          disabled
+                            ? "bg-[#181818] text-[#414141] cursor-not-allowed"
+                            : "bg-button text-background hover:opacity-90 cursor-pointer"
+                        }`}
+                      >
+                        次へ
+                      </button>
+                      {!disabled && (
+                        <span className="bg-[#414141] z-1 absolute w-full h-full rounded-xl block right-[-4px] top-[4px]"></span>
+                      )}
+                    </div>
+                  );
+                })()}
                 {step >= 2 && (
                   <button className="block text-left text-[14px]" onClick={() => goToStep(step - 1)}>
                     ← 戻る
