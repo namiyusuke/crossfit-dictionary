@@ -8,7 +8,7 @@ export function parseDurationMinutes(duration: string): number {
   return parseInt(match[1], 10);
 }
 
-/** 秒数を mm:ss 形式に変換 */
+/** 秒数をmm:ss 形式に変換 */
 export function formatTime(totalSeconds: number): string {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
