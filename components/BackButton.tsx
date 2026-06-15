@@ -6,7 +6,7 @@ export default function BackButton({ label }: { label: string }) {
   const router = useRouter();
 
   return (
-    <button onClick={() => router.back()} className="inline-flex items-center gap-1 text-sm">
+    <button onClick={() => router.back()} className="inline-flex items-center gap-1 text-sm cursor-pointer">
       ＜　{label}
     </button>
   );

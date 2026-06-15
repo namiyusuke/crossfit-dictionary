@@ -55,7 +55,7 @@ export default async function MovementPage({ params }: Props) {
       {/* フレーム枠 */}
       <div className="inset-0 pointer-events-none mx-auto w-[375px] fixed z-3000 before:absolute before:left-0 md:before:rounded-[24px] before:right-0 before:inset-y-0 before:border before:border-[#939393] before:border-3 before:content-[''] hidden md:block"></div>
       {/* 角丸マスク（4隅のみ） */}
-      <div className="fixed inset-0 pointer-events-none mx-auto w-[375px] z-20 hidden md:block rounded-[24px]">
+      <div className="fixed inset-0 pointer-events-none mx-auto w-[375px] z-20 hidden lg:block rounded-[24px]">
         <div
           className="absolute top-0 left-0 w-6 h-6 hidden md:block"
           style={{ background: "radial-gradient(circle at 100% 100%, transparent 23px, #262626 24px)" }}
