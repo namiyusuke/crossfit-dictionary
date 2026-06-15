@@ -116,7 +116,9 @@ export default function CrossFitDictionary({ movements, wods }: CrossFitDictiona
           setShowEquipmentSettings(false);
           router.push("/");
         }}
-        {...(showEquipmentSettings ? { initialStep: 2, initialSelected: userEquipment ?? [] } : {})}
+        {...(showEquipmentSettings
+          ? { initialStep: 2, initialSelected: userEquipment ?? [], isSettings: true }
+          : {})}
       />
     );
   }

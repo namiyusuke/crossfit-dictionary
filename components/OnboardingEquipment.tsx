@@ -23,12 +23,14 @@ interface OnboardingEquipmentProps {
   onComplete: (selectedEquipment: Equipment[]) => void;
   initialStep?: number;
   initialSelected?: Equipment[];
+  isSettings?: boolean;
 }
 
 export default function OnboardingEquipment({
   onComplete,
   initialStep = 0,
   initialSelected = [],
+  isSettings = false,
 }: OnboardingEquipmentProps) {
   const [step, setStep] = useState(initialStep);
   const [direction, setDirection] = useState(1);
@@ -44,7 +46,8 @@ export default function OnboardingEquipment({
   const toggleEquipment = (eq: Equipment) => {
     setSelected((prev) => (prev.includes(eq) ? prev.filter((e) => e !== eq) : [...prev, eq]));
   };
-  const totalSteps = 4;
+  // 設定変更からの起動時は注意事項（step 3）を表示せず、設備選択で完了する
+  const totalSteps = isSettings ? 3 : 4;
 
   return (
     <div className="">
@@ -179,7 +182,12 @@ export default function OnboardingEquipment({
                     <button
                       onClick={() => {
                         setSelected([...ALL_EQUIPMENT]);
-                        goToStep(step + 1);
+                        if (isSettings) {
+                          window.scrollTo(0, 0);
+                          onComplete([...ALL_EQUIPMENT]);
+                        } else {
+                          goToStep(step + 1);
+                        }
                       }}
                       className="w-max m-auto p-2 font-bold text-center text-sm rounded-xl border-1 border-white cursor-pointer hover:opacity-80 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                     >
@@ -303,28 +311,35 @@ export default function OnboardingEquipment({
                 )}
               </>
             )}
-            {step === totalSteps - 1 && (
-              <>
-                <div className="relative">
-                  <button
-                    onClick={() => {
-                      window.scrollTo(0, 0);
-                      onComplete(selected);
-                    }}
-                    disabled={!check}
-                    className={`z-10 relative w-full flex-1 py-3 rounded-xl font-bold text-base transition-opacity ${check ? "bg-button text-background hover:opacity-90 cursor-pointer" : "bg-[#181818] text-[#414141] cursor-not-allowed"}`}
-                  >
-                    同意してはじめる
-                  </button>
-                  {check && (
-                    <span className="bg-[#414141] z-1 absolute w-full h-full rounded-xl block right-[-4px] top-[4px]"></span>
-                  )}
-                </div>
-                <button className="block text-left text-[14px]" onClick={() => goToStep(step - 1)}>
-                  ← 戻る
-                </button>
-              </>
-            )}
+            {step === totalSteps - 1 &&
+              (() => {
+                // 設定変更時は注意事項チェック不要。設備が1つ以上選択されていれば完了できる
+                const canComplete = isSettings ? selected.length > 0 : check;
+                return (
+                  <>
+                    <div className="relative">
+                      <button
+                        onClick={() => {
+                          window.scrollTo(0, 0);
+                          onComplete(selected);
+                        }}
+                        disabled={!canComplete}
+                        className={`z-10 relative w-full flex-1 py-3 rounded-xl font-bold text-base transition-opacity ${canComplete ? "bg-button text-background hover:opacity-90 cursor-pointer" : "bg-[#181818] text-[#414141] cursor-not-allowed"}`}
+                      >
+                        {isSettings ? "設定を保存" : "同意してはじめる"}
+                      </button>
+                      {canComplete && (
+                        <span className="bg-[#414141] z-1 absolute w-full h-full rounded-xl block right-[-4px] top-[4px]"></span>
+                      )}
+                    </div>
+                    {!isSettings && (
+                      <button className="block text-left text-[14px]" onClick={() => goToStep(step - 1)}>
+                        ← 戻る
+                      </button>
+                    )}
+                  </>
+                );
+              })()}
           </div>
           {/* プログレスドット */}
           <div className="flex justify-center gap-2 mt-8">
