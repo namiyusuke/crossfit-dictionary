@@ -258,13 +258,21 @@ export default function OnboardingEquipment({
           <AnimatePresence>
             {step === 1 && (
               <m.div
-                className="max-w-[138px] absolute bottom-[82px] right-0"
+                className="max-w-[138px] absolute bottom-[82px] right-0 transform-gpu [backface-visibility:hidden]"
+                style={{ willChange: "opacity" }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <Image width={276} height={418} src="/onboarding-char02.webp" alt="走るキャラクター" />
+                <Image
+                  className="h-auto w-full"
+                  width={276}
+                  height={418}
+                  src="/onboarding-char02.webp"
+                  alt="走るキャラクター"
+                  priority
+                />
               </m.div>
             )}
           </AnimatePresence>
