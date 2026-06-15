@@ -261,9 +261,10 @@ export default function OnboardingEquipment({
                 className="max-w-[138px] absolute bottom-[82px] right-0 transform-gpu [backface-visibility:hidden]"
                 style={{ willChange: "opacity" }}
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                // 本文のスライド入れ替え（mode="wait" で約0.3s）が終わって親の高さが確定してから出す
+                animate={{ opacity: 1, transition: { duration: 0.3, delay: 0.3 } }}
+                // 親の高さが変わる前に消し切ることで「下に落ちる」ガタつきを防ぐ
+                exit={{ opacity: 0, transition: { duration: 0.15 } }}
               >
                 <Image
                   className="h-auto w-full"
