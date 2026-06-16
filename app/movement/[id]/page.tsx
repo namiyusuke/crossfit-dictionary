@@ -53,7 +53,7 @@ export default async function MovementPage({ params }: Props) {
   return (
     <main className="min-h-screen px-4 py-8 pb-[170px] max-w-2xl mx-auto bg-gray relative">
       {/* フレーム枠 */}
-      <div className="inset-0 pointer-events-none mx-auto w-[375px] fixed z-3000 before:absolute before:left-0 md:before:rounded-[24px] before:right-0 before:inset-y-0 before:border before:border-[#939393] before:border-3 before:content-[''] hidden md:block"></div>
+      <div className="inset-0 pointer-events-none mx-auto w-[375px] fixed z-3000 before:absolute before:left-0 md:before:rounded-[24px] before:right-0 before:inset-y-0 before:border before:border-[#939393] before:border-3 before:content-[''] hidden lg:block"></div>
       {/* 角丸マスク（4隅のみ） */}
       <div className="fixed inset-0 pointer-events-none mx-auto w-[375px] z-20 hidden lg:block rounded-[24px]">
         <div
