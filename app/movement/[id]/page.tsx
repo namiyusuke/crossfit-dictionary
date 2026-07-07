@@ -6,9 +6,12 @@ import SpriteAnimation from "./SpriteAnimation";
 import BackButton from "@/components/BackButton";
 import DifficultyDots from "@/components/DifficultyDots";
 import GlobalMenuNav from "@/components/GlobalMenuNav";
+import JsonLd from "@/components/JsonLd";
 type Props = {
   params: Promise<{ id: string }>;
 };
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://wodex.attcraft.com";
 
 export async function generateStaticParams() {
   const movements = await getAllMovements();
@@ -50,8 +53,36 @@ export default async function MovementPage({ params }: Props) {
   }
   const categoryColor = CATEGORY_COLORS[movement.category];
   const categoryShadow = CATEGORY_SHADOW[movement.category];
+
+  // 「やり方」を HowTo、階層を BreadcrumbList として構造化データ化する。
+  const howToLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `${movement.name}（${movement.nameEn}）のやり方`,
+    description: movement.oneLiner || movement.purpose,
+    inLanguage: "ja",
+    step: movement.steps.map((step, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      text: step,
+    })),
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: siteUrl },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: movement.name,
+        item: `${siteUrl}/movement/${movement.id}`,
+      },
+    ],
+  };
   return (
     <main className="min-h-screen px-4 py-8 pb-[170px] max-w-2xl mx-auto bg-gray relative">
+      <JsonLd data={[howToLd, breadcrumbLd]} />
       {/* フレーム枠 */}
       <div className="inset-0 pointer-events-none mx-auto w-[375px] fixed z-3000 before:absolute before:left-0 md:before:rounded-[24px] before:right-0 before:inset-y-0 before:border before:border-[#939393] before:border-3 before:content-[''] hidden lg:block"></div>
       {/* 角丸マスク（4隅のみ） */}
@@ -100,7 +131,7 @@ export default async function MovementPage({ params }: Props) {
             <div className="flex items-start justify-between gap-2">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <h2 className="text-2xl font-bold font-gothic">{movement.name}</h2>
+                  <h1 className="text-2xl font-bold font-gothic">{movement.name}</h1>
                 </div>
                 <p className="text-sm mt-0.5 font-black">{movement.nameEn}</p>
                 <p className="text-base mt-6 line-clamp-2 leading-relaxed">{movement.oneLiner}</p>

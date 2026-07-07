@@ -7,7 +7,8 @@ interface HeaderProps {
 export default function Header({ activeSection, onShowWodModal, onShowEquipmentSettings }: HeaderProps) {
   return (
     <div className="flex justify-between w-full lg:max-w-[375px] mx-auto fixed left-0 right-0 top-0 bg-black px-[16px] bg-[#262626] pt-14 pb-[14px] z-1000 lg:rounded-tl-[24px] lg:rounded-tr-[24px] overflow-clip items-end">
-      <h1 className="text-4xl font-gothic flex gap-4 font-normal text-green">
+      {/* ページ本来の h1 は SSR される app/page.tsx 側にあるため、ここはセクション見出し(h2)。 */}
+      <h2 className="text-4xl font-gothic flex gap-4 font-normal text-green">
         <span>{activeSection}</span>
         {activeSection == "WOD" && (
           <span onClick={onShowWodModal} className="cursor-pointer">
@@ -20,7 +21,7 @@ export default function Header({ activeSection, onShowWodModal, onShowEquipmentS
             </svg>
           </span>
         )}
-      </h1>
+      </h2>
       <div className="text-right flex flex-col items-end gap-2">
         {activeSection == "種目辞典" && (
           <a

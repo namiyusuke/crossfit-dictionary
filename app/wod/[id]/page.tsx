@@ -10,9 +10,12 @@ import GlobalMenuNav from "@/components/GlobalMenuNav";
 import MoodBackLink from "./MoodBackLink";
 import RxHelpButton from "./RxHelpButton";
 import WodPageHeader from "./WodPageHeader";
+import JsonLd from "@/components/JsonLd";
 type Props = {
   params: Promise<{ id: string }>;
 };
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://wodex.attcraft.com";
 export async function generateStaticParams() {
   const wods = await getAllWods();
   return wods.map((wod) => ({
@@ -61,8 +64,18 @@ export default async function WodPage({ params }: Props) {
   };
   // このWODに該当する気分を探す
   const matchingMoods = MOODS.filter((m) => m.filter(wod));
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "WOD", item: `${siteUrl}/?section=WOD` },
+      { "@type": "ListItem", position: 3, name: wod.name, item: `${siteUrl}/wod/${wod.id}` },
+    ],
+  };
   return (
     <>
+      <JsonLd data={breadcrumbLd} />
       <WodPageHeader />
       {/* フレーム枠 */}
       <div className="inset-0 pointer-events-none mx-auto w-[375px] fixed z-3000 before:absolute before:left-0 md:before:rounded-[24px] before:right-0 before:inset-y-0 before:border before:border-[#939393] before:border-3 before:content-[''] hidden lg:block"></div>
